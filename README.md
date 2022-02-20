@@ -1,3 +1,1 @@
 # HangOut
-
-#Nombre del grupo
