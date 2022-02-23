@@ -29,10 +29,10 @@
 - **David Enrique Palacios García**
 
 <p align="center" width="100%">
-<img src="" class="center" width="200" height="300"  />
+<img src="https://user-images.githubusercontent.com/78034097/155256761-2332c10d-3151-4698-aa88-c6b282a78e48.jpeg" class="center" width="250" height="300"  />
 </p>
 
-<p align="justify" width="100%"> </p> 
+<p align="justify" width="100%"> Soy estudiante de séptimo semestre en la Pontificia Universidad Javeriana. Me apasionan los negocios en internet y la búsqueda de soluciones tecnológicas a problemas cotidianos. Tengo habilidades de comunicación y liderazgo, rasgos que con el paso de los años me han permitido conformar grandes equipos con personas muy talentosas. Mi objetivo a mediano y largo plazo es vivir en Australia y trabajar en la industria de la tecnología. </p> 
 
 - **Laura Sofía Rozo Rodríguez**
 
@@ -52,3 +52,25 @@
 <p align="justify" width="100%"> Mi nombre es María Alejandra tengo 19 años, estoy en 6to semestre de ingeniería de sistemas en la universidad Pontificia Javeriana, me gusta leer, hacer ejercicio y escuchar musica. Tengo interés en actividades relacionadas a la tecnología, como herrmienta para buscar soluciones óptimas y eficientes para problemas que afectan hoy en día nuestra sociedad. </p> 
 
 
+## Entregables 
+
+###### Diagrama de Casos de Uso Inicial
+
+<p align="justify" width="100%"> En la siguiente imagen se podrá observar el diagrama de casos de uso inicial de la aplicación móvil Hang Out. También se adjunta link de acceso a este para poder visualizarlo de mejor forma (<a href="https://lucid.app/lucidchart/c4ba8d5a-7053-48a8-b58e-1d85fdc3c6bb/edit?invitationId=inv_dd232306-09f1-41e6-8fbc-52bf37926c9e"> Diagrama de Casos de Uso </a>). </p>
+
+<p align="center" width="100%">
+<img src="https://user-images.githubusercontent.com/78034097/155258754-9dc62a96-9f74-4386-bcca-c847865c5717.png" class="center" width="450" height="600"  />
+</p>
+
+###### Diagrama de Clases Inical
+
+
+<p align="justify" width="100%"> En la siguiente imagen se podrá observar el diagrama de clases inicial de la aplicación móvil Hang Out. </p>
+
+<p align="center" width="100%">
+<img src="https://user-images.githubusercontent.com/78034097/155259488-8f64cfdd-5520-4e77-a447-c506f7a87efd.png" class="center" width="800" height="400"  />
+</p>
+
+###### Mockups Iniciales 
+
+<p align="justify" width="100%"> En el siguiente link podrá visualizar e interactuar con el prototipado incial de la aplicación móvil Hang Out. (<a href="https://marvelapp.com/prototype/hihfh9h"> Mockups Iniciales Hang Out </a>). </p>
