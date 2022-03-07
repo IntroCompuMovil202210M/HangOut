@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/txtcontinuarNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView2"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="40dp"
+        android:text="Continuar como Nombre"
+        android:textColor="@color/negro2"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtcontinuarNombre"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Hang Out recibirá tu perfil público"
+        android:textAlignment="center"
+        android:textColor="@color/gris"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/learn_icon"
+        android:layout_width="25dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/textView3"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:layout_toLeftOf="@id/textView11"
+        android:src="@drawable/icon" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView3"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:text="Learn More"
+        android:textColor="@color/negro2"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnContinuar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView11"
+        android:layout_marginHorizontal="60dp"
+        android:layout_marginTop="70dp"
+        android:backgroundTint="@color/color"
+        android:text="Continuar"
+        android:textAllCaps="false" />
+
+
+    <ImageView
+        android:id="@+id/security_icon"
+        android:layout_width="25dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/btnContinuar"
+        android:layout_marginTop="35dp"
+        android:paddingTop="5dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/iconcandado" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnContinuar"
+        android:layout_marginTop="35dp"
+        android:text="Esto no deja que Hang Out postee en Facebook"
+        android:textColor="@color/negro2"
+        android:layout_toRightOf="@id/security_icon"
+        android:textSize="17sp" />
+
+
+</RelativeLayout>
