@@ -62,7 +62,7 @@
 <img src="https://user-images.githubusercontent.com/78034097/155258754-9dc62a96-9f74-4386-bcca-c847865c5717.png" class="center" width="450" height="600"  />
 </p>
 
-###### Diagrama de Clases Inical
+###### Diagrama de Clases Inicial
 
 
 <p align="justify" width="100%"> En la siguiente imagen se podrá observar el diagrama de clases inicial de la aplicación móvil Hang Out. </p>
