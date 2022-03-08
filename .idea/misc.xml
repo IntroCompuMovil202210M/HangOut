@@ -33,7 +33,8 @@
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/drawable/rounded_edittext.xml" value="0.209" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/drawable/rounded_edittext2.xml" value="0.209" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/layout/activity_address.xml" value="0.4" />
-        <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/layout/activity_favorite.xml" value="0.35996771589991927" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/layout/activity_chat.xml" value="0.2" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/layout/activity_favorite.xml" value="0.264" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/layout/activity_loginfacebook.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/layout/activity_logingoogle.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/layout/activity_main.xml" value="0.23229166666666667" />
@@ -41,7 +42,7 @@
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/layout/activity_mostrar_restaurantes.xml" value="0.4" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/layout/activity_registrarse.xml" value="0.264" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/layout/activity_second_address.xml" value="0.23229166666666667" />
-        <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/layout/activity_show_restaurant.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/layout/activity_show_restaurant.xml" value="0.4" />
       </map>
     </option>
   </component>

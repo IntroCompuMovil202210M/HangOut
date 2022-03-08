@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".FavoriteActivity">
 
+
+    <ImageButton
+        android:id="@+id/contactos_btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="4dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toStartOf="@id/perfil_btn"
+        app:srcCompat="@drawable/ic_baseline_contacts_24"
+        tools:layout_editor_absoluteY="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <ImageButton
         android:id="@+id/perfil_btn"
         android:layout_width="40dp"
@@ -17,31 +29,9 @@
         app:srcCompat="@drawable/ic_profile_svgrepo_com__1_"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/favoritos_btn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="4dp"
-        android:background="@color/white"
-        android:padding="5dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@id/perfil_btn"
-        app:srcCompat="@drawable/ic_heart_svgrepo_com"
-        tools:layout_editor_absoluteY="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/contactos_btn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="4dp"
-        android:background="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/favoritos_btn"
-        app:srcCompat="@drawable/ic_baseline_contacts_24"
-        tools:layout_editor_absoluteY="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+
 
     <ImageView
         android:id="@+id/logo"
@@ -69,7 +59,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="412dp"
-        android:layout_height="561dp"
+        android:layout_height="672dp"
         android:layout_marginTop="184dp"
         android:background="@color/celeste"
         app:layout_constraintEnd_toEndOf="parent"

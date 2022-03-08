@@ -40,6 +40,15 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Pasa a la pantalla principal.
+                Intent intent= new Intent(getBaseContext(), FavoriteActivity.class);
+                startActivity(intent);
+            }
+        });
+
         contactos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

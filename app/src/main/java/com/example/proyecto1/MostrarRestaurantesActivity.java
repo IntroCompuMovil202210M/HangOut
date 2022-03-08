@@ -13,7 +13,7 @@ import android.widget.ImageView;
 public class MostrarRestaurantesActivity extends AppCompatActivity {
     ImageView imagen_1;
     ImageButton perfil, contactos, fav,lupa;
-    EditText buscar, ubicacion_personal, ubicacion_contacto;
+    EditText buscar;
     Button location;
 
     @Override
@@ -55,14 +55,6 @@ public class MostrarRestaurantesActivity extends AppCompatActivity {
             }
         });
 
-        lupa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Pasa a la pantalla principal.
-                Intent intent= new Intent(getBaseContext(), MostrarRestaurantesActivity.class);
-                startActivity(intent);
-            }
-        });
 
         location.setOnClickListener(new View.OnClickListener() {
             @Override

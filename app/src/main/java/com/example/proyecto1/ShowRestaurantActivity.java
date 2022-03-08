@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 public class ShowRestaurantActivity extends AppCompatActivity {
     ImageButton perfil, contactos, fav;
+    Button location, mapa;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,6 +19,17 @@ public class ShowRestaurantActivity extends AppCompatActivity {
         perfil = findViewById(R.id.perfil_btn);
         contactos = findViewById(R.id.contactos_btn);
         fav = findViewById(R.id.favoritos_btn);
+        location = findViewById(R.id.addLocationShow);
+        mapa = findViewById(R.id.button);
+
+        mapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Pasa a la pantalla principal.
+                Intent intent= new Intent(getBaseContext(), AddressActivity.class);
+                startActivity(intent);
+            }
+        });
 
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,14 +48,22 @@ public class ShowRestaurantActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        /*
+
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Pasa a la pantalla principal.
-                Intent intent= new Intent(getBaseContext(), ContactsActivity.class);
+                Intent intent= new Intent(getBaseContext(), FavoriteActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
+
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), AddressActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
