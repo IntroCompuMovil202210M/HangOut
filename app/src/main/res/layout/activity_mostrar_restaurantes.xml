@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/logo"
         android:layout_width="138dp"
         android:layout_height="74dp"
         android:layout_marginTop="52dp"
@@ -86,7 +86,7 @@
         tools:ignore="MissingConstraints">
 
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/cuadro1"
             android:layout_width="150dp"
             android:layout_height="151dp"
             android:layout_marginTop="72dp"
@@ -96,7 +96,7 @@
             app:srcCompat="@drawable/cuadrito" />
 
         <ImageView
-            android:id="@+id/imageView26"
+            android:id="@+id/cuadro2"
             android:layout_width="150dp"
             android:layout_height="151dp"
             android:layout_marginTop="72dp"

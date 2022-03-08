@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/logo"
         android:layout_width="30dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -54,7 +54,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
         app:srcCompat="@drawable/phone" />
 
     <Button
@@ -216,7 +216,7 @@
         android:gravity="start|top"
         android:hint="(581) -387 -5980"
         android:inputType="textMultiLine"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/logo"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <EditText
