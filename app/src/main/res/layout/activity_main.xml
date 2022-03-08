@@ -135,7 +135,8 @@
             android:layout_toRightOf="@id/registarGoogle"
             android:backgroundTint="@color/white"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/facebook" />
+            app:srcCompat="@drawable/facebook"
+            />
     </RelativeLayout>
 
 

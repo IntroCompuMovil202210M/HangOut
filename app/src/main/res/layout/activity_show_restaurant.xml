@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ShowRestaurantActivity">
+
+    <ImageButton
+        android:id="@+id/perfil_btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_profile_svgrepo_com__1_"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/favoritos_btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="4dp"
+        android:background="@color/white"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@id/perfil_btn"
+        app:srcCompat="@drawable/ic_heart_svgrepo_com"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/contactos_btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="4dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/favoritos_btn"
+        app:srcCompat="@drawable/ic_baseline_contacts_24"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="138dp"
+        android:layout_height="74dp"
+        app:srcCompat="@drawable/logo2"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="54dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="184dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:hint="Tu ubicación"
+        android:textSize="14sp"
+        android:inputType="textPersonName"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="195dp"
+        tools:layout_editor_absoluteY="54dp" />
+
+    <ImageView
+        android:id="@+id/imageView39"
+        android:layout_width="29dp"
+        android:layout_height="39dp"
+        app:srcCompat="@drawable/ic_baseline_location_on_24"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="166dp"
+        tools:layout_editor_absoluteY="54dp" />
+
+    <ImageView
+        android:id="@+id/imageView40"
+        android:layout_width="29dp"
+        android:layout_height="36dp"
+        app:srcCompat="@drawable/ic_baseline_location_2"
+        tools:layout_editor_absoluteX="166dp"
+        tools:layout_editor_absoluteY="93dp"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName3"
+        android:layout_width="184dp"
+        android:layout_height="36dp"
+        android:ems="10"
+        android:hint="Ubicación de tu conocido"
+        android:inputType="text"
+        android:textSize="14sp"
+        tools:layout_editor_absoluteX="195dp"
+        tools:layout_editor_absoluteY="93dp"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="414dp"
+        android:layout_height="591dp"
+        android:background="@color/celeste"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="141dp">
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="333dp"
+            android:layout_height="33dp"
+            android:background="@drawable/rounded_edittext"
+            android:ems="10"
+            android:hint="   Búsqueda"
+            android:textSize="14sp"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="41dp"
+            tools:layout_editor_absoluteY="27dp" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="365dp"
+            android:layout_height="442dp"
+            android:gravity="center"
+            app:srcCompat="@drawable/rounded_corner_view"
+            tools:layout_editor_absoluteX="25dp"
+            tools:layout_editor_absoluteY="76dp" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="175dp"
+            android:layout_height="257dp"
+            app:srcCompat="@drawable/descarga"
+            tools:layout_editor_absoluteX="47dp"
+            tools:layout_editor_absoluteY="126dp" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Storia D'Amore"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="140dp"
+            tools:layout_editor_absoluteY="87dp" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="135dp"
+            android:layout_height="256dp"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:text="Se trata de un espacio único, con una ambientación contemporánea. Su cocina es auténtica, se elabora artesanalmente cada día con ingredientes de alta calidad por su Chef ejecutivo Simone Mua, que viene de Milán, Italia. Storia D’amore es una marca que lo tiene todo: carácter, innovación y calidad."
+            tools:layout_editor_absoluteX="238dp"
+            tools:layout_editor_absoluteY="126dp" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Opiniones"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="49dp"
+            tools:layout_editor_absoluteY="399dp" />
+
+        <ScrollView
+            android:layout_width="325dp"
+            android:layout_height="78dp"
+            tools:layout_editor_absoluteX="47dp"
+            tools:layout_editor_absoluteY="424dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ver mapa"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/celeste"
+            tools:layout_editor_absoluteX="151dp"
+            tools:layout_editor_absoluteY="527dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

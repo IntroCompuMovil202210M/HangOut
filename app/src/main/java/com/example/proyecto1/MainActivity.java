@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_address);
+        setContentView(R.layout.activity_main);
         btnIngresar=findViewById(R.id.ingresar);
         btnGoogle=findViewById(R.id.registarGoogle);
         btnFacebook=findViewById(R.id.registrarFacebook);
@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Pasa a la pantalla principal.
-                //Intent intent= new Intent(getBaseContext(), );
-                //startActivity(intent);
+                Intent intent= new Intent(getBaseContext(), MenuActivity.class);
+                startActivity(intent);
             }
         });
         btnGoogle.setOnClickListener(new View.OnClickListener() {

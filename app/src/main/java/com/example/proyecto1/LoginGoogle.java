@@ -19,8 +19,8 @@ public class LoginGoogle extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 //pasa a la pantalla principal
-                //Intent intent= new Intent(getBaseContext(), );
-                //startActivity(intent);
+                Intent intent= new Intent(getBaseContext(), MenuActivity.class);
+                startActivity(intent);
             }
         });
 
