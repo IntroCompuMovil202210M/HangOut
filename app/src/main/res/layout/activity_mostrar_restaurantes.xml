@@ -5,23 +5,78 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MostrarRestaurantesActivity">
+    <ImageButton
+        android:id="@+id/perfil_btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_profile_svgrepo_com__1_"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/favoritos_btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="4dp"
+        android:background="@color/white"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@id/perfil_btn"
+        app:srcCompat="@drawable/ic_heart_svgrepo_com"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/contactos_btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="4dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/favoritos_btn"
+        app:srcCompat="@drawable/ic_baseline_contacts_24"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints"/>
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="138dp"
         android:layout_height="74dp"
         app:srcCompat="@drawable/logo2"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="27dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="54dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="184dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:hint="Tu ubicación"
+        android:textSize="14sp"
+        android:inputType="textPersonName"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="195dp"
+        tools:layout_editor_absoluteY="54dp" />
+
+    <ImageView
+        android:id="@+id/imageView39"
+        android:layout_width="29dp"
+        android:layout_height="39dp"
+        app:srcCompat="@drawable/ic_baseline_location_on_24"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="166dp"
+        tools:layout_editor_absoluteY="54dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="415dp"
-        android:layout_height="611dp"
+        android:layout_width="413dp"
+        android:layout_height="590dp"
         android:background="@color/celeste"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="-3dp"
-        tools:layout_editor_absoluteY="120dp">
+        tools:layout_editor_absoluteY="141dp">
 
         <ImageView
             android:id="@+id/imageView9"
@@ -121,13 +176,15 @@
 
         <EditText
             android:id="@+id/editTextTextPersonName"
-            android:layout_width="320dp"
-            android:layout_height="41dp"
+            android:layout_width="333dp"
+            android:layout_height="33dp"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
-            android:hint="Búsqueda"
+            android:hint="   Búsqueda"
+            android:textSize="14sp"
             android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="42dp"
-            tools:layout_editor_absoluteY="7dp" />
+            tools:layout_editor_absoluteX="41dp"
+            tools:layout_editor_absoluteY="27dp" />
 
         <ImageView
             android:id="@+id/imageView33"
@@ -178,5 +235,26 @@
             tools:layout_editor_absoluteY="451dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageView40"
+        android:layout_width="29dp"
+        android:layout_height="36dp"
+        app:srcCompat="@drawable/ic_baseline_location_2"
+        tools:layout_editor_absoluteX="166dp"
+        tools:layout_editor_absoluteY="93dp"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName3"
+        android:layout_width="184dp"
+        android:layout_height="36dp"
+        android:ems="10"
+        android:hint="Ubicación de tu conocido"
+        android:inputType="text"
+        android:textSize="14sp"
+        tools:layout_editor_absoluteX="195dp"
+        tools:layout_editor_absoluteY="93dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
