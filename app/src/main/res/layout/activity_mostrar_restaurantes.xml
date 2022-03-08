@@ -13,7 +13,8 @@
         android:padding="5dp"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_profile_svgrepo_com__1_" />
+        app:srcCompat="@drawable/ic_profile_svgrepo_com__1_"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/favoritos_btn"
@@ -25,7 +26,9 @@
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toStartOf="@id/perfil_btn"
         app:srcCompat="@drawable/ic_heart_svgrepo_com"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteY="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/contactos_btn"
@@ -36,39 +39,42 @@
         app:layout_constraintEnd_toStartOf="@+id/favoritos_btn"
         app:srcCompat="@drawable/ic_baseline_contacts_24"
         tools:layout_editor_absoluteY="0dp"
-        tools:ignore="MissingConstraints"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="138dp"
         android:layout_height="74dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="256dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo2"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="54dp" />
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
         android:layout_width="184dp"
         android:layout_height="39dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="Tu ubicación"
-        android:textSize="14sp"
         android:inputType="textPersonName"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="195dp"
-        tools:layout_editor_absoluteY="54dp" />
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView39"
         android:layout_width="29dp"
         android:layout_height="39dp"
-        app:srcCompat="@drawable/ic_baseline_location_on_24"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="166dp"
-        tools:layout_editor_absoluteY="54dp" />
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="216dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_location_on_24" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="413dp"
@@ -82,89 +88,111 @@
             android:id="@+id/imageView9"
             android:layout_width="150dp"
             android:layout_height="151dp"
-            app:srcCompat="@drawable/cuadrito"
-            tools:layout_editor_absoluteX="42dp"
-            tools:layout_editor_absoluteY="74dp" />
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="220dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cuadrito" />
 
         <ImageView
             android:id="@+id/imageView26"
             android:layout_width="150dp"
             android:layout_height="151dp"
-            app:srcCompat="@drawable/cuadrito"
-            tools:layout_editor_absoluteX="217dp"
-            tools:layout_editor_absoluteY="74dp" />
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cuadrito" />
 
         <ImageView
             android:id="@+id/imageView27"
             android:layout_width="150dp"
             android:layout_height="151dp"
-            app:srcCompat="@drawable/cuadrito"
-            tools:layout_editor_absoluteX="42dp"
-            tools:layout_editor_absoluteY="251dp" />
+            android:layout_marginTop="256dp"
+            android:layout_marginEnd="220dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cuadrito" />
 
         <ImageView
             android:id="@+id/imageView28"
             android:layout_width="150dp"
             android:layout_height="151dp"
-            app:srcCompat="@drawable/cuadrito"
-            tools:layout_editor_absoluteX="216dp"
-            tools:layout_editor_absoluteY="251dp" />
+            android:layout_marginTop="256dp"
+            android:layout_marginEnd="44dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cuadrito" />
 
         <ImageView
             android:id="@+id/imageView29"
             android:layout_width="150dp"
             android:layout_height="151dp"
-            app:srcCompat="@drawable/cuadrito"
-            tools:layout_editor_absoluteX="42dp"
-            tools:layout_editor_absoluteY="432dp" />
+            android:layout_marginTop="432dp"
+            android:layout_marginEnd="220dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cuadrito" />
 
         <ImageView
             android:id="@+id/imageView30"
             android:layout_width="150dp"
             android:layout_height="151dp"
-            app:srcCompat="@drawable/cuadrito"
-            tools:layout_editor_absoluteX="216dp"
-            tools:layout_editor_absoluteY="432dp" />
+            android:layout_marginTop="432dp"
+            android:layout_marginEnd="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cuadrito" />
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="248dp"
             android:text="Storia S'Amore"
-            tools:layout_editor_absoluteX="75dp"
-            tools:layout_editor_absoluteY="198dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="96dp"
             android:text="Seratta"
-            tools:layout_editor_absoluteX="271dp"
-            tools:layout_editor_absoluteY="198dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView23"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="380dp"
+            android:layout_marginEnd="265dp"
             android:text="La Biferia"
-            tools:layout_editor_absoluteX="84dp"
-            tools:layout_editor_absoluteY="379dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="380dp"
+            android:layout_marginEnd="92dp"
             android:text="Archies"
-            tools:layout_editor_absoluteX="269dp"
-            tools:layout_editor_absoluteY="379dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView25"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="556dp"
+            android:layout_marginEnd="265dp"
             android:text="Cornelia"
-            tools:layout_editor_absoluteX="86dp"
-            tools:layout_editor_absoluteY="559dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/btn_search_menu"
@@ -182,69 +210,85 @@
             android:id="@+id/textView26"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="556dp"
+            android:layout_marginEnd="68dp"
             android:text="Crepes &amp; Waffles"
-            tools:layout_editor_absoluteX="239dp"
-            tools:layout_editor_absoluteY="559dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/editTextTextPersonName"
             android:layout_width="297dp"
             android:layout_height="28dp"
+            android:layout_marginTop="27dp"
+            android:layout_marginEnd="75dp"
             android:background="@drawable/rounded_edittext"
             android:ems="10"
             android:hint="   Búsqueda"
             android:inputType="textPersonName"
             android:textSize="14sp"
-            tools:layout_editor_absoluteX="41dp"
-            tools:layout_editor_absoluteY="27dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView33"
             android:layout_width="141dp"
             android:layout_height="119dp"
-            app:srcCompat="@drawable/seratta"
-            tools:layout_editor_absoluteX="221dp"
-            tools:layout_editor_absoluteY="86dp" />
+            android:layout_marginTop="88dp"
+            android:layout_marginEnd="52dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/seratta" />
 
         <ImageView
             android:id="@+id/imageView34"
             android:layout_width="136dp"
             android:layout_height="113dp"
-            app:srcCompat="@drawable/storia"
-            tools:layout_editor_absoluteX="49dp"
-            tools:layout_editor_absoluteY="90dp" />
+            android:layout_marginTop="88dp"
+            android:layout_marginEnd="228dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/storia" />
 
         <ImageView
             android:id="@+id/imageView35"
             android:layout_width="141dp"
             android:layout_height="105dp"
-            app:srcCompat="@drawable/labiferia"
-            tools:layout_editor_absoluteX="47dp"
-            tools:layout_editor_absoluteY="274dp" />
+            android:layout_marginTop="272dp"
+            android:layout_marginEnd="224dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/labiferia" />
 
         <ImageView
             android:id="@+id/imageView36"
             android:layout_width="142dp"
             android:layout_height="91dp"
-            app:srcCompat="@drawable/archies"
-            tools:layout_editor_absoluteX="220dp"
-            tools:layout_editor_absoluteY="274dp" />
+            android:layout_marginTop="284dp"
+            android:layout_marginEnd="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/archies" />
 
         <ImageView
             android:id="@+id/imageView37"
             android:layout_width="148dp"
             android:layout_height="96dp"
-            app:srcCompat="@drawable/cornelia"
-            tools:layout_editor_absoluteX="43dp"
-            tools:layout_editor_absoluteY="454dp" />
+            android:layout_marginTop="448dp"
+            android:layout_marginEnd="220dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cornelia" />
 
         <ImageView
             android:id="@+id/imageView38"
             android:layout_width="140dp"
             android:layout_height="106dp"
-            app:srcCompat="@drawable/crepes"
-            tools:layout_editor_absoluteX="221dp"
-            tools:layout_editor_absoluteY="451dp" />
+            android:layout_marginTop="448dp"
+            android:layout_marginEnd="52dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/crepes" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -252,21 +296,23 @@
         android:id="@+id/imageView40"
         android:layout_width="29dp"
         android:layout_height="36dp"
-        app:srcCompat="@drawable/ic_baseline_location_2"
-        tools:layout_editor_absoluteX="166dp"
-        tools:layout_editor_absoluteY="93dp"
-        tools:ignore="MissingConstraints" />
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="216dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_location_2" />
 
     <EditText
         android:id="@+id/editTextTextPersonName3"
         android:layout_width="184dp"
         android:layout_height="36dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="Ubicación de tu conocido"
         android:inputType="text"
         android:textSize="14sp"
-        tools:layout_editor_absoluteX="195dp"
-        tools:layout_editor_absoluteY="93dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
