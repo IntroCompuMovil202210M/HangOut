@@ -29,30 +29,15 @@
         </activity>
         <activity
             android:name=".LoginFacebook"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.LoginFacebook" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
         <activity
             android:name=".LoginGoogle"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.LoginGoogle" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
         <activity
             android:name=".Registrar"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.Registrar" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
 
         <meta-data
