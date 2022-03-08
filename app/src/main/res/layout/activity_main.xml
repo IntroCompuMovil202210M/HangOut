@@ -113,9 +113,9 @@
             android:layout_below="@id/view1"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="30dp"
-            android:backgroundTint="@color/white"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_googleicon" />
+            android:backgroundTint="@android:color/transparent"
+            app:srcCompat="@drawable/google" />
 
         <ImageButton
             android:id="@+id/registrarFacebook"
@@ -125,7 +125,7 @@
             android:layout_marginLeft="100dp"
             android:layout_marginTop="30dp"
             android:layout_toRightOf="@id/registarGoogle"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@android:color/transparent"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/facebook"
             />
