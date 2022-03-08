@@ -7,19 +7,49 @@
     tools:context=".AddressActivity">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scaleType="centerCrop"
         app:srcCompat="@drawable/mapa" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/address1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="60dp"
         android:background="@drawable/rounded_edittext"
+        android:drawableLeft="@drawable/ic_baseline_location_on_24"
         android:hint="Ubicación"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gris" />
+
+    <Button
+        android:id="@+id/add_location"
+        android:layout_width="36dp"
+        android:layout_height="38dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/drawable_bg" />
+
+    <Button
+        android:id="@+id/search_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:drawableLeft="@drawable/ic_search"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        app:cornerRadius="20dp"
+        android:backgroundTint="@color/celeste"
+        android:textColor="@color/white"
+        android:text="Buscar" />
+
+
 </RelativeLayout>

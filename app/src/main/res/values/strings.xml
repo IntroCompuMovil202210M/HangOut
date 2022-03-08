@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Proyecto1</string>
+    <string name="app_name">Hang Out</string>
     <string name="contrase_a">Contraseña</string>
     <string name="registrar"><u>Registrase Aquí</u></string>
 </resources>
