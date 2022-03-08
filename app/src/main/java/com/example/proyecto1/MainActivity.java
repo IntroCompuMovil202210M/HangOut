@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
                 //startActivity(intent);
             }
         });
-        /*
         btnGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
         btnFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent=new Intent(getBaseContext(),LoginFacebook.class);
                 startActivity(intent);
             }
-        });*/
+        });
         registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
