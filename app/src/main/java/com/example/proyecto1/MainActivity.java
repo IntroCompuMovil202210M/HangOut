@@ -14,11 +14,12 @@ public class MainActivity extends AppCompatActivity {
     ImageButton btnGoogle;
     ImageButton btnFacebook;
     TextView registrarse;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address);
-        /*btnIngresar=findViewById(R.id.ingresar);
+        btnIngresar=findViewById(R.id.ingresar);
         btnGoogle=findViewById(R.id.registarGoogle);
         btnFacebook=findViewById(R.id.registrarFacebook);
         registrarse=findViewById(R.id.registrarse);
@@ -55,6 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent=new Intent(getBaseContext(),Registrar.class);
                 startActivity(intent);
             }
-        });*/
+        });
     }
 }

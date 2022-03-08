@@ -19,15 +19,19 @@
         <entry key="..\:/Users/Estudiante/Documents/DavidPalacios/Compumovil/HangOut/app/src/main/res/layout/item_lista_contacto.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Estudiante/Documents/DavidPalacios/Compumovil/HangOut/app/src/main/res/layout/item_lista_contactos.xml" value="0.25" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/drawable/drawable_bg.xml" value="0.209" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/drawable/drawable_remove_location_bg.xml" value="0.209" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/drawable/edit_text_border.xml" value="0.209" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/drawable/ic_add_location.xml" value="0.209" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/drawable/ic_add_location_alt_24.xml" value="0.209" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/drawable/ic_baseline_add_location_24.xml" value="0.209" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/drawable/ic_baseline_location_2.xml" value="0.209" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.209" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/drawable/ic_baseline_location_on_24_blue.xml" value="0.209" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/drawable/rounded_edittext.xml" value="0.209" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/drawable/rounded_edittext2.xml" value="0.209" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/layout/activity_address.xml" value="0.4" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/layout/activity_main.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/Proyecto-CompuMovil/HangOut/app/src/main/res/layout/activity_second_address.xml" value="0.23229166666666667" />
       </map>
     </option>
   </component>

@@ -8,38 +8,39 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class AddressActivity extends AppCompatActivity {
+public class SecondAddressActivity extends AppCompatActivity {
 
-    Button add_address;
+    Button remove;
     Button search;
     EditText address1;
+    EditText address2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_address);
+        setContentView(R.layout.activity_second_address);
 
         //Inflate
-        add_address = findViewById(R.id.remove_location);
+        remove = findViewById(R.id.remove_location);
         search = findViewById(R.id.search_place2);
         address1 = findViewById(R.id.address1_2);
+        address2 = findViewById(R.id.address2);
 
-        //Action when add_address is clicked
-        add_address.setOnClickListener(new View.OnClickListener() {
+        //Action when remove button clicked
+        remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddressActivity.this, SecondAddressActivity.class);
+                Intent intent = new Intent(SecondAddressActivity.this, AddressActivity.class);
                 startActivity(intent);
             }
         });
 
-        //Action when search is clicked
+        //Action when search button clicked
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Ir a alguna pantalla que muestre varias opciones de restaurantes
             }
         });
-
     }
 }
