@@ -53,30 +53,29 @@
         app:srcCompat="@drawable/logo2"
         tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="184dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:hint="Tu ubicación"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
+    <Button
+        android:id="@+id/addLocationShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="28dp"
+        android:backgroundTint="@color/celeste"
+        android:drawableLeft="@drawable/ic_baseline_location_on_24_white"
+        android:text="Ingresar ubicación"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView39"
-        android:layout_width="29dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="216dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.846"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_location_on_24" />
+        tools:ignore="MissingConstraints" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="413dp"
         android:layout_height="590dp"
         android:layout_marginTop="140dp"
@@ -293,27 +292,5 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/imageView40"
-        android:layout_width="29dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="216dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_location_2" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName3"
-        android:layout_width="184dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:hint="Ubicación de tu conocido"
-        android:inputType="text"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

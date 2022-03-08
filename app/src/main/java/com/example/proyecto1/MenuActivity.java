@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 public class MenuActivity extends AppCompatActivity {
     ImageButton perfil, contactos, fav, bares, parrilla, veget, marina, desayuno, postres, lupa;
+    Button location;
     EditText buscar, ubicacion_personal, ubicacion_contacto;
 
     @Override
@@ -27,8 +29,7 @@ public class MenuActivity extends AppCompatActivity {
         postres = findViewById(R.id.postres_btn);
         lupa = findViewById(R.id.btn_search_menu);
         buscar = findViewById(R.id.edit_search_menu);
-        ubicacion_personal = findViewById(R.id.location_personal);
-        ubicacion_contacto = findViewById(R.id.location_partner);
+        location = findViewById(R.id.addLocationShow);
 
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,15 +66,23 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        /*
+
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Pasa a la pantalla principal.
-                Intent intent= new Intent(getBaseContext(), ContactsActivity.class);
+                Intent intent= new Intent(getBaseContext(), FavoriteActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
+
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), AddressActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

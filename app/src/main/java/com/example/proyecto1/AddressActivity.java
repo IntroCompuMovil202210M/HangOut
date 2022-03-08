@@ -21,7 +21,7 @@ public class AddressActivity extends AppCompatActivity {
 
         //Inflate
         add_address = findViewById(R.id.remove_location);
-        search = findViewById(R.id.search_place2);
+        search = findViewById(R.id.search_place);
         address1 = findViewById(R.id.address1_2);
 
         //Action when add_address is clicked

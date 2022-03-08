@@ -22,7 +22,7 @@ public class SecondAddressActivity extends AppCompatActivity {
 
         //Inflate
         remove = findViewById(R.id.remove_location);
-        search = findViewById(R.id.search_place2);
+        search = findViewById(R.id.search_place);
         address1 = findViewById(R.id.address1_2);
         address2 = findViewById(R.id.address2);
 

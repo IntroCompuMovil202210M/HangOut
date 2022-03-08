@@ -59,14 +59,19 @@
 
     <Button
         android:id="@+id/btnContinuar"
+        style="@style/Widget.Material3.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView11"
-        android:layout_marginHorizontal="60dp"
-        android:layout_marginTop="70dp"
         android:backgroundTint="@color/color"
         android:text="Continuar"
-        android:textAllCaps="false" />
+        android:layout_marginHorizontal="60dp"
+        android:layout_marginTop="70dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="normal"
+        android:visibility="visible" />
 
 
     <ImageView
@@ -85,10 +90,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btnContinuar"
         android:layout_marginTop="35dp"
+        android:layout_toRightOf="@id/security_icon"
         android:text="Esto no deja que Hang Out postee en Facebook"
         android:textColor="@color/negro2"
-        android:layout_toRightOf="@id/security_icon"
         android:textSize="17sp" />
+
 
 
 </RelativeLayout>

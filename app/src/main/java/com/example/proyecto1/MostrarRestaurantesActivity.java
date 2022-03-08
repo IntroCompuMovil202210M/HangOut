@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ public class MostrarRestaurantesActivity extends AppCompatActivity {
     ImageView imagen_1;
     ImageButton perfil, contactos, fav,lupa;
     EditText buscar, ubicacion_personal, ubicacion_contacto;
+    Button location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +25,8 @@ public class MostrarRestaurantesActivity extends AppCompatActivity {
         fav = findViewById(R.id.favoritos_btn);
         lupa = findViewById(R.id.btn_search_menu);
         buscar = findViewById(R.id.edit_search_menu);
-        ubicacion_personal = findViewById(R.id.location_personal);
-        ubicacion_contacto = findViewById(R.id.location_partner);
         imagen_1 = findViewById(R.id.imageView34);
+        location = findViewById(R.id.addLocationShow);
 
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,15 +63,23 @@ public class MostrarRestaurantesActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        /*
+
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), AddressActivity.class);
+                startActivity(intent);
+            }
+        });
+
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Pasa a la pantalla principal.
-                Intent intent= new Intent(getBaseContext(), ContactsActivity.class);
+                Intent intent= new Intent(getBaseContext(), FavoriteActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
 
     }
 }

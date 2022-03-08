@@ -29,26 +29,26 @@
             android:id="@+id/favoritos_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="4dp"
             android:background="@color/white"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:layout_constraintEnd_toStartOf="@id/perfil_btn"
+            app:layout_constraintEnd_toStartOf="@+id/perfil_btn"
             app:srcCompat="@drawable/ic_heart_svgrepo_com"
-            tools:layout_editor_absoluteY="0dp"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="0dp" />
 
         <ImageButton
             android:id="@+id/contactos_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="4dp"
             android:background="@color/white"
             app:layout_constraintEnd_toStartOf="@+id/favoritos_btn"
             app:srcCompat="@drawable/ic_baseline_contacts_24"
-            tools:layout_editor_absoluteY="0dp"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="0dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <ImageView
         android:id="@+id/imageView3"
@@ -59,50 +59,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo2" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="42dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintEnd_toStartOf="@+id/location_personal"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_location_on_24" />
-
-    <EditText
-        android:id="@+id/location_personal"
-        android:layout_width="200dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="Tu ubicación"
-        android:inputType="text"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/location_partner"
-        android:layout_width="200dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="Ubicación de tu conocido"
-        android:inputType="text"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location_personal" />
-
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="42dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toStartOf="@+id/location_partner"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7"
-        app:srcCompat="@drawable/ic_baseline_location_2" />
 
     <TextView
         android:id="@+id/textView15"
@@ -174,7 +130,6 @@
             android:background="@drawable/rounded_corner_view"
             android:ems="10"
             android:hint="Buscar"
-
             android:inputType="textPersonName"
             android:paddingLeft="25dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -343,5 +298,26 @@
             app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/addLocationShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="72dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/celeste"
+        android:drawableLeft="@drawable/ic_baseline_location_on_24_white"
+        android:text="Ingresar ubicación"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.836"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

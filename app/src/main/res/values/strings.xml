@@ -3,4 +3,7 @@
     <string name="contrase_a">Contraseña</string>
     <string name="registrar">¿No tienes ninguna cuenta? <u>Regístrate</u></string>
     <string name="ayuda"><u>¿Necesitas ayuda?</u></string>
+    <string name="google"><u>Google</u></string>
+    <string name="privacidad"><u>Privacidad</u></string>
+    <string name="terminos"><u>Términos</u></string>
 </resources>
