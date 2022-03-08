@@ -20,8 +20,8 @@ public class LoginFacebook extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 //Pasa a la pantalla principal.
-                //Intent intent= new Intent(getBaseContext(), );
-                //startActivity(intent);
+                Intent intent= new Intent(getBaseContext(), MenuActivity.class);
+                startActivity(intent);
             }
         });
 

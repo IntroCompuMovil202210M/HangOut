@@ -22,7 +22,8 @@
             android:padding="5dp"
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_profile_svgrepo_com__1_" />
+            app:srcCompat="@drawable/ic_profile_svgrepo_com__1_"
+            tools:ignore="MissingConstraints" />
 
         <ImageButton
             android:id="@+id/favoritos_btn"
@@ -34,7 +35,8 @@
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toStartOf="@id/perfil_btn"
             app:srcCompat="@drawable/ic_heart_svgrepo_com"
-            tools:layout_editor_absoluteY="0dp" />
+            tools:layout_editor_absoluteY="0dp"
+            tools:ignore="MissingConstraints" />
 
         <ImageButton
             android:id="@+id/contactos_btn"
@@ -44,7 +46,8 @@
             android:background="@color/white"
             app:layout_constraintEnd_toStartOf="@+id/favoritos_btn"
             app:srcCompat="@drawable/ic_baseline_contacts_24"
-            tools:layout_editor_absoluteY="0dp" />
+            tools:layout_editor_absoluteY="0dp"
+            tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView

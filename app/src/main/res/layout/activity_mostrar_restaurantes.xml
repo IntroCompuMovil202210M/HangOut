@@ -13,8 +13,7 @@
         android:padding="5dp"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_profile_svgrepo_com__1_"
-        tools:ignore="MissingConstraints" />
+        app:srcCompat="@drawable/ic_profile_svgrepo_com__1_" />
 
     <ImageButton
         android:id="@+id/favoritos_btn"
@@ -26,8 +25,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toStartOf="@id/perfil_btn"
         app:srcCompat="@drawable/ic_heart_svgrepo_com"
-        tools:layout_editor_absoluteY="0dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="0dp" />
 
     <ImageButton
         android:id="@+id/contactos_btn"
@@ -53,6 +51,8 @@
         android:id="@+id/editTextTextPersonName2"
         android:layout_width="184dp"
         android:layout_height="39dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Tu ubicación"
         android:textSize="14sp"
@@ -166,6 +166,18 @@
             tools:layout_editor_absoluteX="86dp"
             tools:layout_editor_absoluteY="559dp" />
 
+        <ImageButton
+            android:id="@+id/btn_search_menu"
+            android:layout_width="59dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="28dp"
+            android:backgroundTint="@color/celeste"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_search_24" />
+
         <TextView
             android:id="@+id/textView26"
             android:layout_width="wrap_content"
@@ -176,13 +188,13 @@
 
         <EditText
             android:id="@+id/editTextTextPersonName"
-            android:layout_width="333dp"
-            android:layout_height="33dp"
+            android:layout_width="297dp"
+            android:layout_height="28dp"
             android:background="@drawable/rounded_edittext"
             android:ems="10"
             android:hint="   Búsqueda"
-            android:textSize="14sp"
             android:inputType="textPersonName"
+            android:textSize="14sp"
             tools:layout_editor_absoluteX="41dp"
             tools:layout_editor_absoluteY="27dp" />
 
