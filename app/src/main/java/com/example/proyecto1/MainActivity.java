@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btnIngresar=findViewById(R.id.ingresar);
-        btnGoogle=findViewById(R.id.registarGoogle);
-        btnFacebook=findViewById(R.id.registrarFacebook);
+        //btnGoogle=findViewById(R.id.registarGoogle);
+        //btnFacebook=findViewById(R.id.registrarFacebook);
         registrarse=findViewById(R.id.registrarse);
 
         btnIngresar.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 //startActivity(intent);
             }
         });
+        /*
         btnGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
         btnFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent=new Intent(getBaseContext(),LoginFacebook.class);
                 startActivity(intent);
             }
-        });
+        });*/
         registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

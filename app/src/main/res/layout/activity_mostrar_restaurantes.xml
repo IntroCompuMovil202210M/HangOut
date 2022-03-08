@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MostrarRestaurantesActivity">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="138dp"
+        android:layout_height="74dp"
+        app:srcCompat="@drawable/logo2"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="27dp"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="415dp"
+        android:layout_height="611dp"
+        android:background="@color/celeste"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="120dp">
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="150dp"
+            android:layout_height="151dp"
+            app:srcCompat="@drawable/cuadrito"
+            tools:layout_editor_absoluteX="42dp"
+            tools:layout_editor_absoluteY="74dp" />
+
+        <ImageView
+            android:id="@+id/imageView26"
+            android:layout_width="150dp"
+            android:layout_height="151dp"
+            app:srcCompat="@drawable/cuadrito"
+            tools:layout_editor_absoluteX="217dp"
+            tools:layout_editor_absoluteY="74dp" />
+
+        <ImageView
+            android:id="@+id/imageView27"
+            android:layout_width="150dp"
+            android:layout_height="151dp"
+            app:srcCompat="@drawable/cuadrito"
+            tools:layout_editor_absoluteX="42dp"
+            tools:layout_editor_absoluteY="251dp" />
+
+        <ImageView
+            android:id="@+id/imageView28"
+            android:layout_width="150dp"
+            android:layout_height="151dp"
+            app:srcCompat="@drawable/cuadrito"
+            tools:layout_editor_absoluteX="216dp"
+            tools:layout_editor_absoluteY="251dp" />
+
+        <ImageView
+            android:id="@+id/imageView29"
+            android:layout_width="150dp"
+            android:layout_height="151dp"
+            app:srcCompat="@drawable/cuadrito"
+            tools:layout_editor_absoluteX="42dp"
+            tools:layout_editor_absoluteY="432dp" />
+
+        <ImageView
+            android:id="@+id/imageView30"
+            android:layout_width="150dp"
+            android:layout_height="151dp"
+            app:srcCompat="@drawable/cuadrito"
+            tools:layout_editor_absoluteX="216dp"
+            tools:layout_editor_absoluteY="432dp" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Storia S'Amore"
+            tools:layout_editor_absoluteX="75dp"
+            tools:layout_editor_absoluteY="198dp" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seratta"
+            tools:layout_editor_absoluteX="271dp"
+            tools:layout_editor_absoluteY="198dp" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="La Biferia"
+            tools:layout_editor_absoluteX="84dp"
+            tools:layout_editor_absoluteY="379dp" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Archies"
+            tools:layout_editor_absoluteX="269dp"
+            tools:layout_editor_absoluteY="379dp" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cornelia"
+            tools:layout_editor_absoluteX="86dp"
+            tools:layout_editor_absoluteY="559dp" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crepes &amp; Waffles"
+            tools:layout_editor_absoluteX="239dp"
+            tools:layout_editor_absoluteY="559dp" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="320dp"
+            android:layout_height="41dp"
+            android:ems="10"
+            android:hint="Búsqueda"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="42dp"
+            tools:layout_editor_absoluteY="7dp" />
+
+        <ImageView
+            android:id="@+id/imageView33"
+            android:layout_width="141dp"
+            android:layout_height="119dp"
+            app:srcCompat="@drawable/seratta"
+            tools:layout_editor_absoluteX="221dp"
+            tools:layout_editor_absoluteY="86dp" />
+
+        <ImageView
+            android:id="@+id/imageView34"
+            android:layout_width="136dp"
+            android:layout_height="113dp"
+            app:srcCompat="@drawable/storia"
+            tools:layout_editor_absoluteX="49dp"
+            tools:layout_editor_absoluteY="90dp" />
+
+        <ImageView
+            android:id="@+id/imageView35"
+            android:layout_width="141dp"
+            android:layout_height="105dp"
+            app:srcCompat="@drawable/labiferia"
+            tools:layout_editor_absoluteX="47dp"
+            tools:layout_editor_absoluteY="274dp" />
+
+        <ImageView
+            android:id="@+id/imageView36"
+            android:layout_width="142dp"
+            android:layout_height="91dp"
+            app:srcCompat="@drawable/archies"
+            tools:layout_editor_absoluteX="220dp"
+            tools:layout_editor_absoluteY="274dp" />
+
+        <ImageView
+            android:id="@+id/imageView37"
+            android:layout_width="148dp"
+            android:layout_height="96dp"
+            app:srcCompat="@drawable/cornelia"
+            tools:layout_editor_absoluteX="43dp"
+            tools:layout_editor_absoluteY="454dp" />
+
+        <ImageView
+            android:id="@+id/imageView38"
+            android:layout_width="140dp"
+            android:layout_height="106dp"
+            app:srcCompat="@drawable/crepes"
+            tools:layout_editor_absoluteX="221dp"
+            tools:layout_editor_absoluteY="451dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
