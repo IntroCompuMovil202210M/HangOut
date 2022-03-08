@@ -59,26 +59,17 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_weight="0"
-            android:text="¿Ya tienes una cuenta?"
-            android:textColor="@color/azul"
-            android:textSize="16sp" />
-
-        <TextView
             android:id="@+id/registrarse"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@color/azul"
             android:layout_weight="0"
             android:autoLink="all"
             android:lines="1"
             android:maxLines="2"
-            android:text="@string/registrar"/>
+            android:text="@string/registrar"
+            android:textColor="@color/azul"
+            android:textAlignment="center"
+            android:textSize="16sp" />
 
     </LinearLayout>
     <RelativeLayout
@@ -123,7 +114,7 @@
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/white"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/google" />
+            app:srcCompat="@drawable/ic_googleicon" />
 
         <ImageButton
             android:id="@+id/registrarFacebook"
