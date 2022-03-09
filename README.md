@@ -59,7 +59,7 @@
 <p align="justify" width="100%"> En la siguiente imagen se podrá observar el diagrama de casos de uso inicial de la aplicación móvil Hang Out. También se adjunta link de acceso a este para poder visualizarlo de mejor forma (<a href="https://lucid.app/lucidchart/c4ba8d5a-7053-48a8-b58e-1d85fdc3c6bb/edit?invitationId=inv_dd232306-09f1-41e6-8fbc-52bf37926c9e"> Diagrama de Casos de Uso </a>). </p>
 
 <p align="center" width="100%">
-<img src="https://user-images.githubusercontent.com/78034097/155258754-9dc62a96-9f74-4386-bcca-c847865c5717.png" class="center" width="450" height="600"  />
+<img src="https://user-images.githubusercontent.com/78034097/157383652-7259224b-b4bc-4728-8a86-9fa5bf79868d.png" class="center" width="450" height="600"  />
 </p>
 
 ###### Diagrama de Clases Inicial
@@ -67,8 +67,9 @@
 
 <p align="justify" width="100%"> En la siguiente imagen se podrá observar el diagrama de clases inicial de la aplicación móvil Hang Out. </p>
 
+
 <p align="center" width="100%">
-<img src="https://user-images.githubusercontent.com/78034097/155259488-8f64cfdd-5520-4e77-a447-c506f7a87efd.png" class="center" width="800" height="400"  />
+<img src="https://user-images.githubusercontent.com/70115518/157383855-49c057fc-acf1-4514-8c61-0ec594212983.jpeg" class="center" width="800" height="400"  />
 </p>
 
 ###### Mockups Iniciales 
