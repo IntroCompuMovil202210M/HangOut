@@ -39,7 +39,8 @@ public class SecondAddressActivity extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Ir a alguna pantalla que muestre varias opciones de restaurantes
+                Intent intent = new Intent(SecondAddressActivity.this, MostrarRestaurantesActivity.class);
+                startActivity(intent);
             }
         });
     }

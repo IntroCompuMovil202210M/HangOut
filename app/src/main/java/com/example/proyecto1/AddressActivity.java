@@ -37,7 +37,8 @@ public class AddressActivity extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Ir a alguna pantalla que muestre varias opciones de restaurantes
+                Intent intent = new Intent(AddressActivity.this, MostrarRestaurantesActivity.class);
+                startActivity(intent);
             }
         });
 

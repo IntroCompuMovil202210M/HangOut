@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/white_texture"
     android:padding="10dp"
     tools:context=".MenuActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -18,7 +20,7 @@
             android:id="@+id/perfil_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@android:color/transparent"
             android:padding="5dp"
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +31,7 @@
             android:id="@+id/favoritos_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@android:color/transparent"
             android:padding="5dp"
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toStartOf="@+id/perfil_btn"
@@ -41,7 +43,7 @@
             android:id="@+id/contactos_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@android:color/transparent"
             app:layout_constraintEnd_toStartOf="@+id/favoritos_btn"
             app:srcCompat="@drawable/ic_baseline_contacts_24"
             tools:ignore="MissingConstraints"
@@ -71,15 +73,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:id="@+id/constraintLayout3"
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="9dp"
         android:layout_marginTop="5dp"
-        android:background="@color/celeste"
+        android:layout_marginEnd="9dp"
+
+        android:background="@drawable/layout_bg_rounded"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="-146dp">
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageButton
             android:id="@+id/desayuno_btn"
@@ -159,7 +166,7 @@
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
-            app:srcCompat="@drawable/ic_drink_svgrepo_com" />
+            app:srcCompat="@drawable/ic_baseline_sports_bar_24" />
 
         <ImageButton
             android:id="@+id/parrilla_btn"
@@ -201,7 +208,7 @@
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="16dp"
             android:text="Bares"
             android:textAlignment="center"
@@ -214,7 +221,7 @@
             android:id="@+id/textView18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
+            android:layout_marginStart="45dp"
             android:layout_marginTop="16dp"
             android:text="Marina"
             android:textAlignment="center"
@@ -227,7 +234,7 @@
             android:id="@+id/textView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="68dp"
+            android:layout_marginStart="35dp"
             android:layout_marginTop="16dp"
             android:text="Desayuno"
             android:textAlignment="center"
@@ -243,7 +250,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="38dp"
             android:text="Postres"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -255,7 +262,7 @@
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="84dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="16dp"
             android:text="Parrilla"
             android:textAlignment="center"
@@ -271,7 +278,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="20dp"
             android:text="Vegetariano"
             android:textAlignment="center"
             android:textColor="@color/white"
