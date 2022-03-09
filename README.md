@@ -67,8 +67,9 @@
 
 <p align="justify" width="100%"> En la siguiente imagen se podrá observar el diagrama de clases inicial de la aplicación móvil Hang Out. </p>
 
+
 <p align="center" width="100%">
-<img src="https://user-images.githubusercontent.com/78034097/155259488-8f64cfdd-5520-4e77-a447-c506f7a87efd.png" class="center" width="800" height="400"  />
+<img src="https://user-images.githubusercontent.com/70115518/157383855-49c057fc-acf1-4514-8c61-0ec594212983.jpeg" class="center" width="800" height="400"  />
 </p>
 
 ###### Mockups Iniciales 
