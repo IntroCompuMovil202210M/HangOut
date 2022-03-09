@@ -88,13 +88,14 @@
         app:strokeColor="#3F51B5" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/favBtn"
         android:layout_width="30dp"
         android:layout_height="40dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="17dp"
         app:layout_constraintEnd_toStartOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/button3"
+        android:clickable="true"
         app:srcCompat="@drawable/like" />
 
     <ImageView
@@ -104,7 +105,7 @@
         android:layout_marginTop="11dp"
         android:layout_marginEnd="17dp"
         app:layout_constraintEnd_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/locationBtn"
         app:srcCompat="@drawable/settings" />
 
     <ImageView
@@ -118,13 +119,13 @@
         app:srcCompat="@drawable/share" />
 
     <ImageView
-        android:id="@+id/imageView12"
+        android:id="@+id/locationBtn"
         android:layout_width="30dp"
         android:layout_height="40dp"
         android:layout_marginTop="13dp"
         android:layout_marginEnd="17dp"
         app:layout_constraintEnd_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/favBtn"
         app:srcCompat="@drawable/ubicacion" />
 
     <TextView
@@ -168,7 +169,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <ImageView
-        android:id="@+id/imageView13"
+        android:id="@+id/logOut"
         android:layout_width="30dp"
         android:layout_height="20dp"
         android:layout_marginTop="19dp"

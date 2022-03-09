@@ -79,7 +79,6 @@
         android:layout_marginStart="9dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="9dp"
-
         android:background="@drawable/layout_bg_rounded"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -134,7 +133,7 @@
             android:layout_height="31dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/rounded_corner_view"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
             android:hint="Buscar"
             android:inputType="textPersonName"

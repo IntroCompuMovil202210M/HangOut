@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/white_texture"
     tools:context=".MostrarRestaurantesActivity">
     <ImageButton
         android:id="@+id/perfil_btn"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="@color/white"
+        android:background="@android:color/transparent"
         android:padding="5dp"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +22,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginEnd="4dp"
-        android:background="@color/white"
+        android:background="@android:color/transparent"
         android:padding="5dp"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toStartOf="@id/perfil_btn"
@@ -35,7 +36,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginEnd="4dp"
-        android:background="@color/white"
+        android:background="@android:color/transparent"
         app:layout_constraintEnd_toStartOf="@+id/favoritos_btn"
         app:srcCompat="@drawable/ic_baseline_contacts_24"
         tools:layout_editor_absoluteY="0dp"
@@ -76,11 +77,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="413dp"
-        android:layout_height="765dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="9dp"
         android:layout_marginTop="140dp"
-        android:background="@color/celeste"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="9dp"
+        android:background="@drawable/layout_bg_rounded"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
@@ -119,26 +125,6 @@
             android:layout_width="150dp"
             android:layout_height="151dp"
             android:layout_marginTop="272dp"
-            android:layout_marginEnd="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/cuadrito" />
-
-        <ImageView
-            android:id="@+id/imageView29"
-            android:layout_width="150dp"
-            android:layout_height="151dp"
-            android:layout_marginTop="468dp"
-            android:layout_marginEnd="220dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/cuadrito" />
-
-        <ImageView
-            android:id="@+id/imageView30"
-            android:layout_width="150dp"
-            android:layout_height="151dp"
-            android:layout_marginTop="468dp"
             android:layout_marginEnd="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -184,16 +170,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView25"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="588dp"
-            android:layout_marginEnd="264dp"
-            android:text="Cornelia"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <ImageButton
             android:id="@+id/btn_search_menu"
             android:layout_width="59dp"
@@ -205,16 +181,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_search_24" />
-
-        <TextView
-            android:id="@+id/textView26"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="588dp"
-            android:layout_marginEnd="56dp"
-            android:text="Crepes &amp; Waffles"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/editTextTextPersonName"
@@ -269,26 +235,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/archies" />
-
-        <ImageView
-            android:id="@+id/imageView37"
-            android:layout_width="148dp"
-            android:layout_height="96dp"
-            android:layout_marginTop="484dp"
-            android:layout_marginEnd="220dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/cornelia" />
-
-        <ImageView
-            android:id="@+id/imageView38"
-            android:layout_width="140dp"
-            android:layout_height="106dp"
-            android:layout_marginTop="480dp"
-            android:layout_marginEnd="44dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/crepes" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

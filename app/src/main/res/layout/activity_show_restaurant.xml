@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/white_texture"
     tools:context=".ShowRestaurantActivity">
 
     <ImageButton
         android:id="@+id/perfil_btn"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="@color/white"
+        android:background="@android:color/transparent"
         android:padding="5dp"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/ic_profile_svgrepo_com__1_"
@@ -22,7 +23,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginEnd="4dp"
-        android:background="@color/white"
+        android:background="@android:color/transparent"
         android:padding="5dp"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toStartOf="@id/perfil_btn"
@@ -36,7 +37,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginEnd="4dp"
-        android:background="@color/white"
+        android:background="@android:color/transparent"
         app:layout_constraintEnd_toStartOf="@+id/favoritos_btn"
         app:srcCompat="@drawable/ic_baseline_contacts_24"
         tools:layout_editor_absoluteY="0dp"
@@ -69,7 +70,6 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:cornerRadius="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.846"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,11 +77,16 @@
         tools:ignore="MissingConstraints" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="413dp"
-        android:layout_height="717dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="9dp"
         android:layout_marginTop="140dp"
-        android:background="@color/celeste"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/layout_bg_rounded"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
@@ -89,6 +94,7 @@
             android:id="@+id/editTextTextPersonName"
             android:layout_width="333dp"
             android:layout_height="33dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="28dp"
             android:layout_marginEnd="40dp"
             android:background="@drawable/rounded_edittext"
@@ -97,16 +103,17 @@
             android:inputType="textPersonName"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView8"
             android:layout_width="365dp"
             android:layout_height="442dp"
-            android:layout_marginTop="112dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginTop="80dp"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/rounded_corner_view" />
 
@@ -114,8 +121,8 @@
             android:id="@+id/textView27"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="128dp"
-            android:layout_marginEnd="140dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="144dp"
             android:gravity="center"
             android:text="Storia D'Amore"
             android:textSize="20sp"
@@ -127,8 +134,8 @@
             android:id="@+id/textView28"
             android:layout_width="135dp"
             android:layout_height="256dp"
-            android:layout_marginTop="164dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginTop="140dp"
+            android:layout_marginEnd="32dp"
             android:gravity="center"
             android:text="Se trata de un espacio único, con una ambientación contemporánea. Su cocina es auténtica, se elabora artesanalmente cada día con ingredientes de alta calidad por su Chef ejecutivo Simone Mua, que viene de Milán, Italia. Storia D’amore es una marca que lo tiene todo: carácter, innovación y calidad."
             android:textSize="13sp"
@@ -136,9 +143,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView
+            android:id="@+id/scrollView3"
             android:layout_width="325dp"
             android:layout_height="78dp"
-            android:layout_marginTop="460dp"
+            android:layout_marginTop="428dp"
             android:layout_marginEnd="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -153,8 +161,8 @@
             android:id="@+id/textView29"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="444dp"
-            android:layout_marginEnd="300dp"
+            android:layout_marginTop="408dp"
+            android:layout_marginEnd="292dp"
             android:text="Opiniones"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -164,33 +172,38 @@
             android:id="@+id/imageView11"
             android:layout_width="175dp"
             android:layout_height="257dp"
-            android:layout_marginTop="164dp"
+            android:layout_marginTop="140dp"
             android:layout_marginEnd="188dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/descarga" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="584dp"
-            android:layout_marginEnd="152dp"
-            android:backgroundTint="@color/white"
-            android:text="Ver mapa"
-            android:textColor="@color/celeste"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
 
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="128dp"
+            android:layout_marginTop="100dp"
             android:layout_marginEnd="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_favorite_24" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:text="Ver mapa"
+            android:textColor="@color/celeste"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.969" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
