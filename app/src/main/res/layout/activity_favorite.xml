@@ -31,13 +31,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/logo"
+        android:id="@+id/logoMostrarR"
         android:layout_width="138dp"
         android:layout_height="74dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="256dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:clickable="true"
         app:srcCompat="@drawable/logo2"
         tools:ignore="MissingConstraints" />
 

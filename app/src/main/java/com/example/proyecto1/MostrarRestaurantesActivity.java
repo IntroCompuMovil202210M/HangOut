@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 public class MostrarRestaurantesActivity extends AppCompatActivity {
-    ImageView imagen_1;
+    ImageView imagen_1, logo;
     ImageButton perfil, contactos, fav,lupa;
     EditText buscar;
     Button location;
@@ -27,6 +27,7 @@ public class MostrarRestaurantesActivity extends AppCompatActivity {
         buscar = findViewById(R.id.edit_search_menu);
         imagen_1 = findViewById(R.id.imageView34);
         location = findViewById(R.id.addLocationShow);
+        logo = findViewById(R.id.logoMostrarR);
 
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +70,14 @@ public class MostrarRestaurantesActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Pasa a la pantalla principal.
                 Intent intent= new Intent(getBaseContext(), FavoriteActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), MenuActivity.class);
                 startActivity(intent);
             }
         });

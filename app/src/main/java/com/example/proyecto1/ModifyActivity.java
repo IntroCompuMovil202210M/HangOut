@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 public class ModifyActivity extends AppCompatActivity {
 
-    ImageView fav, location, logOut;
+    ImageView fav, location, logOut, logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +20,7 @@ public class ModifyActivity extends AppCompatActivity {
         fav = findViewById(R.id.favBtn);
         location = findViewById(R.id.locationBtn);
         logOut = findViewById(R.id.logOut);
+        logo = findViewById(R.id.logoModify);
 
         //Action when fav button is clicked
         fav.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +49,13 @@ public class ModifyActivity extends AppCompatActivity {
             }
         });
 
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ModifyActivity.this, MenuActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }
