@@ -10,11 +10,16 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.net.Authenticator;
+
 public class MainActivity extends AppCompatActivity {
     Button btnIngresar;
     ImageButton btnGoogle;
     ImageButton btnFacebook;
     TextView registrarse;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +30,12 @@ public class MainActivity extends AppCompatActivity {
         btnFacebook=findViewById(R.id.registrarFacebook);
         registrarse=findViewById(R.id.registrarse);
 
+
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Pasa a la pantalla principal.
-                Log.i("INICIO","ENTRA");
-                Intent intent= new Intent(getBaseContext(), MenuActivity.class);
+                Intent intent= new Intent(getBaseContext(), MapsActivity.class);
                 startActivity(intent);
             }
         });
@@ -60,4 +65,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public boolean verifyEmail(String email){
+        //Use regex to verify email
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        if(email.matches(emailPattern)){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean verifyPassword(String password)
+    {
+        //Use regex
+        int passwordLength = password.length();
+        boolean isValid=false;
+        isValid = (passwordLength>=6) ? true : false;
+        return isValid;
+    }
+
+
 }

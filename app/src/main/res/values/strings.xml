@@ -6,4 +6,5 @@
     <string name="google"><u>Google</u></string>
     <string name="privacidad"><u>Privacidad</u></string>
     <string name="terminos"><u>Términos</u></string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
