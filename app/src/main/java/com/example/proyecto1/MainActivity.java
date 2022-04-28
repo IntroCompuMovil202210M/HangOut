@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Pasa a la pantalla principal.
+                Log.i("INICIO","ENTRA");
                 Intent intent= new Intent(getBaseContext(), MenuActivity.class);
                 startActivity(intent);
             }
