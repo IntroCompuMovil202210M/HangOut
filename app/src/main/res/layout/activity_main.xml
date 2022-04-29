@@ -30,17 +30,17 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/txtUsuario"
+        android:id="@+id/txtEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="30dp"
-        android:hint="Usuario o Email"
-        android:inputType="textPersonName"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
         android:minHeight="48dp" />
 
     <EditText
-        android:id="@+id/txtContrasena"
+        android:id="@+id/txtPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"

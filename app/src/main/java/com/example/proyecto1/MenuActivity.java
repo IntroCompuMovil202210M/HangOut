@@ -62,7 +62,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Pasa a la pantalla principal.
-                Intent intent= new Intent(getBaseContext(), MostrarRestaurantesActivity.class);
+                Intent intent= new Intent(getBaseContext(), GooglePlacesActivity.class);
                 startActivity(intent);
             }
         });
