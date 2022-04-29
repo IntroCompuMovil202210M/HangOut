@@ -37,10 +37,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.model.PlaceLikelihood;
+import com.google.android.libraries.places.api.net.FetchPlaceRequest;
 import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest;
 import com.google.android.libraries.places.api.net.FindCurrentPlaceResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -94,7 +96,7 @@ public class GooglePlacesActivity extends AppCompatActivity {
     {
 
         // Use fields to define the data types to return.
-        List<Place.Field> placeFields = Collections.singletonList(Place.Field.ADDRESS);
+        List<Place.Field> placeFields = Collections.singletonList(Place.Field.ID);
         // Use the builder to create a FindCurrentPlaceRequest.
         FindCurrentPlaceRequest request = FindCurrentPlaceRequest.newInstance(placeFields);
 
@@ -104,12 +106,14 @@ public class GooglePlacesActivity extends AppCompatActivity {
             placeResponse.addOnCompleteListener(task -> {
                 if (task.isSuccessful()){
                     FindCurrentPlaceResponse response = task.getResult();
+                    //Get the firsy placeID (CHANGE THIS)
+                    final String placeId = response.getPlaceLikelihoods().get(0).getPlace().getId().toString();
                     for (PlaceLikelihood placeLikelihood : response.getPlaceLikelihoods()) {
-                        Log.i("PLACES", String.format("Place '%s' has id '%s' likelihood: %f",
-                                placeLikelihood.getPlace().getName(),
+                        Log.i("PLACES", String.format("Place id '%s' likelihood: %f",
                                 placeLikelihood.getPlace().getId(),
                                 placeLikelihood.getLikelihood()));
                     }
+                    printPlaceDetailsById(placeId);
                 } else {
                     Exception exception = task.getException();
                     if (exception instanceof ApiException) {
@@ -123,6 +127,34 @@ public class GooglePlacesActivity extends AppCompatActivity {
             // See https://developer.android.com/training/permissions/requesting
             getSinglePermission.launch(ACCESS_FINE_LOCATION);
         }
+    }
+
+    void printPlaceDetailsById(String placeId)
+    {
+        // Specify the fields to return.
+        List<Place.Field> placeFields = Arrays.asList(Place.Field.ID,
+                Place.Field.NAME,
+                Place.Field.ADDRESS,
+                Place.Field.RATING);
+
+        // Construct a request object, passing the place ID and fields array.
+        FetchPlaceRequest request = FetchPlaceRequest.builder(placeId, placeFields)
+                .build();
+
+        // Add a listener to handle the response.
+        placesClient.fetchPlace(request).addOnSuccessListener((response) -> {
+            Place place = response.getPlace();
+            Log.i("PLACES", "Place found: " + place.getName()
+                    +" address: " + place.getAddress()
+                    +" rating: "+place.getRating());
+        }).addOnFailureListener((exception) -> {
+            if (exception instanceof ApiException) {
+                ApiException apiException = (ApiException) exception;
+                int statusCode = apiException.getStatusCode();
+                // Handle error with given status code.
+                Log.e("PLACES", "Place not found: " + exception.getMessage());
+            }
+        });
 
 
     }
