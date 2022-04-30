@@ -11,7 +11,7 @@
 
     <ImageView
         android:id="@+id/logoModify"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:scaleType="fitCenter"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Iniciar Sesión"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="35dp"
         android:textColor="@color/celeste"
         android:textSize="30dp"
         android:textStyle="bold" />
@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp" />
@@ -65,16 +65,11 @@
         android:textStyle="normal"
         android:visibility="visible" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal">
-
         <TextView
             android:id="@+id/registrarse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_weight="0"
             android:autoLink="all"
             android:lines="1"
@@ -83,66 +78,5 @@
             android:textColor="@color/azul"
             android:textAlignment="center"
             android:textSize="16sp" />
-
-    </LinearLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_toRightOf="@id/view1"
-            android:text="o"
-            android:textSize="16sp" />
-
-        <View
-            android:id="@+id/view1"
-            android:layout_width="150dp"
-            android:layout_height="1dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="40dp"
-            android:background="#C0CCDA" />
-
-        <View
-            android:id="@+id/view2"
-            android:layout_width="150dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginRight="10dp"
-            android:layout_toRightOf="@id/textView6"
-            android:background="#C0CCDA" />
-
-        <ImageButton
-            android:id="@+id/registarGoogle"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_below="@id/view1"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="@android:color/transparent"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/google" />
-
-        <ImageButton
-            android:id="@+id/registrarFacebook"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_below="@id/view1"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="30dp"
-            android:layout_toRightOf="@id/registarGoogle"
-            android:backgroundTint="@android:color/transparent"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/facebook"
-            />
-    </RelativeLayout>
-
 
 </LinearLayout>

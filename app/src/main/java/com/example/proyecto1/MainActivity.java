@@ -33,15 +33,14 @@ public class MainActivity extends AppCompatActivity {
     //firebase authentication
     private FirebaseAuth mAuth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Inflate
         btnIngresar = findViewById(R.id.ingresar);
-        btnGoogle = findViewById(R.id.registarGoogle);
-        btnFacebook = findViewById(R.id.registrarFacebook);
+        //btnGoogle = findViewById(R.id.registarGoogle);
+        //btnFacebook = findViewById(R.id.registrarFacebook);
         registrarse = findViewById(R.id.registrarse);
         txtEmail = findViewById(R.id.txtEmail);
         txtPass = findViewById(R.id.txtPass);
@@ -99,24 +98,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        btnGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Pasa a la pantalla activity_logingoogle
-                Intent intent = new Intent(getBaseContext(), LoginGoogle.class);
-                startActivity(intent);
-
-            }
-        });
-        btnFacebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Pasa a la pantalla activity_loginfacebook
-                Intent intent = new Intent(getBaseContext(), LoginFacebook.class);
-                startActivity(intent);
-            }
-        });
         registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
