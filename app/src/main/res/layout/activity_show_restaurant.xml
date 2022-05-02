@@ -77,8 +77,8 @@
         tools:ignore="MissingConstraints" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="415dp"
+        android:layout_height="613dp"
         android:layout_marginStart="9dp"
         android:layout_marginTop="140dp"
         android:layout_marginEnd="9dp"
@@ -108,8 +108,8 @@
 
         <ImageView
             android:id="@+id/imageView8"
-            android:layout_width="365dp"
-            android:layout_height="442dp"
+            android:layout_width="385dp"
+            android:layout_height="529dp"
             android:layout_marginTop="80dp"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
@@ -121,63 +121,16 @@
             android:id="@+id/textView27"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="144dp"
             android:gravity="center"
-            android:text="Storia D'Amore"
+            android:text=""
             android:textSize="20sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView28"
-            android:layout_width="135dp"
-            android:layout_height="256dp"
-            android:layout_marginTop="140dp"
-            android:layout_marginEnd="32dp"
-            android:gravity="center"
-            android:text="Se trata de un espacio único, con una ambientación contemporánea. Su cocina es auténtica, se elabora artesanalmente cada día con ingredientes de alta calidad por su Chef ejecutivo Simone Mua, que viene de Milán, Italia. Storia D’amore es una marca que lo tiene todo: carácter, innovación y calidad."
-            android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ScrollView
-            android:id="@+id/scrollView3"
-            android:layout_width="325dp"
-            android:layout_height="78dp"
-            android:layout_marginTop="428dp"
-            android:layout_marginEnd="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </ScrollView>
-
-        <TextView
-            android:id="@+id/textView29"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="408dp"
-            android:layout_marginEnd="292dp"
-            android:text="Opiniones"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView11"
-            android:layout_width="175dp"
-            android:layout_height="257dp"
-            android:layout_marginTop="140dp"
-            android:layout_marginEnd="188dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/descarga" />
-
+            app:layout_constraintVertical_bias="0.165" />
 
 
         <ImageView
@@ -189,21 +142,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_favorite_24" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:text="Ver mapa"
-            android:textColor="@color/celeste"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.969" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
