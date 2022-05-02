@@ -94,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
                     txtEmail.setText("");
                     txtPass.setText("");
                 }
-
             }
         });
 
