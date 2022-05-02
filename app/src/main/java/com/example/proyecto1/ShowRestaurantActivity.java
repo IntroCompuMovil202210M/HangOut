@@ -20,7 +20,7 @@ public class ShowRestaurantActivity extends AppCompatActivity {
         contactos = findViewById(R.id.contactos_btn);
         fav = findViewById(R.id.favoritos_btn);
         location = findViewById(R.id.addLocationShow);
-        mapa = findViewById(R.id.button);
+        //mapa = findViewById(R.id.button);
 
         mapa.setOnClickListener(new View.OnClickListener() {
             @Override

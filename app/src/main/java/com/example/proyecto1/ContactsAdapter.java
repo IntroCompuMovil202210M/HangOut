@@ -1,6 +1,7 @@
 package com.example.proyecto1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,17 @@ public class ContactsAdapter extends CursorAdapter {
         TextView tvNombre = (TextView) view.findViewById(R.id.nombreContacto);
         int idnum = cursor.getInt(CONTACT_ID_INDEX);
         String nombre = cursor.getString(DISPLAY_NAME_INDEX);
+        ImageButton chat = (ImageButton) view.findViewById(R.id.chat_btn);
+
         tvIdContacto.setText(String.valueOf(idnum));
         tvNombre.setText(nombre);
+
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), ChatActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 }
