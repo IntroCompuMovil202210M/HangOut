@@ -15,10 +15,13 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.hardware.SensorManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Adapter;
+import android.widget.ListView;
 
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.CommonStatusCodes;
@@ -31,6 +34,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -42,6 +46,7 @@ import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest;
 import com.google.android.libraries.places.api.net.FindCurrentPlaceResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -50,6 +55,10 @@ public class GooglePlacesActivity extends AppCompatActivity {
 
     //DOCUMENTATION GOOGLE PLACES API:
     //https://developers.google.com/maps/documentation/places/android-sdk/client-migration
+
+    //Elements
+    ListView mlista;
+    ArrayList<Restaurant> model = new ArrayList<>();
 
     //Location
     //locationRequest with google
@@ -63,7 +72,7 @@ public class GooglePlacesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_google_places);
+
 
         //Initialize attributes
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -76,7 +85,6 @@ public class GooglePlacesActivity extends AppCompatActivity {
         checkLocationSettings();
 
 
-
         // Initialize the SDK
         Places.initialize(getApplicationContext(), "AIzaSyD4s1vv88uPw4DaALEPeRvQu5zLHU7RtTM");
 
@@ -86,8 +94,6 @@ public class GooglePlacesActivity extends AppCompatActivity {
 
         getCurrentPlace();
 
-
-
     }
 
     /*---------------------------------GOOGLE PLACES API---------------------------------*/
@@ -96,29 +102,66 @@ public class GooglePlacesActivity extends AppCompatActivity {
     {
 
         // Use fields to define the data types to return.
-        List<Place.Field> placeFields = Collections.singletonList(Place.Field.ID);
+        List<Place.Field> placeFields = Arrays.asList(Place.Field.ID,
+                Place.Field.NAME,
+                Place.Field.ADDRESS,
+                Place.Field.RATING,
+                Place.Field.TYPES,
+                Place.Field.ICON_URL);
+
         // Use the builder to create a FindCurrentPlaceRequest.
         FindCurrentPlaceRequest request = FindCurrentPlaceRequest.newInstance(placeFields);
 
         // Call findCurrentPlace and handle the response (first check that the user has granted permission).
         if (ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             @SuppressLint("MissingPermission") Task<FindCurrentPlaceResponse> placeResponse = placesClient.findCurrentPlace(request);
-            placeResponse.addOnCompleteListener(task -> {
-                if (task.isSuccessful()){
-                    FindCurrentPlaceResponse response = task.getResult();
-                    //Get the firsy placeID (CHANGE THIS)
-                    final String placeId = response.getPlaceLikelihoods().get(0).getPlace().getId().toString();
-                    for (PlaceLikelihood placeLikelihood : response.getPlaceLikelihoods()) {
-                        Log.i("PLACES", String.format("Place id '%s' likelihood: %f",
-                                placeLikelihood.getPlace().getId(),
-                                placeLikelihood.getLikelihood()));
-                    }
-                    printPlaceDetailsById(placeId);
-                } else {
-                    Exception exception = task.getException();
-                    if (exception instanceof ApiException) {
-                        ApiException apiException = (ApiException) exception;
-                        Log.i("PLACES", "Place not found: " + apiException.getStatusCode());
+
+            placeResponse.addOnCompleteListener(new OnCompleteListener<FindCurrentPlaceResponse>() {
+                @Override
+                public void onComplete(@NonNull Task<FindCurrentPlaceResponse> task) {
+                    if (task.isSuccessful()){
+                        setContentView(R.layout.activity_google_places);
+
+                        //Inflate
+                        mlista = findViewById(R.id.restaurantList);
+
+                        FindCurrentPlaceResponse response = task.getResult();
+                        //Get the firsy placeID (CHANGE THIS)
+                        final String placeId = response.getPlaceLikelihoods().get(0).getPlace().getId().toString();
+
+                        for (PlaceLikelihood placeLikelihood : response.getPlaceLikelihoods()) {
+                            if(placeLikelihood.getPlace().getTypes().contains(Place.Type.RESTAURANT)) {
+                                Restaurant restaurant = new Restaurant();
+
+                                if (placeLikelihood.getPlace().getName() != null) {
+                                    restaurant.setName(placeLikelihood.getPlace().getName());
+                                }
+
+                                if (placeLikelihood.getPlace().getAddress() != null) {
+                                    restaurant.setDir(placeLikelihood.getPlace().getAddress());
+                                }
+
+                                if (placeLikelihood.getPlace().getRating() != null) {
+                                    restaurant.setRating(placeLikelihood.getPlace().getRating().toString());
+                                }
+
+                                model.add(restaurant);
+                                Log.i("RESTAURANT-MODEL-IN", model.toString());
+
+                                Log.i("RESTAURANT", restaurant.toString());
+
+                                RestaurantsAdapter adapter = new RestaurantsAdapter(GooglePlacesActivity.this, R.layout.item_show_restaurants, model);
+                                mlista.setAdapter(adapter);
+
+                                Log.i("ADAPTER", adapter.toString());
+                            }
+                        }
+                    } else {
+                        Exception exception = task.getException();
+                        if (exception instanceof ApiException) {
+                            ApiException apiException = (ApiException) exception;
+                            Log.i("PLACES", "Place not found: " + apiException.getStatusCode());
+                        }
                     }
                 }
             });
@@ -144,6 +187,7 @@ public class GooglePlacesActivity extends AppCompatActivity {
         // Add a listener to handle the response.
         placesClient.fetchPlace(request).addOnSuccessListener((response) -> {
             Place place = response.getPlace();
+
             Log.i("PLACES", "Place found: " + place.getName()
                     +" address: " + place.getAddress()
                     +" rating: "+place.getRating());

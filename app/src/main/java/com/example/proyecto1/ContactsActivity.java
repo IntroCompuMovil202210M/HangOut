@@ -26,7 +26,6 @@ public class ContactsActivity extends AppCompatActivity {
     Cursor mCursor;
     ContactsAdapter mContactsAdapter;
     ListView mlista;
-    ImageButton chat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
