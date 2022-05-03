@@ -209,6 +209,20 @@ public class GooglePlacesActivity extends AppCompatActivity {
                             RestaurantsAdapter adapter = new RestaurantsAdapter(GooglePlacesActivity.this, R.layout.item_show_restaurants, model);
                             mlista.setAdapter(adapter);
 
+                            location.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(getBaseContext(), MapsActivity.class);
+                                    int h = 0;
+                                    for(Restaurant restaurant : model){
+                                        intent.putExtra("location" + h, restaurant.getLocation());
+                                        h++;
+                                    }
+                                    intent.putExtra("locatioSize", h);
+                                    startActivity(intent);
+                                }
+                            });
+
                             mlista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -284,14 +298,6 @@ public class GooglePlacesActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Pasa a la pantalla principal.
                 Intent intent= new Intent(getBaseContext(), ContactsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), AddressActivity.class);
                 startActivity(intent);
             }
         });
