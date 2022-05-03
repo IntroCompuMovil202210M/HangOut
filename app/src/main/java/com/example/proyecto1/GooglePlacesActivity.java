@@ -14,13 +14,19 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.hardware.SensorManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.android.gms.common.api.ApiException;
@@ -41,6 +47,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.model.PlaceLikelihood;
+import com.google.android.libraries.places.api.net.FetchPhotoRequest;
 import com.google.android.libraries.places.api.net.FetchPlaceRequest;
 import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest;
 import com.google.android.libraries.places.api.net.FindCurrentPlaceResponse;
@@ -59,6 +66,13 @@ public class GooglePlacesActivity extends AppCompatActivity {
     //Elements
     ListView mlista;
     ArrayList<Restaurant> model = new ArrayList<>();
+    ImageButton contactos;
+    ImageButton fav;
+    ImageButton profile;
+    ImageView logo;
+    Button location;
+    ImageView lupa;
+
 
     //Location
     //locationRequest with google
@@ -107,7 +121,7 @@ public class GooglePlacesActivity extends AppCompatActivity {
                 Place.Field.ADDRESS,
                 Place.Field.RATING,
                 Place.Field.TYPES,
-                Place.Field.ICON_URL);
+                Place.Field.PHOTO_METADATAS);
 
         // Use the builder to create a FindCurrentPlaceRequest.
         FindCurrentPlaceRequest request = FindCurrentPlaceRequest.newInstance(placeFields);
@@ -124,6 +138,7 @@ public class GooglePlacesActivity extends AppCompatActivity {
 
                         //Inflate
                         mlista = findViewById(R.id.restaurantList);
+                        startButtons();
 
                         FindCurrentPlaceResponse response = task.getResult();
                         //Get the firsy placeID (CHANGE THIS)
@@ -145,16 +160,32 @@ public class GooglePlacesActivity extends AppCompatActivity {
                                     restaurant.setRating(placeLikelihood.getPlace().getRating().toString());
                                 }
 
+                                if(placeLikelihood.getPlace().getPhotoMetadatas() != null){
+                                    final FetchPhotoRequest photoRequest = FetchPhotoRequest.builder(placeLikelihood.getPlace().getPhotoMetadatas().get(0))
+                                            .setMaxWidth(500) // Optional.
+                                            .setMaxHeight(300) // Optional.
+                                            .build();
+                                    placesClient.fetchPhoto(photoRequest).addOnSuccessListener((fetchPhotoResponse) -> {
+                                        Bitmap bitmap = fetchPhotoResponse.getBitmap();
+                                        restaurant.setPhotoMetadata(bitmap);
+                                        Log.i("RESTAURANT-PHOTO", restaurant.getPhotoMetadata().toString());
+                                    }).addOnFailureListener((exception) -> {
+                                        if (exception instanceof ApiException) {
+                                            final ApiException apiException = (ApiException) exception;
+                                            //Log.e(TAG, "Place not found: " + exception.getMessage());
+                                            final int statusCode = apiException.getStatusCode();
+                                            // TODO: Handle error with given status code.
+                                        }
+                                    });
+                                }
+
                                 model.add(restaurant);
-                                Log.i("RESTAURANT-MODEL-IN", model.toString());
 
                                 Log.i("RESTAURANT", restaurant.toString());
 
-                                RestaurantsAdapter adapter = new RestaurantsAdapter(GooglePlacesActivity.this, R.layout.item_show_restaurants, model);
-                                mlista.setAdapter(adapter);
-
-                                Log.i("ADAPTER", adapter.toString());
                             }
+                            RestaurantsAdapter adapter = new RestaurantsAdapter(GooglePlacesActivity.this, R.layout.item_show_restaurants, model);
+                            mlista.setAdapter(adapter);
                         }
                     } else {
                         Exception exception = task.getException();
@@ -170,6 +201,59 @@ public class GooglePlacesActivity extends AppCompatActivity {
             // See https://developer.android.com/training/permissions/requesting
             getSinglePermission.launch(ACCESS_FINE_LOCATION);
         }
+    }
+
+    void startButtons(){
+        profile = findViewById(R.id.perfil_btn);
+        contactos = findViewById(R.id.contactos_btn);
+        fav = findViewById(R.id.favoritos_btn);
+        lupa = findViewById(R.id.btn_search_menu);
+        location = findViewById(R.id.addLocationShow);
+        logo = findViewById(R.id.logoMostrarR);
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Pasa a la pantalla principal.
+                Intent intent= new Intent(getBaseContext(), ModifyActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        contactos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Pasa a la pantalla principal.
+                Intent intent= new Intent(getBaseContext(), ContactsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), AddressActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Pasa a la pantalla principal.
+                Intent intent= new Intent(getBaseContext(), FavoriteActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), MenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     void printPlaceDetailsById(String placeId)
@@ -202,12 +286,6 @@ public class GooglePlacesActivity extends AppCompatActivity {
 
 
     }
-
-
-
-
-
-
 
     /*---------------------------------LOCATION PERMISSIONS AND GPS---------------------------------*/
 
