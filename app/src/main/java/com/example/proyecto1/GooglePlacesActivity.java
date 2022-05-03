@@ -213,12 +213,12 @@ public class GooglePlacesActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
                                     Intent intent = new Intent(getBaseContext(), MapsActivity.class);
-                                    int h = 0;
-                                    for(Restaurant restaurant : model){
-                                        intent.putExtra("location" + h, restaurant.getLocation());
-                                        h++;
+
+                                    ArrayList<String> locations = new ArrayList<>();
+                                    for (Restaurant restaurant : model){
+                                        locations.add(restaurant.getLocation().toString());
                                     }
-                                    intent.putExtra("locatioSize", h);
+                                    intent.putStringArrayListExtra("restaurantes", locations);
                                     startActivity(intent);
                                 }
                             });
