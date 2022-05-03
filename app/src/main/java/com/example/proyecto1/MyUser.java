@@ -1,5 +1,9 @@
 package com.example.proyecto1;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class MyUser {
     String name;
     String lastName;
@@ -47,5 +51,13 @@ public class MyUser {
 
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
+    }
+
+
+    @Override
+    public String toString() {
+        return "MyUser{" +
+                "mail='" + mail + '\'' +
+                '}';
     }
 }

@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -53,10 +54,12 @@ import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest;
 import com.google.android.libraries.places.api.net.FindCurrentPlaceResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class GooglePlacesActivity extends AppCompatActivity {
 
@@ -121,7 +124,9 @@ public class GooglePlacesActivity extends AppCompatActivity {
                 Place.Field.ADDRESS,
                 Place.Field.RATING,
                 Place.Field.TYPES,
-                Place.Field.PHOTO_METADATAS);
+                Place.Field.PHOTO_METADATAS,
+                Place.Field.PRICE_LEVEL,
+                Place.Field.LAT_LNG);
 
         // Use the builder to create a FindCurrentPlaceRequest.
         FindCurrentPlaceRequest request = FindCurrentPlaceRequest.newInstance(placeFields);
@@ -160,6 +165,27 @@ public class GooglePlacesActivity extends AppCompatActivity {
                                     restaurant.setRating(placeLikelihood.getPlace().getRating().toString());
                                 }
 
+                                if(placeLikelihood.getPlace().getLatLng() != null){
+                                    restaurant.setLocation(placeLikelihood.getPlace().getLatLng());
+                                }
+
+                                if(placeLikelihood.getPlace().getTypes() != null){
+                                    String categories = "";
+                                    int lenght = placeLikelihood.getPlace().getTypes().size();
+                                    int j = 0;
+                                    for (Place.Type type : placeLikelihood.getPlace().getTypes()){
+                                        if(type != Place.Type.RESTAURANT) {
+                                            if(j==lenght-1) {
+                                                categories += type.name().toLowerCase(Locale.ROOT).replace("_", " ");
+                                            } else {
+                                                categories += type.name().toLowerCase(Locale.ROOT).replace("_", " ") + " - ";
+                                            }
+                                        }
+                                        j++;
+                                    }
+                                    restaurant.setCategories(categories);
+                                }
+
                                 if(placeLikelihood.getPlace().getPhotoMetadatas() != null){
                                     final FetchPhotoRequest photoRequest = FetchPhotoRequest.builder(placeLikelihood.getPlace().getPhotoMetadatas().get(0))
                                             .setMaxWidth(500) // Optional.
@@ -178,14 +204,34 @@ public class GooglePlacesActivity extends AppCompatActivity {
                                         }
                                     });
                                 }
-
                                 model.add(restaurant);
-
-                                Log.i("RESTAURANT", restaurant.toString());
-
                             }
                             RestaurantsAdapter adapter = new RestaurantsAdapter(GooglePlacesActivity.this, R.layout.item_show_restaurants, model);
                             mlista.setAdapter(adapter);
+
+                            location.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(getBaseContext(), MapsActivity.class);
+
+                                    ArrayList<String> locations = new ArrayList<>();
+                                    for (Restaurant restaurant : model){
+                                        locations.add(restaurant.getLocation().toString());
+                                    }
+                                    intent.putStringArrayListExtra("restaurantes", locations);
+                                    startActivity(intent);
+                                }
+                            });
+
+                            mlista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                    Intent intent= new Intent(getBaseContext(), ShowRestaurantActivity.class);
+                                    putExtras(intent, i);
+                                    //Start activity
+                                    startActivity(intent);
+                                }
+                            });
                         }
                     } else {
                         Exception exception = task.getException();
@@ -201,6 +247,33 @@ public class GooglePlacesActivity extends AppCompatActivity {
             // See https://developer.android.com/training/permissions/requesting
             getSinglePermission.launch(ACCESS_FINE_LOCATION);
         }
+    }
+
+    void putExtras(Intent intent, int i){
+        //Restaurant name
+        intent.putExtra("name", model.get(i).getName());
+
+        //Restaurant photo
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        byte[] byteArray = null;
+        if(model.get(i).getPhotoMetadata() != null) {
+            model.get(i).getPhotoMetadata().compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byteArray = stream.toByteArray();
+        }
+        intent.putExtra("image", byteArray);
+
+        //Restaurant address
+        intent.putExtra("address", model.get(i).getDir());
+
+        //Restaurant types
+        intent.putExtra("categories", model.get(i).getCategories());
+
+        //Resturant raiting
+        intent.putExtra("rating", model.get(i).getRating());
+
+        //Resturant latlng
+        intent.putExtra("location", model.get(i).getLocation());
+
     }
 
     void startButtons(){
@@ -225,14 +298,6 @@ public class GooglePlacesActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Pasa a la pantalla principal.
                 Intent intent= new Intent(getBaseContext(), ContactsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), AddressActivity.class);
                 startActivity(intent);
             }
         });
