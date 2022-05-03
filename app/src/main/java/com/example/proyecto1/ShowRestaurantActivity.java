@@ -32,6 +32,7 @@ public class ShowRestaurantActivity extends AppCompatActivity {
         restaurantPrices = findViewById(R.id.restaurantShownPrices);
         restaurantCategories = findViewById(R.id.restaurantShownCategories);
         restaurnatPhoto = findViewById(R.id.restaurantShownPhoto);
+        mapa = findViewById(R.id.showMap_btn);
 
 
         perfil.setOnClickListener(new View.OnClickListener() {
@@ -69,16 +70,15 @@ public class ShowRestaurantActivity extends AppCompatActivity {
             }
         });
 
-        //mapa = findViewById(R.id.button);
-
-        /*mapa.setOnClickListener(new View.OnClickListener() {
+        mapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Pasa a la pantalla principal.
-                Intent intent= new Intent(getBaseContext(), AddressActivity.class);
+                Intent intent= new Intent(getBaseContext(), MapsActivity.class);
+                String locationRest = getIntent().getStringExtra("location");
                 startActivity(intent);
             }
-        });*/
+        });
     }
 
     @Override

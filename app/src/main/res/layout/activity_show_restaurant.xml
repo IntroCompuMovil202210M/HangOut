@@ -110,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="92dp"
-            android:layout_marginEnd="44dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_favorite_24" />
@@ -157,6 +157,7 @@
             android:layout_width="361dp"
             android:layout_height="140dp"
             android:orientation="vertical"
+            android:id="@+id/linear"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/imageView8"
             app:layout_constraintStart_toStartOf="@+id/imageView8"
@@ -169,7 +170,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="225dp"
                     android:layout_height="35dp"
                     android:layout_marginLeft="15dp"
                     android:layout_weight="0.9"
@@ -195,7 +196,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="309dp"
                     android:layout_height="35dp"
                     android:layout_marginLeft="15dp"
                     android:layout_weight="0.8"
@@ -221,7 +222,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="252dp"
+                    android:layout_width="237dp"
                     android:layout_height="35dp"
                     android:layout_marginLeft="15dp"
                     android:layout_weight="0.8"
@@ -248,7 +249,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="179dp"
                     android:layout_height="35dp"
                     android:layout_marginLeft="15dp"
                     android:layout_weight="0.8"
@@ -269,7 +270,23 @@
             </LinearLayout>
         </LinearLayout>
 
-
+        <Button
+            android:id="@+id/showMap_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="548dp"
+            android:backgroundTint="@color/celeste"
+            android:drawableLeft="@drawable/ic_baseline_remove_red_eye_24"
+            android:text="Ver en mapa"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:cornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

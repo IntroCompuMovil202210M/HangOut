@@ -88,7 +88,7 @@ public class MenuActivity extends AppCompatActivity {
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), AddressActivity.class);
+                Intent intent = new Intent(getBaseContext(), MapsActivity.class);
                 startActivity(intent);
             }
         });

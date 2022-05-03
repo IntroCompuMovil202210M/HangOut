@@ -179,10 +179,10 @@ public class GooglePlacesActivity extends AppCompatActivity {
                                     int j = 0;
                                     for (Place.Type type : placeLikelihood.getPlace().getTypes()){
                                         if(type != Place.Type.RESTAURANT) {
-                                            if(j!=lenght) {
-                                                categories += type.name().toLowerCase(Locale.ROOT) + " - ";
+                                            if(j==lenght-1) {
+                                                categories += type.name().toLowerCase(Locale.ROOT).replace("_", " ");
                                             } else {
-                                                categories += type.name().toLowerCase(Locale.ROOT);
+                                                categories += type.name().toLowerCase(Locale.ROOT).replace("_", " ") + " - ";
                                             }
                                         }
                                         j++;
@@ -263,6 +263,9 @@ public class GooglePlacesActivity extends AppCompatActivity {
 
         //Resturant raiting
         intent.putExtra("rating", model.get(i).getRating());
+
+        //Resturant latlng
+        intent.putExtra("location", model.get(i).getLocation());
 
     }
 
