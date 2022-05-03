@@ -35,7 +35,7 @@ import java.util.List;
 
 public class ShowRestaurantActivity extends AppCompatActivity {
     ImageButton perfil, contactos, fav;
-    Button location, mapa;
+    Button mapa;
     TextView restaurantName, restaurantAddress, restaurantRating, restaurantCategories;
     ImageView restaurnatPhoto, clickFav;
     MyUser user;
@@ -49,7 +49,6 @@ public class ShowRestaurantActivity extends AppCompatActivity {
         perfil = findViewById(R.id.perfil_btn);
         contactos = findViewById(R.id.contactos_btn);
         fav = findViewById(R.id.favoritos_btn);
-        location = findViewById(R.id.addLocationShow);
 
         restaurantName = findViewById(R.id.restaurantShownName);
         restaurantAddress = findViewById(R.id.restaurantShownAddress);
@@ -87,14 +86,6 @@ public class ShowRestaurantActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Pasa a la pantalla principal.
                 Intent intent= new Intent(getBaseContext(), FavoriteActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), MapsActivity.class);
                 startActivity(intent);
             }
         });
