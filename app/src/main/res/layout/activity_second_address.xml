@@ -55,15 +55,15 @@
         android:id="@+id/address2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/address1_2"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="60dp"
-        android:layout_below="@+id/address1_2"
         android:background="@drawable/rounded_edittext2"
         android:drawableLeft="@drawable/ic_baseline_location_on_24_blue"
         android:hint="Ubicación 2"
         android:padding="10dp"
         android:textColor="@color/black"
-        android:textColorHint="@color/gris"  />
+        android:textColorHint="@color/gris" />
 
 </RelativeLayout>

@@ -1,14 +1,29 @@
 package com.example.proyecto1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 public class AddressActivity extends AppCompatActivity {
+
+    private static final double RADIUS_OF_EARTH = 6371;
+    public static final String LOCATION_PERMISSION_NAME = Manifest.permission.ACCESS_FINE_LOCATION;
+    public static final int LOCATION_PERMISSION_ID = 7;
 
     Button add_address;
     Button search;
@@ -16,6 +31,7 @@ public class AddressActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address);
 
@@ -43,4 +59,6 @@ public class AddressActivity extends AppCompatActivity {
         });
 
     }
+
+
 }
