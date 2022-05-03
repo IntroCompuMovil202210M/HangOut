@@ -39,6 +39,7 @@ public class ShowRestaurantActivity extends AppCompatActivity {
     TextView restaurantName, restaurantAddress, restaurantRating, restaurantCategories;
     ImageView restaurnatPhoto, clickFav;
     MyUser user;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,10 @@ public class ShowRestaurantActivity extends AppCompatActivity {
 
         mapa = findViewById(R.id.showMap_btn);
         clickFav = findViewById(R.id.clickFav);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        checkFav( getIntent().getStringExtra("address"), getIntent().getStringExtra("name"));
 
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,18 +121,10 @@ public class ShowRestaurantActivity extends AppCompatActivity {
                         bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
                     }
 
-                    /*LatLng locationLatlong = null;
-                    if(getIntent().getStringExtra("location") != null) {
-                        String location = getIntent().getStringExtra("location");
-                        String[] latlong = location.split(",");
-                        double latitude = Double.parseDouble(latlong[0]);
-                        double longitude = Double.parseDouble(latlong[1]);
-                        locationLatlong = new LatLng(latitude, longitude);
-                    }*/
-
                     addToFavList(getIntent().getStringExtra("name"), getIntent().getStringExtra("address"), getIntent().getStringExtra("rating"), bmp);
                 } else {
                     clickFav.setColorFilter(null);
+                    removeOfFavList(getIntent().getStringExtra("address"), getIntent().getStringExtra("name"));
                 }
             }
         });
@@ -136,7 +133,6 @@ public class ShowRestaurantActivity extends AppCompatActivity {
     private void addToFavList(String name, String address, String rating, Bitmap bmp) {
 
         //Update info
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();;
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         DatabaseReference firebaseDB = FirebaseDatabase.getInstance().getReference("users/").child(currentUser.getUid());
@@ -160,6 +156,40 @@ public class ShowRestaurantActivity extends AppCompatActivity {
                         restaurant.setBitmapString(new String(stream.toByteArray()));
 
                         FirebaseDatabase.getInstance().getReference("users/" + currentUser.getUid() + "/favorites").push().setValue(restaurant);
+                    }
+                }
+            }
+        });
+    }
+
+    private void removeOfFavList(String address, String name) {
+
+        //Update info
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        FirebaseDatabase.getInstance().getReference("users/" + currentUser.getUid() + "/favorites").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                for(DataSnapshot snapshot : task.getResult().getChildren()){
+                    if(snapshot.getValue(Restaurant.class).getDir().equals(address) && snapshot.getValue(Restaurant.class).getName().equals(name)){
+                        snapshot.getRef().removeValue();
+                    }
+                }
+            }
+        });
+
+    }
+
+    private void checkFav(String address, String name){
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        FirebaseDatabase.getInstance().getReference("users/" + currentUser.getUid() + "/favorites").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                for(DataSnapshot snapshot : task.getResult().getChildren()){
+                    if(snapshot.getValue(Restaurant.class).getDir().equals(address) && snapshot.getValue(Restaurant.class).getName().equals(name)){
+                        clickFav.setColorFilter(Color.RED);
                     }
                 }
             }
