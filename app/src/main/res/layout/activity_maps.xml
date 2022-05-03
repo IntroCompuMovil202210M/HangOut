@@ -1,9 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapsActivity" />
+    tools:context=".MapsActivity" >
+
+    <fragment
+        android:id="@+id/mapUser"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MapsActivity" />
+
+    <EditText
+        android:id="@+id/address1Anim"
+        android:layout_width="296dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/rounded_edittext"
+        android:drawableLeft="@drawable/ic_baseline_location_on_24"
+        android:hint="Ubicación"
+        android:imeOptions="actionSend"
+        android:inputType="text"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gris" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/plusAddress"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="320dp"
+        android:backgroundTint="#37BDD6"
+        android:elevation="8dp"
+        android:src="@drawable/ic_add"
+        android:contentDescription="add" />
+
+    <EditText
+        android:id="@+id/address2Anim"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/rounded_edittext2"
+        android:drawableLeft="@drawable/ic_baseline_location_on_24_blue"
+        android:hint="Ubicación 2"
+        android:visibility="invisible"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gris"
+        android:inputType="text"
+        android:imeOptions="actionSend"/>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/centerUser"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="650dp"
+        android:layout_marginLeft="320dp"
+        android:backgroundTint="#FFFFFF"
+        android:elevation="8dp"
+        android:src="@drawable/ic_baseline_my_location_24"
+        android:contentDescription="center" />
+
+</FrameLayout>
+
