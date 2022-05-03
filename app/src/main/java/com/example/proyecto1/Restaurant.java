@@ -9,14 +9,11 @@ public class Restaurant {
     String name;
     String dir;
     String rating;
-    String phoneNumber;
-    String prices;
     String categories;
-    String openingHours;
     Bitmap photoMetadata;
     LatLng location;
 
-    public Restaurant(){}
+    public  Restaurant(){}
 
     public String getName() {
         return name;
@@ -42,36 +39,12 @@ public class Restaurant {
         this.rating = rating;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getPrices() {
-        return prices;
-    }
-
-    public void setPrices(String prices) {
-        this.prices = prices;
-    }
-
     public String getCategories() {
         return categories;
     }
 
     public void setCategories(String categories) {
         this.categories = categories;
-    }
-
-    public String getOpeningHours() {
-        return openingHours;
-    }
-
-    public void setOpeningHours(String openingHours) {
-        this.openingHours = openingHours;
     }
 
     public Bitmap getPhotoMetadata() {

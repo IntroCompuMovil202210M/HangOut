@@ -14,6 +14,7 @@ public class MenuActivity extends AppCompatActivity {
     Button location;
     EditText buscar, ubicacion_personal, ubicacion_contacto;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

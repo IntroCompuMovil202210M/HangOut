@@ -165,10 +165,6 @@ public class GooglePlacesActivity extends AppCompatActivity {
                                     restaurant.setRating(placeLikelihood.getPlace().getRating().toString());
                                 }
 
-                                if(placeLikelihood.getPlace().getPriceLevel() != null){
-                                    restaurant.setPrices(placeLikelihood.getPlace().getPriceLevel().toString());
-                                }
-
                                 if(placeLikelihood.getPlace().getLatLng() != null){
                                     restaurant.setLocation(placeLikelihood.getPlace().getLatLng());
                                 }
@@ -254,9 +250,6 @@ public class GooglePlacesActivity extends AppCompatActivity {
 
         //Restaurant address
         intent.putExtra("address", model.get(i).getDir());
-
-        //Resturant prices
-        intent.putExtra("prices", model.get(i).getPrices());
 
         //Restaurant types
         intent.putExtra("categories", model.get(i).getCategories());
