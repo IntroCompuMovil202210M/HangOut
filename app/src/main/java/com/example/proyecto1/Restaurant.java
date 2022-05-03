@@ -10,6 +10,7 @@ public class Restaurant {
     String dir;
     String rating;
     String categories;
+    String bitmapString;
     Bitmap photoMetadata;
     LatLng location;
 
@@ -61,6 +62,14 @@ public class Restaurant {
 
     public void setLocation(LatLng location) {
         this.location = location;
+    }
+
+    public String getBitmapString() {
+        return bitmapString;
+    }
+
+    public void setBitmapString(String bitmapString) {
+        this.bitmapString = bitmapString;
     }
 
     @Override

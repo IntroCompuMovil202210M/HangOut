@@ -27,7 +27,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 
@@ -137,25 +139,31 @@ public class ShowRestaurantActivity extends AppCompatActivity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();;
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        DatabaseReference firebaseDB = FirebaseDatabase.getInstance().getReference("users").child(currentUser.getUid());
+        DatabaseReference firebaseDB = FirebaseDatabase.getInstance().getReference("users/").child(currentUser.getUid());
 
-        retriveUser(currentUser.getUid());
+        firebaseDB.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()) {
+                    if (task.getResult().exists()) {
 
-        Log.i("USUARIO", (user.toString() == null) ? "Valor nulo" : user.toString());
+                        user = task.getResult().getValue(MyUser.class);
 
-        Restaurant restaurant = new Restaurant();
+                        Restaurant restaurant = new Restaurant();
 
-        restaurant.setPhotoMetadata(bmp);
-        restaurant.setRating(rating);
-        restaurant.setDir(address);
-        restaurant.setName(name);
+                        //restaurant.setPhotoMetadata(bmp);
+                        restaurant.setRating(rating);
+                        restaurant.setDir(address);
+                        restaurant.setName(name);
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                        restaurant.setBitmapString(new String(stream.toByteArray()));
 
-        user.getFavoritesRestaurants().add(restaurant);
-
-        Log.i("USUARIO", user.toString());
-
-        firebaseDB.setValue(user);
-
+                        FirebaseDatabase.getInstance().getReference("users/" + currentUser.getUid() + "/favorites").push().setValue(restaurant);
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -192,6 +200,7 @@ public class ShowRestaurantActivity extends AppCompatActivity {
                     if(task.getResult().exists()){
                         DataSnapshot dataSnapshot = task.getResult();
                         user = dataSnapshot.getValue(MyUser.class);
+                        Log.i("USUARIO-ON", user.toString());
                     } else {
                         //Log de error
                     }
