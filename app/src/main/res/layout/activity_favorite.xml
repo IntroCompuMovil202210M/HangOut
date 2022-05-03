@@ -2,33 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/favList"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/white_texture"
     tools:context=".FavoriteActivity">
 
-
-    <ListView
-        android:id="@+id/restaurantList"
-        android:layout_width="341dp"
-        android:layout_height="500dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginEnd="27dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="9dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/layout_bg_rounded"
-            android:padding="5dp" />
-    </ListView>
 
     <ImageButton
         android:id="@+id/contactos_btn"
@@ -36,11 +15,12 @@
         android:layout_height="40dp"
         android:layout_marginEnd="4dp"
         android:background="@android:color/transparent"
-        app:layout_constraintEnd_toStartOf="@id/perfil_btn"
-        app:srcCompat="@drawable/ic_baseline_contacts_24"
-        tools:layout_editor_absoluteY="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@id/perfil_btn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_contacts_24"
+        tools:layout_editor_absoluteY="0dp" />
+
     <ImageButton
         android:id="@+id/perfil_btn"
         android:layout_width="40dp"
@@ -49,8 +29,8 @@
         android:padding="5dp"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_profile_svgrepo_com__1_"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_profile_svgrepo_com__1_" />
 
     <ImageView
         android:id="@+id/logoMostrarR"
@@ -58,9 +38,9 @@
         android:layout_height="74dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="256dp"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:clickable="true"
         app:srcCompat="@drawable/logo2"
         tools:ignore="MissingConstraints" />
 
@@ -76,5 +56,30 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/layout_bg_rounded"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ListView
+            android:layout_width="360dp"
+            android:layout_height="534dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="14dp"
+            android:id="@+id/listFav"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
