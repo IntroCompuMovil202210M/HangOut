@@ -163,7 +163,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         mapFragment.getMapAsync(this);
 
         ubicacionAct = getIntent().getStringExtra("location");
-        LatLng ls =  new LatLng(Double.parseDouble(ubicacionAct.split(",")[0].replace("lat/Lng: (","")),Double.parseDouble(ubicacionAct.split(",")[1].replace(")","")) );
+        LatLng ls =  new LatLng(Double.parseDouble(ubicacionAct.split(",")[0].replace("lat/lng: (","")),Double.parseDouble(ubicacionAct.split(",")[1].replace(")","")) );
 
 
         //Seguimiento de posicion donde se analiza si hubo un movimiento de más de 2 metros
@@ -205,9 +205,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                                 LatLng position = new LatLng(addressResult.getLatitude(), addressResult.getLongitude());
                                 if (mMap != null) {
                                     createMarkerUser(position);
-                                    LatLng posFn= searchAddress(ubicacionAct);
-                                    drawRoute(position, posFn);
-                                    mMap.addMarker(new MarkerOptions().position(posFn).title("Place").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_location_on_24)));;
+                                    drawRoute(position, ls);
+                                    mMap.addMarker(new MarkerOptions().position(ls).title("Place").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_location_on_24)));;
                                 }
                             } else {Toast.makeText(MapsActivity.this, "Dirección no encontrada", Toast.LENGTH_SHORT).show();}
                         } catch (IOException e) {
@@ -240,10 +239,9 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                                 createMarkerUser(position1);
                                 mMap.addMarker(new MarkerOptions().position(position2).title("Partner").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_emoji_people_24)));
                                 System.out.println(ubicacionAct);
-                                LatLng posFn = searchAddress(ubicacionAct);
-                                drawRoute(position1, posFn);
-                                drawRoute(position2, posFn);
-                                mMap.addMarker(new MarkerOptions().position(posFn).title("Place").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_location_on_24)));
+                                drawRoute(position1, ls);
+                                drawRoute(position2, ls);
+                                mMap.addMarker(new MarkerOptions().position(ls).title("Place").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_location_on_24)));
                                 return true;
                             }else {Toast.makeText(MapsActivity.this, "Debe llenar ambos campos", Toast.LENGTH_SHORT).show();}
                         }
