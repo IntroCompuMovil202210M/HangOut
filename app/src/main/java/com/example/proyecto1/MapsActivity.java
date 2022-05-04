@@ -163,6 +163,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         mapFragment.getMapAsync(this);
 
         ubicacionAct = getIntent().getStringExtra("location");
+        LatLng ls =  new LatLng(Double.parseDouble(ubicacionAct.split(",")[0].replace("lat/Lng: (","")),Double.parseDouble(ubicacionAct.split(",")[1].replace(")","")) );
+
 
         //Seguimiento de posicion donde se analiza si hubo un movimiento de más de 2 metros
         mLocationCallback = new LocationCallback() {
@@ -239,7 +241,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                                 mMap.addMarker(new MarkerOptions().position(position2).title("Partner").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_emoji_people_24)));
                                 System.out.println(ubicacionAct);
                                 LatLng posFn = searchAddress(ubicacionAct);
-                                Log.i("Ubicacion", ubicacionAct);
                                 drawRoute(position1, posFn);
                                 drawRoute(position2, posFn);
                                 mMap.addMarker(new MarkerOptions().position(posFn).title("Place").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_location_on_24)));
