@@ -25,6 +25,8 @@
             android:layout_marginLeft="15dp"
             android:gravity="left"
             android:text="TextView2"
+            android:textStyle="bold"
+            android:textColor="@color/white"
             android:id="@+id/restaurantName"/>
 
         <TextView
@@ -33,6 +35,7 @@
             android:layout_marginLeft="15dp"
             android:gravity="left"
             android:text="TextView3"
+            android:textColor="@color/white"
             android:id="@+id/restaurantAddress"/>
 
         <LinearLayout
@@ -47,6 +50,7 @@
                 android:gravity="left"
                 android:text="Raiting:  "
                 android:textStyle="bold"
+                android:textColor="@color/white"
                 android:id="@+id/rating"
                 android:layout_weight="0.8"/>
 
@@ -56,6 +60,7 @@
                 android:gravity="left"
                 android:text="TextView4"
                 android:id="@+id/restaurantRating"
+                android:textColor="@color/white"
                 android:layout_weight="0.5"/>
 
         </LinearLayout>

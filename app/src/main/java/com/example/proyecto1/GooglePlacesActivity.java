@@ -150,7 +150,7 @@ public class GooglePlacesActivity extends AppCompatActivity {
                         final String placeId = response.getPlaceLikelihoods().get(0).getPlace().getId().toString();
 
                         for (PlaceLikelihood placeLikelihood : response.getPlaceLikelihoods()) {
-                            if(placeLikelihood.getPlace().getTypes().contains(Place.Type.RESTAURANT)) {
+                            //if(placeLikelihood.getPlace().getTypes().contains(Place.Type.RESTAURANT)) {
                                 Restaurant restaurant = new Restaurant();
 
                                 if (placeLikelihood.getPlace().getName() != null) {
@@ -167,6 +167,7 @@ public class GooglePlacesActivity extends AppCompatActivity {
 
                                 if(placeLikelihood.getPlace().getLatLng() != null){
                                     restaurant.setLocation(placeLikelihood.getPlace().getLatLng());
+
                                 }
 
                                 if(placeLikelihood.getPlace().getTypes() != null){
@@ -205,7 +206,7 @@ public class GooglePlacesActivity extends AppCompatActivity {
                                     });
                                 }
                                 model.add(restaurant);
-                            }
+                            //}
                             RestaurantsAdapter adapter = new RestaurantsAdapter(GooglePlacesActivity.this, R.layout.item_show_restaurants, model);
                             mlista.setAdapter(adapter);
 
@@ -272,7 +273,9 @@ public class GooglePlacesActivity extends AppCompatActivity {
         intent.putExtra("rating", model.get(i).getRating());
 
         //Resturant latlng
-        intent.putExtra("location", model.get(i).getLocation());
+        intent.putExtra("location", model.get(i).getLocation().toString());
+
+
 
     }
 

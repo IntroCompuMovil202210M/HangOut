@@ -94,9 +94,13 @@ public class ShowRestaurantActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Pasa a la pantalla principal.
+                Log.i("MAPA", "Antes del intent");
                 Intent intent= new Intent(getBaseContext(), MapsActivity.class);
                 String locationRest = getIntent().getStringExtra("location");
+                Log.i("LOCATIONREST", locationRest);
                 intent.putExtra("location", locationRest);
+
+                System.out.println();
                 startActivity(intent);
             }
         });

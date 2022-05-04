@@ -64,12 +64,24 @@
         android:id="@+id/centerUser"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:layout_marginTop="650dp"
+        android:layout_marginTop="580dp"
         android:layout_marginLeft="320dp"
         android:backgroundTint="#FFFFFF"
         android:elevation="8dp"
         android:src="@drawable/ic_baseline_my_location_24"
         android:contentDescription="center" />
+
+    <TextView
+        android:id="@+id/temperatura"
+        android:layout_marginTop="592dp"
+        android:layout_marginLeft="30dp"
+        android:layout_width="209dp"
+        android:layout_height="38dp"
+        android:text="Temperatura"
+        android:textAlignment="center"
+        android:background="@color/white"
+        />
+
 
 </FrameLayout>
 

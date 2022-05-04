@@ -91,44 +91,16 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
-        <ImageButton
-            android:id="@+id/btn_search_menu"
-            android:layout_width="59dp"
-            android:layout_height="43dp"
-            android:layout_marginTop="19dp"
-            android:layout_marginEnd="28dp"
-            android:backgroundTint="@color/celeste"
-            android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_search_24" />
-
-        <EditText
-            android:id="@+id/editTextTextPersonName"
-            android:layout_width="297dp"
-            android:layout_height="28dp"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="75dp"
-            android:background="@drawable/rounded_edittext"
-            android:ems="10"
-            android:hint="   Búsqueda"
-            android:inputType="textPersonName"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <ListView
             android:id="@+id/restaurantList"
-            android:layout_width="339dp"
-            android:layout_height="477dp"
+            android:layout_width="331dp"
+            android:layout_height="518dp"
             android:layout_marginStart="27dp"
-            android:layout_marginTop="11dp"
             android:layout_marginEnd="27dp"
-            android:layout_marginBottom="31dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_search_menu" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

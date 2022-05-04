@@ -231,7 +231,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="548dp"
+            android:layout_marginTop="528dp"
             android:backgroundTint="@color/celeste"
             android:drawableLeft="@drawable/ic_baseline_remove_red_eye_24"
             android:text="Ver en mapa"

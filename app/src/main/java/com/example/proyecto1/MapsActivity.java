@@ -55,12 +55,14 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.proyecto1.databinding.ActivityMapsBinding;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.GeoPoint;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -74,8 +76,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener, SensorEventListener, OnMapReadyCallback {
 
     private static final double RADIUS_OF_EARTH = 6371;
     public static final String LOCATION_PERMISSION_NAME = Manifest.permission.ACCESS_FINE_LOCATION;
@@ -91,16 +94,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LocationCallback mLocationCallback;
     private LocationRequest mLocationRequest;
 
+    private ArrayList<Marker> markers;
+
+    private SensorManager mgr;
+    private Sensor temp;
+    private TextView text;
+
+
     SensorManager sensorManager;
     Sensor lightSensor;
     SensorEventListener lightSensorListener;
     Animation fabOpen, fabClose, rotateForward, rotateBackward;
     EditText address1, address2;
     FloatingActionButton fab1, ub1;
-
+    Geocoder mGeocoder;
+    String ubicacionAct ="";
 
     boolean isOpen= false;
-
 
 
     @Override
@@ -110,11 +120,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
+        //Verificar permisos de la ubicación
         requestPermission(this, LOCATION_PERMISSION_NAME, "¿Permite tener acceso a su ubicación?", LOCATION_PERMISSION_ID);
+
+        //Inicializar botones
         address1 = findViewById(R.id.address1Anim);
         address2 = findViewById(R.id.address2Anim);
         fab1 = findViewById(R.id.plusAddress);
         ub1 = findViewById(R.id.centerUser);
+        mgr = (SensorManager) this.getSystemService(SENSOR_SERVICE);
+
+        text = (TextView) findViewById(R.id.temperatura);
+
+
+        //Inicializar marcadores
+        markers = new ArrayList<Marker>();
 
         //Animaciones
         fabOpen = AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim);
@@ -130,9 +151,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //Generador de sensores
         lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        temp = mgr.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
 
-        Geocoder mGeocoder = new Geocoder(getBaseContext()); //API de Google
+        //API de Google
+        mGeocoder = new Geocoder(getBaseContext());
 
+
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.mapUser);
+        mapFragment.getMapAsync(this);
+
+        ubicacionAct = getIntent().getStringExtra("location");
 
         //Seguimiento de posicion donde se analiza si hubo un movimiento de más de 2 metros
         mLocationCallback = new LocationCallback() {
@@ -142,15 +172,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Location location = locationResult.getLastLocation();
                 if (location != null) {
                     if (!alreadyMoved) {
-                        Log.i("LOCATION", "Location update in the callback: " + location);
                         alreadyMoved = true;
                         currentLocationLatitude = location.getLatitude();
                         currentLocationLongitude = location.getLongitude();
                     } else {
                         if (location.getLongitude() != currentLocationLongitude || location.getLatitude() != currentLocationLatitude) {
-
                             if (distance(location.getLatitude(), location.getLongitude(), currentLocationLatitude, currentLocationLongitude) >= 2.0) {
-                                Log.i("LOCATION", "Location update in the callback: " + location);
                                 currentLocationLatitude = location.getLatitude();
                                 currentLocationLongitude = location.getLongitude();
 
@@ -161,6 +188,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         };
 
+
+        //Busqueda con solo una dirección
         address1.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
@@ -173,35 +202,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 Address addressResult = addresses.get(0);
                                 LatLng position = new LatLng(addressResult.getLatitude(), addressResult.getLongitude());
                                 if (mMap != null) {
-                                    //Agregar Marcador al mapa
-                                    LatLng start = new LatLng(4.60, -75.05);
-
-                                    drawRoute(position, start);
-
                                     createMarkerUser(position);
-                                    mMap.addMarker(new MarkerOptions().position(start).title(geoCoderSearchLatLang(start)));
+                                    LatLng posFn= searchAddress(ubicacionAct);
+                                    drawRoute(position, posFn);
+                                    mMap.addMarker(new MarkerOptions().position(posFn).title("Place").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_location_on_24)));;
                                 }
                             } else {Toast.makeText(MapsActivity.this, "Dirección no encontrada", Toast.LENGTH_SHORT).show();}
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                         return true;
-                    } else {Toast.makeText(MapsActivity.this, "La dirección esta vacía", Toast.LENGTH_SHORT).show();}
+                    } else {Toast.makeText(MapsActivity.this, "La dirección 2 esta vacía", Toast.LENGTH_SHORT).show();}
                 }
                 return false;
             }
+
         });
 
 
-
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.mapUser);
-        mapFragment.getMapAsync(this);
-
-
-
+        //Botón para ubicar a una segunda persona
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -213,51 +232,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         if (actionId == EditorInfo.IME_ACTION_SEND) {
                             String addressString = address2.getText().toString();
                             String add2 = address1.getText().toString();
-                            if (!addressString.isEmpty() &&  !add2.isEmpty()) {
-                                try {
-                                    List<Address> addresses = mGeocoder.getFromLocationName(addressString, 2);
-                                    List<Address> addresses2 = mGeocoder.getFromLocationName(add2, 2);
-                                    if (addresses != null && !addresses.isEmpty()) {
-                                        Address addressResult = addresses.get(0);
-                                        Address addressResult2 = addresses2.get(0);
-                                        LatLng position = new LatLng(addressResult.getLatitude(), addressResult.getLongitude());
-                                        LatLng position2 = new LatLng(addressResult2.getLatitude(), addressResult2.getLongitude());
-                                        if (mMap != null) {
-                                            //Agregar Marcador al mapa
-
-                                            LatLng start = new LatLng(4.60, -75.05);
-
-                                            drawRoute(position, start);
-                                            drawRoute(position2, start);
-                                            createMarkerUser(position2);
-                                            createMarkerUser2(position);
-
-                                            mMap.addMarker(new MarkerOptions().position(start).title(geoCoderSearchLatLang(start)));
-                                        }
-                                    } else {Toast.makeText(MapsActivity.this, "Dirección no encontrada", Toast.LENGTH_SHORT).show();}
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                            LatLng position1 = searchAddress(add2);
+                            LatLng position2 = searchAddress(addressString);
+                            if(position1!= null && position2!= null){
+                                createMarkerUser(position1);
+                                mMap.addMarker(new MarkerOptions().position(position2).title("Partner").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_emoji_people_24)));
+                                System.out.println(ubicacionAct);
+                                LatLng posFn = searchAddress(ubicacionAct);
+                                drawRoute(position1, posFn);
+                                drawRoute(position2, posFn);
+                                mMap.addMarker(new MarkerOptions().position(posFn).title("Place").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_location_on_24)));
                                 return true;
-                            } else {Toast.makeText(MapsActivity.this, "La dirección 2 esta vacía", Toast.LENGTH_SHORT).show();}
+                            }else {Toast.makeText(MapsActivity.this, "Debe llenar ambos campos", Toast.LENGTH_SHORT).show();}
                         }
                         return false;
                     }
                 });
             }
         });
-        
+
+
+        /**
+         * Función para ubicar en la posición actual del usuario
+         * TODO: mostrar el marcador
+         */
         ub1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
+
                     List<Address> addresses = mGeocoder.getFromLocation(currentLocationLatitude, currentLocationLongitude, 2);
-                    if (addresses != null && !addresses.isEmpty()) {
+                    System.out.println( addresses.toString());
+                    if (!addresses.isEmpty()) {
                         Address addressResult = addresses.get(0);
+
                         address1.setText(addressResult.getAddressLine(0), TextView.BufferType.NORMAL);
                         LatLng mLocation = new LatLng(currentLocationLatitude, currentLocationLongitude);
-                        mMap.moveCamera(CameraUpdateFactory.newLatLng(mLocation));
-                        mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+                        createMarkerUser(mLocation);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -269,27 +280,49 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
+    *  Inicializar botones para el manejo de MAPS
+    */
+
+
+
+
+    /**
+     * Función para ubicar la dos direcciones si son dos personas
+     * TODO: Arreglar la función para generalizar
      */
+    public LatLng searchAddress(String one){
+        if (!one.isEmpty()) {
+            try {
+                List<Address> addresses = mGeocoder.getFromLocationName(one, 2);
+                if (addresses != null && !addresses.isEmpty()) {
+                    Address addressResult = addresses.get(0);
+                    LatLng position = new LatLng(addressResult.getLatitude(), addressResult.getLongitude());
+                    return position;
+                } else {Toast.makeText(MapsActivity.this, "Dirección no encontrada", Toast.LENGTH_SHORT).show();}
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        return null;
+    }
 
 
+
+    //MAP ON READY
     @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        mMap.setOnMarkerClickListener(this);
+
+
         mFusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
-                        Log.i("LOCATION", "onSuccess location");
-                        System.out.println(location.toString());
                         if (location != null) {
                             LatLng mLocation = new LatLng(location.getLatitude(), location.getLongitude());
                             mMap.moveCamera(CameraUpdateFactory.newLatLng(mLocation));
@@ -297,6 +330,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         }
                     }
                 });
+
+
 
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
@@ -314,6 +349,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         });
+
+
+
 
     }
 
@@ -341,7 +379,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         };
 
         sensorManager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
-
+        mgr.registerListener(this, temp, SensorManager.SENSOR_DELAY_NORMAL);
 
     }
 
@@ -350,13 +388,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onPause() {
         super.onPause();
         sensorManager.unregisterListener(lightSensorListener);
+        mgr.unregisterListener(this, temp);
     }
 
     @SuppressLint("MissingPermission")
     @Override
     protected void onStart() {
         super.onStart();
-
 
         mFusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
@@ -370,7 +408,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         }
                     }
                 });
+
         initView();
+
+    }
+
+    public void onSensorChanged(SensorEvent event) {
+
+        if(event.values[0] < 5){
+            Log.i("TEMPERATURA", String.valueOf(event.values[0]));
+            text.setText("¡El día de hoy hace frío!");
+            text.setTextColor(Color.BLUE);
+        }
+
+        if(event.values[0] > 5 && event.values[0] < 15){
+            Log.i("TEMPERATURA", String.valueOf(event.values[0]));
+            text.setText("¡El día de hoy está templado!");
+            text.setTextColor(Color.GREEN);
+        }
+
+        if(event.values[0] > 15){
+            Log.i("TEMPERATURA", String.valueOf(event.values[0]));
+            text.setText("¡El día de hoy hace calor!");
+            text.setTextColor(Color.RED);
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
 
@@ -459,17 +524,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     //Funcion para crear el marcador en el mapa
     private void createMarkerUser(LatLng mLocation){
         mMap.clear();
-        mMap.addMarker(new MarkerOptions().position(mLocation).title("Marker in Current").icon(bitmapDescriptorFromVector(this,R.drawable.ic_baseline_boy_24)));
+        mMap.addMarker(new MarkerOptions().position(mLocation).title("Me").icon(bitmapDescriptorFromVector(this,R.drawable.ic_baseline_boy_24)));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(mLocation));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
         mMap.getUiSettings().setZoomGesturesEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
     }
 
-    private void createMarkerUser2(LatLng mLocation){
-        mMap.addMarker(new MarkerOptions().position(mLocation).title("Marker in Current").icon(bitmapDescriptorFromVector(this,R.drawable.ic_baseline_emoji_people_24)));
 
-    }
+
+
 
     private BitmapDescriptor bitmapDescriptorFromVector(Context context, int vectorResId) {
         Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
@@ -498,35 +562,50 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-/*
-    private void isLocationEnabled() {
-
-        LocationManager lm = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
-        boolean gps_enabled = false;
-        boolean network_enabled = false;
+    @Override
+    public boolean onMarkerClick(@NonNull Marker marker) {
+        //Limpiar mapa
+        mMap.clear();
+        //Obtener la poscion del marcador
+        LatLng position = marker.getPosition();
+        //Verificar si solo hay una ubicacion del usuario
+        String addressString = address2.getText().toString();
+        String add2 = address1.getText().toString();
 
         try {
-            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        } catch(Exception ex) {}
+            List<Address> addresses = mGeocoder.getFromLocationName(add2, 2);
+            List<Address> addresses2 = mGeocoder.getFromLocationName(addressString, 2);
 
-        try {
-            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        } catch(Exception ex) {}
+            if (!addresses2.isEmpty() && !addresses.isEmpty() ) {
+                Address addressResult = addresses.get(0);
+                Address addressResult2 = addresses2.get(0);
+                LatLng position1 = new LatLng(addressResult.getLatitude(), addressResult.getLongitude());
+                LatLng position2 = new LatLng(addressResult2.getLatitude(), addressResult2.getLongitude());
+                if (mMap != null) {
+                    drawRoute(position1, position);
+                    drawRoute(position2, position);
+                    createMarkerUser(position1);
+                    mMap.addMarker(new MarkerOptions().position(position).title("Partner").icon(bitmapDescriptorFromVector(this,R.drawable.ic_baseline_emoji_people_24)));
+                    mMap.addMarker(new MarkerOptions().position(position).title(geoCoderSearchLatLang(position)));
+                }
+            } else if(addresses2.isEmpty() && !addresses.isEmpty() ) {
+                Address addressResult = addresses.get(0);
+                LatLng position1 = new LatLng(addressResult.getLatitude(), addressResult.getLongitude());
+                if (mMap != null) {
 
-        if(!gps_enabled && !network_enabled) {
-            // notify user
-            new AlertDialog.Builder(context)
-                    .setMessage(R.string.gps_network_not_enabled)
-                    .setPositiveButton(R.string.open_location_settings, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                            context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                        }
-                    })
-                    .setNegativeButton(R.string.Cancel,null)
-                    .show();
+                    drawRoute(position1, position);
+                    createMarkerUser(position1);
+                    mMap.addMarker(new MarkerOptions().position(position).title(geoCoderSearchLatLang(position)));
+                }
+            }else {Toast.makeText(MapsActivity.this, "Dirección no encontrada", Toast.LENGTH_SHORT).show();}
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    }*/
+
+
+        return false;
+    }
 
 
     ////FUNCIONAMIENTO DE GOOGLE MAPS
