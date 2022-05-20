@@ -24,7 +24,7 @@
 <img src="https://user-images.githubusercontent.com/78034097/154853570-f6138820-5c61-4990-a160-90c48820b15c.jpeg" class="center" width="450" height="250"  />
 </p>
 
-<p align="justify" width="100%"> Soy estudiante de séptimo semestre de Ingeniería de Sistemas de la Pontificia Universidad Javeriana, sede Colombia. Tengo conocimientos en desarrollo back-end y front-end web y en ciertos lenguajes de programación como C, C++, R, Java y Python. Actualmente estoy interesada en el desarrollo de páginas web y desarrollo de software. Mi pasiones son la danza y tennis. Considero que soy una persona responsable, que se adapta fácilmente a los cambios.  </p> 
+<p align="justify" width="100%"> Soy estudiante de séptimo semestre de Ingeniería de Sistemas de la Pontificia Universidad Javeriana, sede Bogotá. Tengo conocimientos en desarrollo back-end y front-end web y en ciertos lenguajes de programación como C, C++, R, Java y Python. Actualmente estoy interesada en el desarrollo de páginas web y desarrollo de software. Mi pasiones son la danza y tennis. Considero que soy una persona responsable, que se adapta fácilmente a los cambios.  </p> 
 
 - **David Enrique Palacios García**
 
