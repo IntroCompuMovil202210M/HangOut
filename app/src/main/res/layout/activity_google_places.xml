@@ -55,27 +55,6 @@
         app:srcCompat="@drawable/logo2"
         tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/addLocationShow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="64dp"
-        android:layout_marginBottom="28dp"
-        android:backgroundTint="@color/celeste"
-        android:drawableLeft="@drawable/ic_baseline_location_on_24_white"
-        android:text="Ingresar ubicación"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:cornerRadius="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.846"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="0dp"

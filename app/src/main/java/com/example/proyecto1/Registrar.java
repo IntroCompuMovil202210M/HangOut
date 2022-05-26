@@ -87,6 +87,7 @@ public class Registrar extends AppCompatActivity{
                 }
             }
         });
+
         btnCamara.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,6 +138,7 @@ public class Registrar extends AppCompatActivity{
                                                 myRef= database.getReference(FB_USERS_PATH+userID);
                                                 myRef.setValue(user);
                                                 Toast.makeText(getApplicationContext(),"Uploaded",Toast.LENGTH_LONG).show();
+
                                             }
                                         });
                                     }

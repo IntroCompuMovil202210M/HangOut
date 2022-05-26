@@ -28,18 +28,46 @@
         <entry key="..\:/Users/asuar/Desktop/ProyectoCompu/HangOut/app/src/main/res/layout/activity_mostrar_restaurantes.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/asuar/Desktop/ProyectoCompu/HangOut/app/src/main/res/layout/activity_perfil.xml" value="0.1" />
         <entry key="..\:/Users/asuar/Desktop/ProyectoCompu/HangOut/app/src/main/res/layout/activity_show_restaurant.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/circulo.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/drawable_add_location_bg.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/drawable_remove_location_bg.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/edit_text_border.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/ic_add.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/ic_add_location.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/ic_baseline_boy_24.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/ic_baseline_chat_24.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/ic_baseline_contacts_24.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.1875" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.227" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/ic_baseline_location_on_24_blue.xml" value="0.227" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/ic_baseline_location_on_24_white.xml" value="0.227" />
-        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/layout/activity_address.xml" value="0.1" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/ic_baseline_photo_camera_24.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/ic_search.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/ic_steak_svgrepo_com.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/layout_bg_rounded.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/round_button.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/rounded_corner_view.xml" value="0.1875" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/rounded_edittext.xml" value="0.21" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/drawable/rounded_edittext2.xml" value="0.21" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/font/roboto_thin.xml" value="0.2625" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/layout/activity_address.xml" value="0.2" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/layout/activity_chat.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/layout/activity_contacts.xml" value="0.2046875" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/layout/activity_favorite.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/layout/activity_google_places.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/layout/activity_loginfacebook.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/layout/activity_logingoogle.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/layout/activity_main.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/layout/activity_maps.xml" value="0.1" />
-        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/layout/activity_menu.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/layout/activity_menu.xml" value="0.264" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/layout/activity_modify.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/layout/activity_mostrar_restaurantes.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/layout/activity_perfil.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/layout/activity_registrarse.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/layout/activity_second_address.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/estef/OneDrive/Desktop/COLLEGE/Compumovil/app/src/main/res/layout/activity_show_restaurant.xml" value="0.23229166666666667" />

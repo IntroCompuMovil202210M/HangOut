@@ -73,7 +73,6 @@ public class GooglePlacesActivity extends AppCompatActivity {
     ImageButton fav;
     ImageButton profile;
     ImageView logo;
-    Button location;
     ImageView lupa;
 
 
@@ -134,7 +133,6 @@ public class GooglePlacesActivity extends AppCompatActivity {
         // Call findCurrentPlace and handle the response (first check that the user has granted permission).
         if (ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             @SuppressLint("MissingPermission") Task<FindCurrentPlaceResponse> placeResponse = placesClient.findCurrentPlace(request);
-
             placeResponse.addOnCompleteListener(new OnCompleteListener<FindCurrentPlaceResponse>() {
                 @Override
                 public void onComplete(@NonNull Task<FindCurrentPlaceResponse> task) {
@@ -210,20 +208,6 @@ public class GooglePlacesActivity extends AppCompatActivity {
                             RestaurantsAdapter adapter = new RestaurantsAdapter(GooglePlacesActivity.this, R.layout.item_show_restaurants, model);
                             mlista.setAdapter(adapter);
 
-                            location.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent intent = new Intent(getBaseContext(), MapsActivity.class);
-
-                                    ArrayList<String> locations = new ArrayList<>();
-                                    for (Restaurant restaurant : model){
-                                        locations.add(restaurant.getLocation().toString());
-                                    }
-                                    intent.putStringArrayListExtra("restaurantes", locations);
-                                    startActivity(intent);
-                                }
-                            });
-
                             mlista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -284,7 +268,6 @@ public class GooglePlacesActivity extends AppCompatActivity {
         contactos = findViewById(R.id.contactos_btn);
         fav = findViewById(R.id.favoritos_btn);
         lupa = findViewById(R.id.btn_search_menu);
-        location = findViewById(R.id.addLocationShow);
         logo = findViewById(R.id.logoMostrarR);
 
         profile.setOnClickListener(new View.OnClickListener() {
