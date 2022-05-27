@@ -1,20 +1,13 @@
 package com.example.proyecto1;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,152 +24,54 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 
 public class ModifyActivity extends AppCompatActivity {
 
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
-    private static final int IMAGE_PICKER_REQUEST = 4;
-    private static final int CAMERA = 2;
-    private static final int ALMACENAMIENTO_EXTERNO = 3;
-    private static boolean accessCamera = false, accessAlm = false;
-    private ImageView ivImage;
+    private ImageView fotoPerfil;
     private Button btnImage, btnCamera, btnGuardar;
     EditText txtUserName, txtPhone, txtEmail;
     TextView txtName;
     private FirebaseAuth mAuth;
+    private MyUser user;
+    private Bitmap bmImage;
     private boolean changedPhoto;
     private StorageReference mStorage;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference userRef = database.getReference("users");
-    private MyUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAuth = FirebaseAuth.getInstance();
-        mStorage = FirebaseStorage.getInstance().getReference();
         setContentView(R.layout.activity_modify);
 
-        ivImage = findViewById(R.id.imageView2);
-        btnImage = findViewById(R.id.btnSelectImage);
-        btnCamera = findViewById(R.id.btnSelectCamara2);
+        fotoPerfil = findViewById(R.id.fotoTomada);
         txtUserName = findViewById(R.id.textView2);
         txtPhone = findViewById(R.id.editTextTextMultiLine2);
         txtEmail = findViewById(R.id.editTextTextMultiLine3);
-        txtName = findViewById(R.id.editTextTextMultiLine);
+        txtName = findViewById(R.id.txtName);
         btnGuardar=findViewById(R.id.button);
-
-
-        btnImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                accessAlm = solicitPermission(ModifyActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE, "Permission to Access Gallery", ALMACENAMIENTO_EXTERNO);
-                if(accessAlm){
-                    usePermissionImage();
-                }
-            }
-        });
-
-        btnCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                accessCamera = solicitPermission(ModifyActivity.this, Manifest.permission.CAMERA, "Permission to Access Camera", CAMERA);
-                if(accessCamera){
-                    usePermissionCamera();
-                }
-            }
-        });
-
+        changedPhoto = false;
+        mAuth = FirebaseAuth.getInstance();
+        mStorage = FirebaseStorage.getInstance().getReference();
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 updateUserToDatabase();
+                uploadPhotoToStorage();
                 Intent intent= new Intent(getBaseContext(), PerfilActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    private boolean solicitPermission(Activity context, String permit, String justification, int id){
-        if(ContextCompat.checkSelfPermission(context, permit) != PackageManager.PERMISSION_GRANTED){
-            if(ActivityCompat.shouldShowRequestPermissionRationale(context, permit)){
-                Toast.makeText(this, justification, Toast.LENGTH_SHORT).show();
-            }
-            ActivityCompat.requestPermissions(context, new String[]{permit}, id);
-            return false;
-        } else {
-            return true;
-        }
-    }
 
-    private void usePermissionCamera(){
-        Intent pictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(pictureIntent.resolveActivity(getPackageManager()) != null){
-            startActivityForResult(pictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }
-
-    private void usePermissionImage(){
-        Intent pictureIntent = new Intent(Intent.ACTION_PICK);
-        pictureIntent.setType("image/*");
-        startActivityForResult(pictureIntent, IMAGE_PICKER_REQUEST);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode){
-            case CAMERA: {
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    usePermissionCamera();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Access denied to camera", Toast.LENGTH_LONG).show();
-                }
-                break;
-            }
-
-            case ALMACENAMIENTO_EXTERNO: {
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    usePermissionImage();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Access denied to image gallery", Toast.LENGTH_LONG).show();
-                }
-                break;
-            }
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode){
-            case REQUEST_IMAGE_CAPTURE: {
-                if(resultCode == RESULT_OK){
-                    Bundle extras = data.getExtras();
-                    Bitmap imageBitmap = (Bitmap) extras.get("data");
-                    ivImage.setImageBitmap(imageBitmap);
-                }
-                break;
-            }
-            case IMAGE_PICKER_REQUEST: {
-                if(resultCode == RESULT_OK){
-                    try{
-                        final Uri imageUri = data.getData();
-                        final InputStream is = getContentResolver().openInputStream(imageUri);
-                        final Bitmap selected = BitmapFactory.decodeStream(is);
-                        ivImage.setImageBitmap(selected);
-                    }catch(FileNotFoundException e){
-                        e.printStackTrace();
-                    }
-                }
-                break;
-            }
-        }
-    }
     public void updateUserToDatabase(){
         if(!txtUserName.getText().toString().equals("") || !txtPhone.getText().toString().equals("") || !txtEmail.getText().toString().equals("")){
             if(!txtUserName.getText().toString().equals("")) user.setUserName(txtUserName.getText().toString());
@@ -209,11 +104,83 @@ public class ModifyActivity extends AppCompatActivity {
                     user = dataSnapshot.getValue(MyUser.class);
                     user.setID(dataSnapshot.getKey());
                     txtName.setText(user.getName() + " " +user.getLastName());
+                    try {
+                        downloadFile(user.getID(), fotoPerfil);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 @Override
                 public void onCancelled(DatabaseError error) {
+
                 }
             });
+        }
+    }
+    public void uploadPhotoToStorage() {
+        if(changedPhoto) {
+            StorageReference imgRef = mStorage.child("images/" + user.getID() + "/" + "profile.png");
+            imgRef.putBytes(uploadImage()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Toast.makeText(ModifyActivity.this, "Se guardó la foto!", Toast.LENGTH_SHORT).show();
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(ModifyActivity.this, "Error guardando la foto!", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        }
+    }
+
+    private void downloadFile(String id, ImageView ivPhoto) throws IOException {
+        final File localFile = File.createTempFile("images", "png");
+        StorageReference imageRef = mStorage.child("images/" + id + "/profile.png");
+        imageRef.getFile(localFile)
+                .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        fotoPerfil.setImageURI(Uri.fromFile(localFile));
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+
+            }
+        });
+    }
+    public void onClickAceptarModificacionInfo(View view){
+       Intent intent = new Intent(this, PerfilActivity.class);
+       startActivity(intent);
+    }
+
+    public void onClickSubirFotoUsuario(View view){
+        Intent intent = new Intent(this, HardwareCameraActivity.class);
+        startActivity(intent);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        recuperarFoto();
+    }
+
+    private byte[] uploadImage(){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmImage.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        return baos.toByteArray();
+    }
+
+
+    public void recuperarFoto(){
+        if(getIntent().getByteArrayExtra("picture") != null){
+            changedPhoto = true;
+            byte[] byteArray = getIntent().getByteArrayExtra("picture");
+            Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+            bmImage = bmp;
+            fotoPerfil.setImageBitmap(bmp);
         }
     }
 }

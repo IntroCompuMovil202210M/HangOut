@@ -7,7 +7,7 @@
     android:background="@drawable/white_texture">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/fotoTomada"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginTop="30dp"
@@ -18,7 +18,7 @@
         android:id="@+id/txtcontinuarNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageView2"
+        android:layout_below="@id/fotoTomada"
         android:layout_centerInParent="true"
         android:layout_marginTop="40dp"
         android:text="Continuar como Nombre"

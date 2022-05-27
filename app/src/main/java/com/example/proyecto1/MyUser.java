@@ -11,8 +11,8 @@ public class MyUser {
     String userName;
     String phoneNumber;
     String password;
-    String urlImage;
     String ID;
+    private Byte[] foto;
 
     public MyUser() {
     }
@@ -49,14 +49,14 @@ public class MyUser {
         this.ID = ID;
     }
 
-    public MyUser(String name, String lastName, String mail, String userName, String phoneNumber, String password, String urlImage) {
+
+    public MyUser(String name, String lastName, String mail, String userName, String phoneNumber, String password) {
         this.name = name;
         this.lastName = lastName;
         this.mail = mail;
         this.userName = userName;
         this.phoneNumber = phoneNumber;
         this.password = password;
-        this.urlImage = urlImage;
     }
 
     public String getName() {
@@ -77,20 +77,12 @@ public class MyUser {
     public String getPassword() {
         return password;
     }
-
-    public String getUrlImage() {
-        return urlImage;
+    public Byte[] getFoto() {
+        return foto;
     }
 
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
+    public void setFoto(Byte[] foto) {
+        this.foto = foto;
     }
 
-
-    @Override
-    public String toString() {
-        return "MyUser{" +
-                "mail='" + mail + '\'' +
-                '}';
-    }
 }
