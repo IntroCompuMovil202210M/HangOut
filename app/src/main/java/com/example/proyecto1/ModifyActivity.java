@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -93,7 +94,7 @@ public class ModifyActivity extends AppCompatActivity {
         }
 
     }
-    @Override
+   @Override
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -104,10 +105,13 @@ public class ModifyActivity extends AppCompatActivity {
                     user = dataSnapshot.getValue(MyUser.class);
                     user.setID(dataSnapshot.getKey());
                     txtName.setText(user.getName() + " " +user.getLastName());
-                    try {
-                        downloadFile(user.getID(), fotoPerfil);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    if(changedPhoto==false) {
+                        try {
+                            System.out.println("ENTROOOOOO A DESCARGAR LA FOTO");
+                            downloadFile(user.getID(), fotoPerfil);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
                 @Override
@@ -164,7 +168,9 @@ public class ModifyActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        System.out.println("ENTROOOOOO A RECUPERAR LA FOTO");
         recuperarFoto();
+
     }
 
     private byte[] uploadImage(){

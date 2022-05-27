@@ -91,8 +91,10 @@ public class PerfilActivity extends AppCompatActivity {
                     txtPhone.setText(user.getPhoneNumber());
                     //fotoPerfil.setImageURI(Uri.parse(user.getUrlImage()));
                     try {
+                        System.out.println("ENTROOOOOO");
                         downloadFile(user.getID(), fotoPerfil);
                     } catch (IOException e) {
+                        System.out.println("NOOO ENTROOOOOO");
                         e.printStackTrace();
                     }
 
