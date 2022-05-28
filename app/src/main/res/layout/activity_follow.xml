@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.proyecto1.FollowActivity">
+
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment
+            android:id="@+id/mapUser2"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MapsActivity" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/centerUser"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="650dp"
+            android:layout_marginLeft="320dp"
+            android:backgroundTint="#FFFFFF"
+            android:elevation="8dp"
+            android:src="@drawable/ic_baseline_my_location_24"
+            android:contentDescription="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/personCant"
+            android:text="0"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/distancia"
+            android:layout_marginTop="610dp"
+            android:layout_marginLeft="30dp"
+            android:layout_width="209dp"
+            android:layout_height="38dp"
+            android:text="Distancia"
+            android:textAlignment="center"
+            android:background="@color/white"
+            />
+    </FrameLayout>
+
+</RelativeLayout>
