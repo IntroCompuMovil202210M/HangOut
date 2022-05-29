@@ -537,10 +537,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
     private BitmapDescriptor bitmapDescriptorFromVector(Context context, int vectorResId) {
         Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
-        vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(),
-                vectorDrawable.getIntrinsicHeight());
-        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),
-                vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        vectorDrawable.setBounds(0, 0, 100, 100);
+        Bitmap bitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         vectorDrawable.draw(canvas);
         return BitmapDescriptorFactory.fromBitmap(bitmap);
@@ -614,9 +612,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
         @Override
         protected String doInBackground(String... url) {
-
             String data = "";
-
             try {
                 data = downloadUrl(url[0]);
             } catch (Exception e) {
@@ -628,10 +624,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-
             ParserTask parserTask = new ParserTask();
-
-
             parserTask.execute(result);
 
         }
@@ -662,7 +655,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         protected void onPostExecute(List<List<HashMap<String, String>>> result) {
             ArrayList<LatLng> points = new ArrayList<LatLng>();;
             PolylineOptions lineOptions = new PolylineOptions();;
-            lineOptions.width(2);
+            lineOptions.width(4);
             lineOptions.color(Color.RED);
             MarkerOptions markerOptions = new MarkerOptions();
             // Traversing through all the routes
@@ -734,9 +727,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
             while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
-
             data = sb.toString();
-
             br.close();
 
         } catch (Exception e) {
