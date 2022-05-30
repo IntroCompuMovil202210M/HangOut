@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -34,11 +35,12 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ShowRestaurantActivity extends AppCompatActivity {
-    ImageButton perfil, contactos, fav;
+    ImageView perfil, contactos, fav;
     Button mapa;
     TextView restaurantName, restaurantAddress, restaurantRating, restaurantCategories;
     ImageView restaurnatPhoto, clickFav;
     MyUser user;
+    Switch swDisp;
     FirebaseAuth mAuth;
 
     @Override
@@ -49,6 +51,7 @@ public class ShowRestaurantActivity extends AppCompatActivity {
         perfil = findViewById(R.id.perfil_btn);
         contactos = findViewById(R.id.contactos_btn);
         fav = findViewById(R.id.favoritos_btn);
+        swDisp = findViewById(R.id.available);
 
         restaurantName = findViewById(R.id.restaurantShownName);
         restaurantAddress = findViewById(R.id.restaurantShownAddress);
@@ -62,6 +65,19 @@ public class ShowRestaurantActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         checkFav( getIntent().getStringExtra("address"), getIntent().getStringExtra("name"));
+
+        checkAvailability();
+
+        swDisp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(swDisp.isChecked()){//SI SE PONE EN DISPONIBLE SE VA A LA BASE DE DATOS A PONER DISPONIBLE EN TRUE
+                    FirebaseDatabase.getInstance().getReference("users/" + mAuth.getCurrentUser().getUid() + "/disponible").setValue(true);
+                } else {
+                    FirebaseDatabase.getInstance().getReference("users/" + mAuth.getCurrentUser().getUid()  + "/disponible").setValue(false);
+                }
+            }
+        });
 
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,7 +132,7 @@ public class ShowRestaurantActivity extends AppCompatActivity {
                         bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
                     }
 
-                    addToFavList(getIntent().getStringExtra("name"), getIntent().getStringExtra("address"), getIntent().getStringExtra("rating"), bmp);
+                    addToFavList(getIntent().getStringExtra("name"), getIntent().getStringExtra("address"), getIntent().getStringExtra("rating"), getIntent().getStringExtra("id"), bmp);
                 } else {
                     clickFav.setColorFilter(null);
                     removeOfFavList(getIntent().getStringExtra("address"), getIntent().getStringExtra("name"));
@@ -125,7 +141,20 @@ public class ShowRestaurantActivity extends AppCompatActivity {
         });
     }
 
-    private void addToFavList(String name, String address, String rating, Bitmap bmp) {
+    private void checkAvailability() {
+        FirebaseDatabase.getInstance().getReference("users/" + mAuth.getCurrentUser().getUid() + "/disponible").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.getResult().getValue().toString().equals("true")){
+                    swDisp.setChecked(true);
+                } else {
+                    swDisp.setChecked(false);
+                }
+            }
+        });
+    }
+
+    private void addToFavList(String name, String address, String rating, String id, Bitmap bmp) {
 
         //Update info
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -146,9 +175,7 @@ public class ShowRestaurantActivity extends AppCompatActivity {
                         restaurant.setRating(rating);
                         restaurant.setDir(address);
                         restaurant.setName(name);
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                        restaurant.setBitmapString(new String(stream.toByteArray()));
+                        restaurant.setId(id);
 
                         FirebaseDatabase.getInstance().getReference("users/" + currentUser.getUid() + "/favorites").push().setValue(restaurant);
                     }

@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.model.PhotoMetadata;
 
+import java.net.URL;
+
 public class Restaurant {
     String name;
     String dir;
@@ -13,6 +15,9 @@ public class Restaurant {
     String bitmapString;
     Bitmap photoMetadata;
     LatLng location;
+    byte[] byteArray;
+    URL imageURL;
+    String id;
 
     public  Restaurant(){}
 
@@ -70,6 +75,30 @@ public class Restaurant {
 
     public void setBitmapString(String bitmapString) {
         this.bitmapString = bitmapString;
+    }
+
+    public byte[] getByteArray() {
+        return byteArray;
+    }
+
+    public void setByteArray(byte[] byteArray) {
+        this.byteArray = byteArray;
+    }
+
+    public URL getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(URL imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override

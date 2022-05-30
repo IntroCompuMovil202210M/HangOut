@@ -1,86 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/white_texture"
+    android:padding="10dp"
     tools:context=".GooglePlacesActivity">
-    <ImageButton
-        android:id="@+id/perfil_btn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@android:color/transparent"
-        android:padding="5dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_profile_svgrepo_com__1_"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/favoritos_btn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="4dp"
-        android:background="@android:color/transparent"
-        android:padding="5dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@id/perfil_btn"
-        app:srcCompat="@drawable/ic_heart_svgrepo_com"
-        tools:layout_editor_absoluteY="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/contactos_btn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="4dp"
-        android:background="@android:color/transparent"
-        app:layout_constraintEnd_toStartOf="@+id/favoritos_btn"
-        app:srcCompat="@drawable/ic_baseline_contacts_24"
-        tools:layout_editor_absoluteY="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/logoMostrarR"
-        android:layout_width="138dp"
+    <LinearLayout
+        android:id="@+id/menuOptions"
+        android:layout_width="wrap_content"
         android:layout_height="74dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="256dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:clickable="true"
-        app:srcCompat="@drawable/logo2"
-        tools:ignore="MissingConstraints" />
+        android:orientation="horizontal">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="9dp"
-        android:background="@drawable/layout_bg_rounded"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:srcCompat="@drawable/logo2" />
 
-        <ListView
-            android:id="@+id/restaurantList"
-            android:layout_width="331dp"
-            android:layout_height="518dp"
-            android:layout_marginStart="27dp"
-            android:layout_marginEnd="27dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Switch
+                android:id="@+id/available"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="11dp"
+                android:elevation="8dp"
+                android:contentDescription="add" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/contactos_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginRight="100dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/contactos" />
+
+            <ImageView
+                android:id="@+id/favoritos_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="108dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginRight="58dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/favorito" />
+
+            <ImageView
+                android:id="@+id/perfil_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginRight="20dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/user" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_below="@+id/menuOptions"
+        android:layout_marginTop="15dp"
+        android:background="@color/celeste" />
+
+    <TextView
+        android:id="@+id/categoriesTitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/separator"
+        android:layout_centerVertical="true"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Restaurantes"
+        android:gravity="center"
+        android:textSize="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_centerInParent="true"
+        android:textColor="@color/blue_add"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/categoriesTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/separator"
+        android:layout_centerVertical="true"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Restaurantes"
+        android:gravity="center"
+        android:textSize="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="94dp"
+        android:textColor="@color/celeste"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/restaurantList"
+        android:layout_width="370dp"
+        android:layout_height="518dp"
+        android:layout_below="@id/categoriesTitle2"
+        android:layout_marginTop="15dp"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>

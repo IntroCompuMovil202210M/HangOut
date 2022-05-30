@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Switch;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,9 +28,10 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class FavoriteActivity extends AppCompatActivity {
-    ImageButton perfil, contactos;
+    ImageView perfil, contactos;
     ImageView logo;
     ListView mlista;
+    Switch swDisp;
 
     ArrayList <Restaurant> restaurants = new ArrayList<>();
 
@@ -41,11 +43,25 @@ public class FavoriteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favorite);
         perfil = findViewById(R.id.perfil_btn);
         contactos = findViewById(R.id.contactos_btn);
-        logo = findViewById(R.id.logoMostrarR);
+        logo = findViewById(R.id.imageView3);
+        swDisp = findViewById(R.id.available);
 
         mlista = findViewById(R.id.listFav);
 
         mAuth = FirebaseAuth.getInstance();
+
+        checkAvailability();
+
+        swDisp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(swDisp.isChecked()){//SI SE PONE EN DISPONIBLE SE VA A LA BASE DE DATOS A PONER DISPONIBLE EN TRUE
+                    FirebaseDatabase.getInstance().getReference("users/" + mAuth.getCurrentUser().getUid() + "/disponible").setValue(true);
+                } else {
+                    FirebaseDatabase.getInstance().getReference("users/" + mAuth.getCurrentUser().getUid()  + "/disponible").setValue(false);
+                }
+            }
+        });
 
         getRestaurants();
 
@@ -75,6 +91,19 @@ public class FavoriteActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void checkAvailability() {
+        FirebaseDatabase.getInstance().getReference("users/" + mAuth.getCurrentUser().getUid() + "/disponible").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.getResult().getValue().toString().equals("true")){
+                    swDisp.setChecked(true);
+                } else {
+                    swDisp.setChecked(false);
+                }
+            }
+        });
     }
 
     private void getRestaurants(){

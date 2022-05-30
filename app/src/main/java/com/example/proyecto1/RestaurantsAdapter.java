@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +18,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.libraries.places.api.model.PhotoMetadata;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +48,8 @@ public class RestaurantsAdapter extends ArrayAdapter<Restaurant> {
         String name = getItem(position).getName();
         String address = getItem(position).getDir();
         String rating = getItem(position).getRating();
-        Bitmap photoMetadata = getItem(position).getPhotoMetadata();
+        byte[] byteArray = getItem(position).getByteArray();
+        String id = getItem(position).getId();
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
@@ -56,11 +64,14 @@ public class RestaurantsAdapter extends ArrayAdapter<Restaurant> {
         tvAddress.setText(address);
         tvRating.setText(rating);
 
-        if(photoMetadata != null) {
-            ivIcon.setImageBitmap(photoMetadata);
-            ivIcon.getLayoutParams().height = (int) ((100 * getContext().getResources().getDisplayMetrics().density) + 0.5f);
-            ivIcon.getLayoutParams().width = (int) ((400 * getContext().getResources().getDisplayMetrics().density) + 0.5f);
-        }
+
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        storageRef.child("restaurant/"+id).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(ivIcon);
+            }
+        });
 
         return convertView;
     }

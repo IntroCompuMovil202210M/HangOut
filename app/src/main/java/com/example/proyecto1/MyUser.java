@@ -13,6 +13,8 @@ public class MyUser {
     String password;
     String urlImage;
     String ID;
+    boolean available;
+
 
     public MyUser() {
     }
@@ -86,6 +88,13 @@ public class MyUser {
         this.urlImage = urlImage;
     }
 
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 
     @Override
     public String toString() {
