@@ -42,11 +42,11 @@ public class PerfilActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mStorage = FirebaseStorage.getInstance().getReference();
         setContentView(R.layout.activity_perfil);
-        txtName=findViewById(R.id.editTextTextMultiLine);
+        txtName=findViewById(R.id.txtName);
         txtUsuario=findViewById(R.id.textView2);
         txtPhone=findViewById(R.id.editTextTextMultiLine2);
         txtCorreo=findViewById(R.id.editTextTextMultiLine3);
-        fotoPerfil=findViewById(R.id.imageView2);
+        fotoPerfil=findViewById(R.id.fotoTomada);
         btnMod= findViewById(R.id.editor);
         btnFav= findViewById(R.id.favBtn);
         btnLogout=findViewById(R.id.logOut);
@@ -89,7 +89,14 @@ public class PerfilActivity extends AppCompatActivity {
                     txtCorreo.setText(user.getMail());
                     txtUsuario.setText(user.getUserName());
                     txtPhone.setText(user.getPhoneNumber());
-                    fotoPerfil.setImageURI(Uri.parse(user.getUrlImage()));
+                    //fotoPerfil.setImageURI(Uri.parse(user.getUrlImage()));
+                    try {
+                        System.out.println("ENTROOOOOO");
+                        downloadFile(user.getID(), fotoPerfil);
+                    } catch (IOException e) {
+                        System.out.println("NOOO ENTROOOOOO");
+                        e.printStackTrace();
+                    }
 
                 }
                 @Override
@@ -98,6 +105,22 @@ public class PerfilActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+    private void downloadFile(String id, ImageView ivPhoto) throws IOException {
+        final File localFile = File.createTempFile("images", "png");
+        StorageReference imageRef = mStorage.child("images/" + id + "/profile.png");
+        imageRef.getFile(localFile)
+                .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        fotoPerfil.setImageURI(Uri.fromFile(localFile));
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+
+            }
+        });
     }
 
 }

@@ -11,8 +11,12 @@ public class MyUser {
     String userName;
     String phoneNumber;
     String password;
-    String urlImage;
     String ID;
+    private Byte[] foto;
+    private String latitude;
+    private String longitude;
+    private boolean disponible;
+    private String key;
     boolean available;
 
 
@@ -51,16 +55,25 @@ public class MyUser {
         this.ID = ID;
     }
 
-    public MyUser(String name, String lastName, String mail, String userName, String phoneNumber, String password, String urlImage) {
+
+    public MyUser(String name, String lastName, String mail, String userName, String phoneNumber, String password) {
         this.name = name;
         this.lastName = lastName;
         this.mail = mail;
         this.userName = userName;
         this.phoneNumber = phoneNumber;
         this.password = password;
-        this.urlImage = urlImage;
     }
 
+    public MyUser(String key, String name, String apellido, String id, String latitude, String longitude, boolean disponible){
+        this.key = key;
+        this.name = name;
+        this.lastName = apellido;
+        this.ID = id;
+        this.latitude= latitude;
+        this.longitude = longitude;
+        this.disponible = disponible;
+    }
     public String getName() {
         return name;
     }
@@ -79,15 +92,25 @@ public class MyUser {
     public String getPassword() {
         return password;
     }
-
-    public String getUrlImage() {
-        return urlImage;
+    public Byte[] getFoto() {
+        return foto;
     }
 
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
+    public String getLatitude() {
+        return latitude;
     }
 
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
     public boolean isAvailable() {
         return available;
     }
@@ -96,10 +119,24 @@ public class MyUser {
         this.available = available;
     }
 
-    @Override
-    public String toString() {
-        return "MyUser{" +
-                "mail='" + mail + '\'' +
-                '}';
+    public boolean isDisponible() {
+        return disponible;
     }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public void setFoto(Byte[] foto) {
+        this.foto = foto;
+    }
+
 }

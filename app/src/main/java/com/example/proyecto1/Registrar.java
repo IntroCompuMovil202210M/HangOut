@@ -30,8 +30,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.auth.User;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -43,21 +45,24 @@ import java.util.Random;
 
 
 public class Registrar extends AppCompatActivity{
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    /*private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int IMAGE_PICKER_REQUEST = 4;
     private static final int CAMERA = 2;
-    private static final int ALMACENAMIENTO_EXTERNO = 3;
-    private static boolean accessCamera = false, accessAlm = false;
+    private static final int ALMACENAMIENTO_EXTERNO = 3;*/
+    //private static boolean accessCamera = false, accessAlm = false;
     public static final String FB_USERS_PATH="users/";
     Button btnIngresar, btnImagen, btnCamara;
     EditText txtname, txtlastName,txtemail, txtusername,txtnumber,txtpassword, txtCpassword;
-    ImageView ivImage;
+    //ImageView ivImage;
     FirebaseAuth mAuth;
-    public Uri imageUri;
-    FirebaseDatabase database;
-    DatabaseReference myRef;
-    private FirebaseStorage storage;
-    private StorageReference storageReference;
+   // public Uri imageUri;
+    //private FirebaseAuth mAuth;
+    private FirebaseUser user;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference userRef = database.getReference("users");
+    //DatabaseReference myRef;
+    //private FirebaseStorage storage;
+    //private StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,14 +76,14 @@ public class Registrar extends AppCompatActivity{
         txtnumber=findViewById(R.id.phoneNumber);
         txtpassword=findViewById(R.id.password);
         txtCpassword=findViewById(R.id.confirmPassword);
-        btnCamara=findViewById(R.id.btnSelectCamara);
-        btnImagen=findViewById(R.id.btnSelectImage);
-        ivImage=findViewById(R.id.fotoPerfil);
+        //btnCamara=findViewById(R.id.btnSelectCamara);
+        //btnImagen=findViewById(R.id.btnSelectImage);
+       // ivImage=findViewById(R.id.fotoPerfil);
         mAuth= FirebaseAuth.getInstance();
         database= FirebaseDatabase.getInstance();
-        storage= FirebaseStorage.getInstance();
-        storageReference=storage.getReference();
-        btnImagen.setOnClickListener(new View.OnClickListener() {
+        //storage= FirebaseStorage.getInstance();
+        //storageReference=storage.getReference();
+       /* btnImagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 accessAlm = solicitPermission(Registrar.this, Manifest.permission.READ_EXTERNAL_STORAGE, "Permission to Access Gallery", ALMACENAMIENTO_EXTERNO);
@@ -96,7 +101,7 @@ public class Registrar extends AppCompatActivity{
                     usePermissionCamera();
                 }
             }
-        });
+        });*/
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,17 +125,22 @@ public class Registrar extends AppCompatActivity{
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 Log.i("MENSAJE3", "ENTRA3");
-                                final ProgressDialog dialog=new ProgressDialog(Registrar.this);
-                                final StorageReference uploader=storage.getReference("Image1"+new Random().nextInt(50));
-                                dialog.setTitle("File Uploader");
-                                dialog.show();
-                                uploader.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                user = mAuth.getCurrentUser();
+                                String userID = mAuth.getCurrentUser().getUid();
+                                MyUser user= new MyUser(name, lastName, mail, userName, phoneNumber, password);
+                                userRef= database.getReference(FB_USERS_PATH+userID);
+                                userRef.setValue(user);
+
+                               // final ProgressDialog dialog=new ProgressDialog(Registrar.this);
+                              //  final StorageReference uploader=storage.getReference("Image1"+new Random().nextInt(50));
+                               // dialog.setTitle("File Uploader");
+                                //dialog.show();
+                               /* uploader.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                     @Override
                                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                         uploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                             @Override
                                             public void onSuccess(Uri uri){
-
                                                 dialog.dismiss();
                                                 myRef= database.getReference(FB_USERS_PATH);
                                                 String userID = mAuth.getCurrentUser().getUid();
@@ -142,7 +152,7 @@ public class Registrar extends AppCompatActivity{
                                             }
                                         });
                                     }
-                                });
+                                });*/
                                 Intent intent  = new Intent(getBaseContext(), MenuActivity.class);
                                 startActivity(intent);
                             }else {
@@ -155,7 +165,7 @@ public class Registrar extends AppCompatActivity{
         });
 
     }//End onCreate
-    private boolean solicitPermission(Activity context, String permit, String justification, int id){
+   /* private boolean solicitPermission(Activity context, String permit, String justification, int id){
         if(ContextCompat.checkSelfPermission(context, permit) != PackageManager.PERMISSION_GRANTED){
             if(ActivityCompat.shouldShowRequestPermissionRationale(context, permit)){
                 Toast.makeText(this, justification, Toast.LENGTH_SHORT).show();
@@ -165,8 +175,8 @@ public class Registrar extends AppCompatActivity{
         } else {
             return true;
         }
-    }
-    private void usePermissionCamera(){
+    }*/
+   /* private void usePermissionCamera(){
         Intent pictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if(pictureIntent.resolveActivity(getPackageManager()) != null){
             startActivityForResult(pictureIntent, REQUEST_IMAGE_CAPTURE);
@@ -234,5 +244,5 @@ public class Registrar extends AppCompatActivity{
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
         return Uri.parse(path);
-    }
+    }*/
 }

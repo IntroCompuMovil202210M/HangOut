@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@drawable/white_texture"
     android:fillViewport="true">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -24,24 +26,26 @@
             app:srcCompat="@drawable/logo2" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/fotoTomada"
             android:layout_width="157dp"
             android:layout_height="147dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/logoModify"
-            app:srcCompat="@drawable/mujer" />
+            app:srcCompat="@drawable/ic_baseline_person_outline_24" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="25dp"
-            android:text="cristin79Bla"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:text="User Name"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/fotoTomada"
+            app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
         <ImageView
             android:id="@+id/logoMostrarR"
@@ -51,7 +55,7 @@
             android:layout_marginTop="27dp"
             android:foregroundTint="#9C27B0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/fotoTomada"
             app:srcCompat="@drawable/phone" />
 
         <ImageView
@@ -59,7 +63,7 @@
             android:layout_width="30dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/logoMostrarR"
             app:srcCompat="@drawable/mail" />
@@ -98,168 +102,114 @@
             android:id="@+id/favBtn"
             android:layout_width="30dp"
             android:layout_height="40dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="17dp"
-            app:layout_constraintEnd_toStartOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/button3"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
             android:clickable="true"
-            app:srcCompat="@drawable/like" />
-
-        <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="11dp"
-            android:layout_marginEnd="17dp"
-            app:layout_constraintEnd_toStartOf="@+id/textView10"
-            app:layout_constraintTop_toBottomOf="@+id/locationBtn"
-            app:srcCompat="@drawable/settings" />
-
-        <ImageView
-            android:id="@+id/imageView11"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="17dp"
-            app:layout_constraintEnd_toStartOf="@+id/textView11"
-            app:layout_constraintTop_toBottomOf="@+id/imageView10"
-            app:srcCompat="@drawable/share" />
-
-        <ImageView
-            android:id="@+id/locationBtn"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginEnd="17dp"
-            app:layout_constraintEnd_toStartOf="@+id/textView9"
-            app:layout_constraintTop_toBottomOf="@+id/favBtn"
-            app:srcCompat="@drawable/ubicacion" />
+            app:layout_constraintEnd_toStartOf="@+id/textView8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button3"
+            app:srcCompat="@drawable/favorito" />
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="266dp"
+            android:layout_marginEnd="212dp"
             android:text="Tus favoritos"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button3" />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="286dp"
-            android:text="Ubicación"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="249dp"
-            android:text="Compartir Perfil"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="261dp"
-            android:text="Configuración"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
         <ImageView
             android:id="@+id/logOut"
             android:layout_width="30dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="19dp"
-            android:layout_marginEnd="17dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toStartOf="@+id/textView12"
-            app:layout_constraintTop_toBottomOf="@+id/imageView11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/favBtn"
             app:srcCompat="@drawable/logout" />
 
         <TextView
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="311dp"
-            android:text="log out"
-            android:textSize="12sp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="252dp"
+            android:text="Log out"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         <TextView
-            android:id="@+id/editTextTextMultiLine"
-            android:layout_width="198dp"
-            android:layout_height="42dp"
-            android:layout_marginStart="5dp"
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="108dp"
             android:layout_marginEnd="35dp"
             android:layout_marginBottom="25dp"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="Cristina Blázquez"
-            android:inputType="textMultiLine"
+            android:text="Nombre y Apellido"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/textView2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/fotoTomada"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/editTextTextMultiLine2"
-            android:layout_width="155dp"
-            android:layout_height="44dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="27dp"
-            android:ems="10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:padding="10dp"
+            android:textSize="15sp"
             android:gravity="start|top"
-            android:hint="(581) -387 -5980"
-            android:inputType="textMultiLine"
+            android:text="(581) -387 -5980"
+            android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/logoMostrarR"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/fotoTomada" />
 
         <TextView
             android:id="@+id/editTextTextMultiLine3"
-            android:layout_width="284dp"
-            android:layout_height="43dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="57dp"
             android:layout_marginBottom="26dp"
-            android:ems="10"
             android:gravity="start|top"
-            android:hint="cristina.blazquez@gmail.com"
-            android:inputType="textMultiLine"
+            android:padding="10dp"
+            android:textSize="15sp"
+            android:text="cristina.blazquez@gmail.com"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/button2"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageView5"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine2" />
 
         <ImageButton
             android:id="@+id/editor"
-            android:layout_width="54dp"
-            android:layout_height="43dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color"
             android:layout_marginStart="156dp"
             android:layout_marginTop="66dp"
             android:layout_marginEnd="28dp"
             android:layout_marginBottom="1dp"
-            android:backgroundTint="#ffff"
-            android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            app:layout_constraintBottom_toTopOf="@+id/editTextTextMultiLine"
+            app:layout_constraintBottom_toTopOf="@+id/txtName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/fotoTomada"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/editar" />
+            app:srcCompat="@drawable/ic_baseline_edit_24" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
