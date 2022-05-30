@@ -93,141 +93,151 @@
         android:textColor="@color/celeste"
         android:textStyle="bold" />
 
-    <RelativeLayout
-        android:id="@+id/photoContainer"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/restaurantShownName"
-        android:background="@drawable/rectangle_linear"
-        android:layout_marginTop="15dp"
-        android:padding="10dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/restaurantShownName">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/restaurantShownPhoto"
-            android:layout_width="322dp"
-            android:layout_height="324dp"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            app:shapeAppearanceOverlay="@style/roundedSquare"
-            app:srcCompat="@drawable/notfoundimg" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/informationContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/rectangle_linear_white"
-        android:layout_marginTop="15dp"
-        android:padding="10dp"
-        android:layout_below="@+id/photoContainer">
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content" >
 
-            <TextView
-                android:layout_width="225dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="15dp"
-                android:layout_weight="0.9"
-                android:gravity="left"
-                android:text="Dirección:"
-                android:textColor="@color/blue_add"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/restaurantShownAddress"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_weight="0.5"
-                android:gravity="left"
-                android:text="TextView1"
-                android:textColor="@color/black" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="237dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="15dp"
-                android:layout_weight="0.8"
-                android:gravity="left"
-                android:text="Categorias:  "
-                android:textColor="@color/blue_add"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/restaurantShownCategories"
+            <RelativeLayout
+                android:id="@+id/photoContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="left"
-                android:text="TextView4"
-                android:textColor="@color/black" />
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rectangle_linear"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-        </LinearLayout>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/restaurantShownPhoto"
+                    android:layout_width="322dp"
+                    android:layout_height="324dp"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    app:shapeAppearanceOverlay="@style/roundedSquare"
+                    app:srcCompat="@drawable/notfoundimg" />
+            </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/clickFav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="360dp"
+                android:layout_marginTop="30dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/ic_baseline_favorite_24" />
 
-            <TextView
-                android:layout_width="179dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="15dp"
-                android:layout_weight="0.8"
-                android:gravity="left"
-                android:text="Raiting:  "
-                android:textColor="@color/blue_add"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/restaurantShownRating"
+            <LinearLayout
+                android:id="@+id/informationContainer"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_weight="0.5"
-                android:gravity="left"
-                android:text="TextView6"
-                android:textColor="@color/black" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/photoContainer"
+                android:background="@drawable/rectangle_linear_white"
+                android:orientation="vertical"
+                android:padding="10dp">
 
-        </LinearLayout>
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/clickFav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/restaurantShownName"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="361dp"
-        android:clickable="true"
-        app:srcCompat="@drawable/ic_baseline_favorite_24" />
+                    <TextView
+                        android:layout_width="225dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="0.9"
+                        android:gravity="left"
+                        android:text="Dirección:"
+                        android:textColor="@color/blue_add"
+                        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/showMap_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/informationContainer"
-        android:layout_marginTop="10dp"
-        android:layout_centerInParent="true"
-        android:backgroundTint="@color/blue_add"
-        android:drawableLeft="@drawable/ic_baseline_remove_red_eye_24"
-        android:text="Ver en mapa"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:cornerRadius="20dp" />
+                    <TextView
+                        android:id="@+id/restaurantShownAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_weight="0.5"
+                        android:gravity="left"
+                        android:text="TextView1"
+                        android:textColor="@color/black" />
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="237dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="0.8"
+                        android:gravity="left"
+                        android:text="Categorias:  "
+                        android:textColor="@color/blue_add"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/restaurantShownCategories"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="left"
+                        android:text="TextView4"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="179dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="0.8"
+                        android:gravity="left"
+                        android:text="Raiting:  "
+                        android:textColor="@color/blue_add"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/restaurantShownRating"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_weight="0.5"
+                        android:gravity="left"
+                        android:text="TextView6"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/showMap_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/informationContainer"
+                android:backgroundTint="@color/blue_add"
+                android:drawableLeft="@drawable/ic_baseline_remove_red_eye_24"
+                android:text="Ver en mapa"
+                android:textAllCaps="false"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                app:cornerRadius="20dp" />
+
+
+        </RelativeLayout>
+    </ScrollView>
 
 
 </RelativeLayout>

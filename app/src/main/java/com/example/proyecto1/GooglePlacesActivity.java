@@ -436,10 +436,12 @@ public class GooglePlacesActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference("users/" + mAuth.getCurrentUser().getUid() + "/disponible").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if(task.getResult().getValue().toString().equals("true")){
-                    swDisp.setChecked(true);
-                } else {
-                    swDisp.setChecked(false);
+                if(task.getResult().getValue()!=null) {
+                    if (task.getResult().getValue().toString().equals("true")) {
+                        swDisp.setChecked(true);
+                    } else {
+                        swDisp.setChecked(false);
+                    }
                 }
             }
         });
