@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Documentos/Universidad/Semestre 7/Compumovil/HangOut/app/src/main/res/layout/activity_chat.xml" value="0.20416666666666666" />
+        <entry key="..\:/Documentos/Universidad/Semestre 7/Compumovil/HangOut/app/src/main/res/layout/activity_contacts.xml" value="0.1" />
         <entry key="..\:/Documentos/Universidad/Semestre 7/Compumovil/HangOut/app/src/main/res/layout/activity_google_places.xml" value="0.19157608695652173" />
         <entry key="..\:/Documentos/Universidad/Semestre 7/Compumovil/HangOut/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Documentos/Universidad/Semestre 7/Compumovil/HangOut/app/src/main/res/layout/activity_menu.xml" value="0.25" />
         <entry key="..\:/Documentos/Universidad/Semestre 7/Compumovil/HangOut/app/src/main/res/layout/activity_modify.xml" value="0.21458333333333332" />
+        <entry key="..\:/Documentos/Universidad/Semestre 7/Compumovil/HangOut/app/src/main/res/layout/item_lista_chat.xml" value="0.1983695652173913" />
+        <entry key="..\:/Documentos/Universidad/Semestre 7/Compumovil/HangOut/app/src/main/res/layout/item_lista_contactos.xml" value="0.12708333333333333" />
         <entry key="..\:/Users/Estudiante/Documents/DavidPalacios/Compumovil/HangOut/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2115" />
         <entry key="..\:/Users/Estudiante/Documents/DavidPalacios/Compumovil/HangOut/app/src/main/res/drawable/ic_baseline_assignment_ind_24.xml" value="0.2115" />
         <entry key="..\:/Users/Estudiante/Documents/DavidPalacios/Compumovil/HangOut/app/src/main/res/drawable/ic_drink_svgrepo_com.xml" value="0.2115" />
