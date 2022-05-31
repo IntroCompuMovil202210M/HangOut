@@ -112,7 +112,7 @@ public class MyUser {
     public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
-    public boolean isAvailable() {
+    public boolean getIsAvailable() {
         return available;
     }
 
@@ -120,7 +120,7 @@ public class MyUser {
         this.available = available;
     }
 
-    public boolean isDisponible() {
+    public boolean getIsDisponible() {
         return disponible;
     }
 
