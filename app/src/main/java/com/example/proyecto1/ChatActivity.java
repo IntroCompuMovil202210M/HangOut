@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -101,6 +103,22 @@ public class ChatActivity extends AppCompatActivity {
                     crearMensaje(msg, uuId, userChatId, keyChat, userChatId);
                     txtMsg.setText("");
                 }
+            }
+        });
+
+        txtMsg.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if(i == EditorInfo.IME_ACTION_SEND){
+                    String msg = txtMsg.getText().toString();
+                    if (!msg.isEmpty()) {
+                        crearMensaje(msg, uuId, userChatId, keyChat, uuId);
+                        crearMensaje(msg, uuId, userChatId, keyChat, userChatId);
+                        txtMsg.setText("");
+                        return true;
+                    }
+                }
+                return false;
             }
         });
     }
