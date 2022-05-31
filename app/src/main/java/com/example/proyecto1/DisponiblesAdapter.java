@@ -55,7 +55,9 @@ public class DisponiblesAdapter extends ArrayAdapter<MyUser> {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getContext(), MapsActivity.class);
-                    intent.putExtra("key", usuarios.get(i).getKey());
+                    String ls = usuarios.get(i).getLatitude() + "," +usuarios.get(i).getLongitude();
+                    System.out.println("AQUIIIIIIIIIIIIIIIIII"+ ls);
+                    intent.putExtra("key", ls);
                     view.getContext().startActivity(intent);
                 }
             });
