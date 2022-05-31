@@ -27,7 +27,7 @@ public class ContactsAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         TextView tvIdContacto = (TextView) view.findViewById(R.id.idContacto);
-        TextView tvNombre = (TextView) view.findViewById(R.id.nombreContacto);
+        TextView tvNombre = (TextView) view.findViewById(R.id.msgChat);
         int idnum = cursor.getInt(CONTACT_ID_INDEX);
         String nombre = cursor.getString(DISPLAY_NAME_INDEX);
         ImageButton chat = (ImageButton) view.findViewById(R.id.chat_btn);
