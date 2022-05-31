@@ -75,7 +75,7 @@ public class ContactsActivity extends AppCompatActivity {
     private void getOnlineUsers() {
 
         myRef = database.getReference(PATH_USERS);
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<MyUser> onlineUsers;
@@ -83,7 +83,7 @@ public class ContactsActivity extends AppCompatActivity {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     MyUser user = singleSnapshot.getValue(MyUser.class);
                     //if the user is online and is not the user that is logged in
-                    if (user.getID() != uuId) {
+                    if (!user.getID().equals(uuId)) {
                         onlineUsers.add(user);
                         users.add(user);
                         Log.i("Chat", "Usuario: " + user.getID());
@@ -103,7 +103,7 @@ public class ContactsActivity extends AppCompatActivity {
 
     private void updateList(ArrayList<MyUser> onlineUsers) {
         mlista.getEmptyView();
-        mlista.setAdapter(mContactsAdapter);
+        //mlista.setAdapter(mContactsAdapter);
         mContactsAdapter = new OnlineUsersAdapter(ContactsActivity.this, R.layout.item_lista_contactos, onlineUsers);
         mlista.setAdapter(mContactsAdapter);
         startListenerListOnlineUsers();
