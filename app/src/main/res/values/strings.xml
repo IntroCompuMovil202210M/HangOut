@@ -9,4 +9,5 @@
     <string name="title_activity_maps">MapsActivity</string>
     <string name="google_maps_key">AIzaSyCbfYE7r7q7mrFZBDgfaSsr_aYGES6BVfA</string>
     <string name="default_notification_channel_id">HEADS_UP_NOTIFICATION</string>
+    <string name="title_activity_maps_empty">MapsEmptyActivity</string>
 </resources>

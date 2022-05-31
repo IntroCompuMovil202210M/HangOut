@@ -34,7 +34,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Switch;
+import android.widget.Toast;
 
+import com.example.proyecto1.Utilities.MapsEmptyActivity;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -202,7 +204,10 @@ public class GooglePlacesActivity extends AppCompatActivity {
         } else {
             // A local method to request required permissions;
             // See https://developer.android.com/training/permissions/requesting
-            getSinglePermission.launch(ACCESS_FINE_LOCATION);
+            //getSinglePermission.launch(ACCESS_FINE_LOCATION);
+            Toast.makeText(this, "Permiso no concedido", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, MapsEmptyActivity.class);
+            startActivity(intent);
         }
     }
 
