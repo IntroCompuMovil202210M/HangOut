@@ -198,7 +198,7 @@ public class MenuActivity extends AppCompatActivity {
         String title = "Vegetariano Hang Out";
         String message = "Comida vegetariana en Hang Out";
 
-        FCMSend.pushNotification(MenuActivity.this, "e1DfKs2ZTuKOyo94_-DDAc:APA91bElgrKcLZOtyTUBe8NB9zgIpG11LGf2ht-i4sfEvtjs-kjW-ISk2_u978fTVl848ulHXU9wy1pl8aXUWMM9KQzZNU8MKczF_ObdEjK3FNaFCXnrNmanrqlwk2yUit2YQ32-o95h", title, message);
+        FCMSend.pushNotification(MenuActivity.this, "cP7iSHckRt6CU1MXyyy9Z-:APA91bH7QbPSeGRUGwCM2UcbfbZKF-2rO-XdV8ylSxQ1e_9tPC0fcyorfP1gAynloT9EY7g2IDe8F6xzXnBkBBFCquuISxAtYTVd5FOKXJj9sIJxCbfV5YGxdmgk90ZJifT1sVkElNJm", title, message);
     }
 
     private void checkAvailability() {

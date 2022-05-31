@@ -134,9 +134,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         ub1 = findViewById(R.id.centerUser);
         mgr = (SensorManager) this.getSystemService(SENSOR_SERVICE);
 
-
-
-
         //Inicializar marcadores
         markers = new ArrayList<Marker>();
 
@@ -145,7 +142,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         fabClose = AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim);
         rotateBackward = AnimationUtils.loadAnimation(this, R.anim.to_bottom_anim);
         rotateForward = AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim);
-        //isLocationEnabled();
 
         //Obtener localización
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -158,7 +154,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         //API de Google
         mGeocoder = new Geocoder(getBaseContext());
 
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapUser);
@@ -169,6 +164,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
             ubicacionRes =  new LatLng(Double.parseDouble(ubicacionAct.split(",")[0].replace("lat/lng: (","")),Double.parseDouble(ubicacionAct.split(",")[1].replace(")","")) );
         }else if(getIntent().getStringExtra("key") != null){
             System.out.println("AAAAAAAAAAAAAA"+ ubicacionRes+ "        BBBBBBBBBBBBBBBBBBB"+ ubicacionOne);
+            System.out.println("KEY-VALUE " + getIntent().getStringExtra("key"));
             ubicacionAct2 = getIntent().getStringExtra("key");
             ubicacionTwo = new LatLng(Double.parseDouble(ubicacionAct2.split(",")[0]), Double.parseDouble(ubicacionAct2.split(",")[1]));
             animateFab();
