@@ -228,7 +228,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                 Intent intent= new Intent(getBaseContext(), DisponiblesActivity.class);
                 String addressString = address1.getText().toString();
                 if (addressString.isEmpty()) {
-                    Toast.makeText(MapsActivity.this, "Su ubicación esta vacía, ingrese su ubicación", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MapsActivity.this, "Su ubicación esta vacía, oprima el botón de ubicación", Toast.LENGTH_LONG).show();
                 }else {
                     ubicacionOne = address1.getText().toString();
                     startActivity(intent);
@@ -252,7 +252,11 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
                         address1.setText(addressResult.getAddressLine(0), TextView.BufferType.NORMAL);
                         LatLng mLocation = new LatLng(currentLocationLatitude, currentLocationLongitude);
-                        createMarkerUser(mLocation);
+                        if (mMap != null) {
+                            createMarkerUser(mLocation);
+                            drawRoute(mLocation, ubicacionRes);
+                            mMap.addMarker(new MarkerOptions().position(ubicacionRes).title("Place").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_location_on_24)));;
+                        }
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -292,8 +296,11 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         mMap.setOnMarkerClickListener(this);
 
         if(getIntent().getStringExtra("location") != null){
+            Toast.makeText(MapsActivity.this, "Oprima el botón ubicado en la parte inferior", Toast.LENGTH_LONG).show();
             ubicacionAct = getIntent().getStringExtra("location");
             ubicacionRes =  new LatLng(Double.parseDouble(ubicacionAct.split(",")[0].replace("lat/lng: (","")),Double.parseDouble(ubicacionAct.split(",")[1].replace(")","")) );
+
+
         }else if(getIntent().getStringExtra("key") != null){
             System.out.println("AAAAAAAAAAAAAA"+ ubicacionRes+ "        BBBBBBBBBBBBBBBBBBB"+ ubicacionOne);
             System.out.println("KEY-VALUE " + getIntent().getStringExtra("key"));
@@ -318,6 +325,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                 getLocation();
             }else {Toast.makeText(MapsActivity.this, "Hubo un error", Toast.LENGTH_SHORT).show();}
         }
+
+
 
         mFusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
@@ -585,12 +594,14 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
     //Funcion para crear el marcador en el mapa
     private void createMarkerUser(LatLng mLocation){
-        mMap.clear();
-        mMap.addMarker(new MarkerOptions().position(mLocation).title("Me").icon(bitmapDescriptorFromVector(this,R.drawable.ic_baseline_boy_24)));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(mLocation));
-        mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
-        mMap.getUiSettings().setZoomGesturesEnabled(true);
-        mMap.getUiSettings().setZoomControlsEnabled(true);
+        if(mMap != null) {
+            mMap.clear();
+            mMap.addMarker(new MarkerOptions().position(mLocation).title("Me").icon(bitmapDescriptorFromVector(this, R.drawable.ic_baseline_boy_24)));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(mLocation));
+            mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+            mMap.getUiSettings().setZoomGesturesEnabled(true);
+            mMap.getUiSettings().setZoomControlsEnabled(true);
+        }
     }
 
     private BitmapDescriptor bitmapDescriptorFromVector(Context context, int vectorResId) {
