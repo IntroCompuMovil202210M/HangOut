@@ -119,6 +119,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     static LatLng ubicacionRes;
     static LatLng ubicacionTwo;
     static String ubicacionOne;
+    boolean myNotSend = false;
+    boolean friendNotSend = false;
 
     boolean isOpen= false;
 
@@ -364,11 +366,12 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                     super.onLocationResult(locationResult);
                     Log.i("TOASTACT", "Entra");
                     mMap.clear();
-                    currentUser = new MarkerOptions().position(new LatLng(locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude())).title("Marker in Current").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_emoji_people_24));
+                    currentUser = new MarkerOptions().position(new LatLng(locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude())).title("Marker in Current").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_boy_24));
                     mMap.addMarker(currentUser);
                     getCurrentLocationOtherUser(locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude());
                     drawRoute(new LatLng(locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude()), ubicacionRes);
                     updateLocation(new LatLng(locationResult.getLastLocation().getLatitude(),locationResult.getLastLocation().getLongitude()));
+
 
                 }
             }, Looper.getMainLooper());
@@ -384,15 +387,25 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                 for(DataSnapshot snapshot : task.getResult().getChildren()){
                     Log.i("TOKEN-MAP", getIntent().getStringExtra("token"));
                     if(getIntent().getStringExtra("token").equals(snapshot.getValue(MyUser.class).getToken())){
-                        Log.i("USER-P", snapshot.getValue(MyUser.class).toString());
+
                         if(snapshot.getValue(MyUser.class).getLatitude() != null) {
+
                             LatLng otherLocation = new LatLng(Double.parseDouble(snapshot.getValue(MyUser.class).getLatitude()), Double.parseDouble(snapshot.getValue(MyUser.class).getLongitude()));
-                            mMap.addMarker(new MarkerOptions().position(otherLocation).title("Other").icon(bitmapDescriptorFromVector(MapsActivity.this, R.drawable.ic_baseline_boy_24)));
+                            mMap.addMarker(new MarkerOptions().position(otherLocation).title("Other").icon(bitmapDescriptorFromVector(MapsActivity.this, R.drawable.ic_baseline_emoji_people_24)));
+                            mMap.addMarker(new MarkerOptions().position(ubicacionRes).title("Place").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_location_on_24)));
                             drawRoute(otherLocation, ubicacionRes);
 
-                            //CON ESTO SE PUEDE HACER LO DE LAS NOTIFICACIONES
-                            /*distancePoints = distance(lat, longitude, Double.parseDouble(snapshot.getValue(User.class).getLatitude()), Double.parseDouble(snapshot.getValue(User.class).getLongitude()));
-                            distance.setText("Distancia actual: " + distancePoints);*/
+
+                            //NOTIFICACIONES
+                            if(!friendNotSend) {
+                                Double distancePoints;
+                                distancePoints = distance(lat, longitude, ubicacionRes.latitude, ubicacionRes.longitude);
+
+                                if (distancePoints <= 1000) {
+                                    FCMSend.pushNotification(MapsActivity.this, getIntent().getStringExtra("token"), "¡Ya casi!", "Tu amigo está a punto de llegar al lugar.");
+                                    friendNotSend = true;
+                                }
+                            }
                         }
                     }
                 }
@@ -418,7 +431,19 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                         user.setLongitude(String.valueOf(latLng.longitude));
 
                         FirebaseDatabase.getInstance().getReference("users/" + currentUser.getUid()).setValue(user);
-                        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                        /*mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));*/
+
+                        //NOTIFICACIONES
+                        if(!myNotSend) {
+                            Double distancePoints;
+                            distancePoints = distance(latLng.latitude, latLng.longitude, ubicacionRes.latitude, ubicacionRes.longitude);
+
+                            if (distancePoints <= 1000) {
+                                FCMSend.pushNotification(MapsActivity.this, user.getToken(), "¡Ya casi!", "Estas a punto de llegar al lugar.");
+                                myNotSend = true;
+                            }
+
+                        }
                     }
                 }
             }
