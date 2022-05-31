@@ -400,8 +400,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                             if(!friendNotSend) {
                                 Double distancePoints;
                                 distancePoints = distance(lat, longitude, ubicacionRes.latitude, ubicacionRes.longitude);
-
-                                if (distancePoints <= 1000) {
+                                Log.i("DISTANCE", String.valueOf(distancePoints));
+                                if (distancePoints <= 2000) {
                                     FCMSend.pushNotification(MapsActivity.this, getIntent().getStringExtra("token"), "¡Ya casi!", "Tu amigo está a punto de llegar al lugar.");
                                     friendNotSend = true;
                                 }
@@ -438,7 +438,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                             Double distancePoints;
                             distancePoints = distance(latLng.latitude, latLng.longitude, ubicacionRes.latitude, ubicacionRes.longitude);
 
-                            if (distancePoints <= 1000) {
+                            if (distancePoints <= 2000) {
                                 FCMSend.pushNotification(MapsActivity.this, user.getToken(), "¡Ya casi!", "Estas a punto de llegar al lugar.");
                                 myNotSend = true;
                             }
