@@ -78,7 +78,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener, SensorEventListener, OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener, OnMapReadyCallback {
 
     private static final double RADIUS_OF_EARTH = 6371;
     public static final String LOCATION_PERMISSION_NAME = Manifest.permission.ACCESS_FINE_LOCATION;
@@ -97,7 +97,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     private ArrayList<Marker> markers;
 
     private SensorManager mgr;
-    private Sensor temp;
     private TextView text;
 
 
@@ -109,6 +108,10 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     FloatingActionButton fab1, ub1;
     Geocoder mGeocoder;
     String ubicacionAct ="";
+    String ubicacionAct2 ="";
+    static LatLng ubicacionRes;
+    static LatLng ubicacionTwo;
+    static String ubicacionOne;
 
     boolean isOpen= false;
 
@@ -131,7 +134,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         ub1 = findViewById(R.id.centerUser);
         mgr = (SensorManager) this.getSystemService(SENSOR_SERVICE);
 
-        text = (TextView) findViewById(R.id.temperatura);
+
 
 
         //Inicializar marcadores
@@ -151,7 +154,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
         //Generador de sensores
         lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
-        temp = mgr.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
 
         //API de Google
         mGeocoder = new Geocoder(getBaseContext());
@@ -162,8 +164,28 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                 .findFragmentById(R.id.mapUser);
         mapFragment.getMapAsync(this);
 
-        ubicacionAct = getIntent().getStringExtra("location");
-        LatLng ls =  new LatLng(Double.parseDouble(ubicacionAct.split(",")[0].replace("lat/lng: (","")),Double.parseDouble(ubicacionAct.split(",")[1].replace(")","")) );
+        if(getIntent().getStringExtra("location") != null){
+            ubicacionAct = getIntent().getStringExtra("location");
+            ubicacionRes =  new LatLng(Double.parseDouble(ubicacionAct.split(",")[0].replace("lat/lng: (","")),Double.parseDouble(ubicacionAct.split(",")[1].replace(")","")) );
+        }else if(getIntent().getStringExtra("key") != null){
+            System.out.println("AAAAAAAAAAAAAA"+ ubicacionRes+ "        BBBBBBBBBBBBBBBBBBB"+ ubicacionOne);
+            ubicacionAct2 = getIntent().getStringExtra("key");
+            ubicacionTwo = new LatLng(Double.parseDouble(ubicacionAct2.split(",")[0]), Double.parseDouble(ubicacionAct2.split(",")[1]));
+            animateFab();
+            address2.setText(geoCoderSearchLatLang(ubicacionTwo));
+            String addressString = address2.getText().toString();
+            String add2 = address1.getText().toString();
+            LatLng position1 = searchAddress(add2);
+            LatLng position2 = searchAddress(addressString);
+            if(position1!= null && position2!= null){
+                createMarkerUser(position1);
+                mMap.addMarker(new MarkerOptions().position(position2).title("Partner").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_emoji_people_24)));
+                System.out.println(ubicacionAct);
+                drawRoute(position1, ubicacionRes);
+                drawRoute(position2, ubicacionRes);
+                mMap.addMarker(new MarkerOptions().position(ubicacionRes).title("Place").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_location_on_24)));
+            }else {Toast.makeText(MapsActivity.this, "Hubo un error", Toast.LENGTH_SHORT).show();}
+        }
 
 
         //Seguimiento de posicion donde se analiza si hubo un movimiento de más de 2 metros
@@ -205,8 +227,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                                 LatLng position = new LatLng(addressResult.getLatitude(), addressResult.getLongitude());
                                 if (mMap != null) {
                                     createMarkerUser(position);
-                                    drawRoute(position, ls);
-                                    mMap.addMarker(new MarkerOptions().position(ls).title("Place").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_location_on_24)));;
+                                    drawRoute(position, ubicacionRes);
+                                    mMap.addMarker(new MarkerOptions().position(ubicacionRes).title("Place").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_location_on_24)));;
                                 }
                             } else {Toast.makeText(MapsActivity.this, "Dirección no encontrada", Toast.LENGTH_SHORT).show();}
                         } catch (IOException e) {
@@ -225,29 +247,14 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                animateFab();
-
-                address2.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                    @Override
-                    public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                        if (actionId == EditorInfo.IME_ACTION_SEND) {
-                            String addressString = address2.getText().toString();
-                            String add2 = address1.getText().toString();
-                            LatLng position1 = searchAddress(add2);
-                            LatLng position2 = searchAddress(addressString);
-                            if(position1!= null && position2!= null){
-                                createMarkerUser(position1);
-                                mMap.addMarker(new MarkerOptions().position(position2).title("Partner").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_emoji_people_24)));
-                                System.out.println(ubicacionAct);
-                                drawRoute(position1, ls);
-                                drawRoute(position2, ls);
-                                mMap.addMarker(new MarkerOptions().position(ls).title("Place").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_location_on_24)));
-                                return true;
-                            }else {Toast.makeText(MapsActivity.this, "Debe llenar ambos campos", Toast.LENGTH_SHORT).show();}
-                        }
-                        return false;
-                    }
-                });
+                Intent intent= new Intent(getBaseContext(), DisponiblesActivity.class);
+                String addressString = address1.getText().toString();
+                if (addressString.isEmpty()) {
+                    Toast.makeText(MapsActivity.this, "Su ubicación esta vacía, ingrese su ubicación", Toast.LENGTH_LONG).show();
+                }else {
+                    ubicacionOne = address1.getText().toString();
+                    startActivity(intent);
+                }
             }
         });
 
@@ -379,7 +386,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         };
 
         sensorManager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
-        mgr.registerListener(this, temp, SensorManager.SENSOR_DELAY_NORMAL);
+
 
     }
 
@@ -388,7 +395,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     protected void onPause() {
         super.onPause();
         sensorManager.unregisterListener(lightSensorListener);
-        mgr.unregisterListener(this, temp);
     }
 
     @SuppressLint("MissingPermission")
@@ -413,31 +419,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
     }
 
-    public void onSensorChanged(SensorEvent event) {
-
-        if(event.values[0] < 5){
-            Log.i("TEMPERATURA", String.valueOf(event.values[0]));
-            text.setText("¡El día de hoy hace frío!");
-            text.setTextColor(Color.BLUE);
-        }
-
-        if(event.values[0] > 5 && event.values[0] < 15){
-            Log.i("TEMPERATURA", String.valueOf(event.values[0]));
-            text.setText("¡El día de hoy está templado!");
-            text.setTextColor(Color.GREEN);
-        }
-
-        if(event.values[0] > 15){
-            Log.i("TEMPERATURA", String.valueOf(event.values[0]));
-            text.setText("¡El día de hoy hace calor!");
-            text.setTextColor(Color.RED);
-        }
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {
-
-    }
 
 
     private LocationRequest createLocationRequest(){

@@ -89,6 +89,9 @@
         <activity
             android:name=".Registrar"
             android:exported="false" />
+        <activity
+            android:name=".DisponiblesActivity"
+            android:exported="false" />
 
         <service android:name=".PushNotificationService" android:exported="false">
             <intent-filter>
