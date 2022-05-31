@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MenuActivity extends AppCompatActivity {
     ImageView perfil, contactos, fav;
@@ -48,6 +49,8 @@ public class MenuActivity extends AppCompatActivity {
 
         mAuth= FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
+
+        storeToken();
 
         //Botones de categoría
         parrilla = findViewById(R.id.parrillaBtn);
@@ -111,6 +114,8 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Pasa a la pantalla principal.
+
+                createNotification();
                 Intent intent= new Intent(getBaseContext(), GooglePlacesActivity.class);
                 intent.putExtra("tipo", "VEGETARIANO");
                 startActivity(intent);
@@ -156,6 +161,44 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void storeToken(){
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            return;
+                        }
+
+                        String token = task.getResult();
+
+                        //Update info
+                        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+                        DatabaseReference firebaseDB = FirebaseDatabase.getInstance().getReference("users/").child(currentUser.getUid());
+
+                        firebaseDB.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DataSnapshot> task2) {
+                                if(task2.isSuccessful()) {
+                                    if (task2.getResult().exists()) {
+                                        FirebaseDatabase.getInstance().getReference("users/" + currentUser.getUid() + "/token").setValue(token);
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+    }
+
+    private void createNotification(){
+
+        String title = "Vegetariano Hang Out";
+        String message = "Comida vegetariana en Hang Out";
+
+        FCMSend.pushNotification(MenuActivity.this, "e1DfKs2ZTuKOyo94_-DDAc:APA91bElgrKcLZOtyTUBe8NB9zgIpG11LGf2ht-i4sfEvtjs-kjW-ISk2_u978fTVl848ulHXU9wy1pl8aXUWMM9KQzZNU8MKczF_ObdEjK3FNaFCXnrNmanrqlwk2yUit2YQ32-o95h", title, message);
     }
 
     private void checkAvailability() {

@@ -79,21 +79,6 @@
         android:background="@color/celeste" />
 
     <TextView
-        android:id="@+id/categoriesTitle2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/separator"
-        android:layout_centerVertical="true"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Categorías"
-        android:gravity="center"
-        android:textSize="40dp"
-        android:layout_marginTop="15dp"
-        android:layout_centerInParent="true"
-        android:textColor="@color/blue_add"
-        android:textStyle="bold" />
-
-    <TextView
         android:id="@+id/categoriesTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

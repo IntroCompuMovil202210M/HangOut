@@ -18,6 +18,7 @@ public class MyUser {
     private boolean disponible;
     private String key;
     boolean available;
+    String token;
 
 
     public MyUser() {
@@ -139,4 +140,11 @@ public class MyUser {
         this.foto = foto;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 }
