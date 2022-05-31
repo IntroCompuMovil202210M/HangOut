@@ -292,6 +292,12 @@ public class ChatActivity extends AppCompatActivity {
                                 return chat.getKey();
                             }
                         }
+                        //Si los usuarios están cambiados
+                        if (chat.getSegundoUsuario().equals(uuId)) {
+                            if (chat.getPrimerUsuario().equals(userChatId)) {
+                                return chat.getKey();
+                            }
+                        }
 
                     }
                 }
