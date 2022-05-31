@@ -30,6 +30,7 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -59,9 +60,14 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.proyecto1.databinding.ActivityMapsBinding;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.GeoPoint;
 
 import org.json.JSONArray;
@@ -93,6 +99,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationCallback mLocationCallback;
     private LocationRequest mLocationRequest;
+    private MarkerOptions currentUser;
 
     private ArrayList<Marker> markers;
 
@@ -117,7 +124,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
@@ -159,7 +166,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                 .findFragmentById(R.id.mapUser);
         mapFragment.getMapAsync(this);
 
-
         //Seguimiento de posicion donde se analiza si hubo un movimiento de más de 2 metros
         mLocationCallback = new LocationCallback() {
             @SuppressLint("MissingPermission")
@@ -183,7 +189,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                 }
             }
         };
-
 
         //Busqueda con solo una dirección
         address1.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -214,7 +219,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
         });
 
-
         //Botón para ubicar a una segunda persona
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -229,7 +233,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                 }
             }
         });
-
 
         /**
          * Función para ubicar en la posición actual del usuario
@@ -252,18 +255,9 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
         });
-
     }
-
-    /**
-    *  Inicializar botones para el manejo de MAPS
-    */
-
-
-
 
     /**
      * Función para ubicar la dos direcciones si son dos personas
@@ -286,8 +280,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
         return null;
     }
-
-
 
     //MAP ON READY
     @SuppressLint("MissingPermission")
@@ -319,6 +311,9 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                 drawRoute(position1, ubicacionRes);
                 drawRoute(position2, ubicacionRes);
                 mMap.addMarker(new MarkerOptions().position(ubicacionRes).title("Place").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_location_on_24)));
+
+                //Actualización en tiempo real
+                getLocation();
             }else {Toast.makeText(MapsActivity.this, "Hubo un error", Toast.LENGTH_SHORT).show();}
         }
 
@@ -352,9 +347,82 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
             }
         });
 
+    }
+
+    @SuppressLint("MissingPermission")
+    private void getLocation() {
+        if (ContextCompat.checkSelfPermission(MapsActivity.this, LOCATION_PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
+            mLocationRequest = LocationRequest.create();
+            mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+            mLocationRequest.setInterval(5000);
+            mLocationRequest.setFastestInterval(3000);
+
+            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+            mFusedLocationClient.requestLocationUpdates(mLocationRequest, new LocationCallback() {
+                @Override
+                public void onLocationResult(@NonNull LocationResult locationResult) {
+                    super.onLocationResult(locationResult);
+                    Log.i("TOASTACT", "Entra");
+                    mMap.clear();
+                    currentUser = new MarkerOptions().position(new LatLng(locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude())).title("Marker in Current").icon(bitmapDescriptorFromVector(MapsActivity.this,R.drawable.ic_baseline_emoji_people_24));
+                    mMap.addMarker(currentUser);
+                    getCurrentLocationOtherUser(locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude());
+                    drawRoute(new LatLng(locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude()), ubicacionRes);
+                    updateLocation(new LatLng(locationResult.getLastLocation().getLatitude(),locationResult.getLastLocation().getLongitude()));
+
+                }
+            }, Looper.getMainLooper());
+        }
+    }
 
 
+    private void getCurrentLocationOtherUser(Double lat, Double longitude){
 
+        FirebaseDatabase.getInstance().getReference("users").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                for(DataSnapshot snapshot : task.getResult().getChildren()){
+                    Log.i("TOKEN-MAP", getIntent().getStringExtra("token"));
+                    if(getIntent().getStringExtra("token").equals(snapshot.getValue(MyUser.class).getToken())){
+                        Log.i("USER-P", snapshot.getValue(MyUser.class).toString());
+                        if(snapshot.getValue(MyUser.class).getLatitude() != null) {
+                            LatLng otherLocation = new LatLng(Double.parseDouble(snapshot.getValue(MyUser.class).getLatitude()), Double.parseDouble(snapshot.getValue(MyUser.class).getLongitude()));
+                            mMap.addMarker(new MarkerOptions().position(otherLocation).title("Other").icon(bitmapDescriptorFromVector(MapsActivity.this, R.drawable.ic_baseline_boy_24)));
+                            drawRoute(otherLocation, ubicacionRes);
+
+                            //CON ESTO SE PUEDE HACER LO DE LAS NOTIFICACIONES
+                            /*distancePoints = distance(lat, longitude, Double.parseDouble(snapshot.getValue(User.class).getLatitude()), Double.parseDouble(snapshot.getValue(User.class).getLongitude()));
+                            distance.setText("Distancia actual: " + distancePoints);*/
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    private void updateLocation(LatLng latLng){
+        FirebaseAuth mAuth;
+        //Firebase
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseDatabase.getInstance().getReference("users/").child(currentUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()) {
+                    if (task.getResult().exists()) {
+
+                        MyUser user = task.getResult().getValue(MyUser.class);
+
+                        user.setLatitude(String.valueOf(latLng.latitude));
+                        user.setLongitude(String.valueOf(latLng.longitude));
+
+                        FirebaseDatabase.getInstance().getReference("users/" + currentUser.getUid()).setValue(user);
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                    }
+                }
+            }
+        });
     }
 
     @SuppressLint("MissingPermission")
@@ -381,10 +449,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         };
 
         sensorManager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
-
-
     }
-
 
     @Override
     protected void onPause() {
@@ -414,8 +479,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
     }
 
-
-
     private LocationRequest createLocationRequest(){
         LocationRequest locationRequest = LocationRequest.create()
                 .setInterval(10000)
@@ -435,8 +498,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         downloadTask.execute(url);
 
     }
-
-
 
     public String geoCoderSearchLatLang(LatLng latLng){
         Geocoder mGeocoder = new Geocoder(getBaseContext()); //API de Google
@@ -506,10 +567,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         mMap.getUiSettings().setZoomGesturesEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
     }
-
-
-
-
 
     private BitmapDescriptor bitmapDescriptorFromVector(Context context, int vectorResId) {
         Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
