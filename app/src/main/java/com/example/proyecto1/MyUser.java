@@ -1,5 +1,7 @@
 package com.example.proyecto1;
 
+import com.example.proyecto1.Chats.Chat;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +20,9 @@ public class MyUser {
     private boolean disponible;
     private String key;
     boolean available;
+    private HashMap<String,Chat> chats;
     String token;
+
 
 
     public MyUser() {
@@ -57,13 +61,15 @@ public class MyUser {
     }
 
 
-    public MyUser(String name, String lastName, String mail, String userName, String phoneNumber, String password) {
+    public MyUser(String name, String lastName, String mail, String userName, String phoneNumber, String password, String ID) {
         this.name = name;
         this.lastName = lastName;
         this.mail = mail;
         this.userName = userName;
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.ID = ID;
+        this.chats = new HashMap<>();
     }
 
     public MyUser(String key, String name, String apellido, String id, String latitude, String longitude, boolean disponible){
@@ -74,6 +80,7 @@ public class MyUser {
         this.latitude= latitude;
         this.longitude = longitude;
         this.disponible = disponible;
+        this.chats = new HashMap<>();
     }
     public String getName() {
         return name;
@@ -112,7 +119,7 @@ public class MyUser {
     public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
-    public boolean isAvailable() {
+    public boolean getIsAvailable() {
         return available;
     }
 
@@ -120,8 +127,16 @@ public class MyUser {
         this.available = available;
     }
 
+    public boolean getIsDisponible() {
+        return disponible;
+    }
+
     public boolean isDisponible() {
         return disponible;
+    }
+
+    public boolean isAvailable() {
+        return available;
     }
 
     public void setDisponible(boolean disponible) {
@@ -146,5 +161,13 @@ public class MyUser {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public HashMap<String,Chat> getChats() {
+        return chats;
+    }
+
+    public void setChats(HashMap<String,Chat> chats) {
+        this.chats = chats;
     }
 }

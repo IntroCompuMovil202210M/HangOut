@@ -77,7 +77,7 @@ public class DisponiblesActivity extends AppCompatActivity {
                 List<MyUser> disponibles = new ArrayList<>();
                 for(DataSnapshot entity: dataSnapshot.getChildren()){
                     MyUser usuario = entity.getValue(MyUser.class);
-                    if(usuario.isDisponible()){
+                    if(usuario.getIsDisponible()){
                         usuario.setKey(entity.getKey());
                         disponibles.add(usuario);
                     }

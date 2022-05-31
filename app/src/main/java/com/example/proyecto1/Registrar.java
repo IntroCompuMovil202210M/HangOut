@@ -127,7 +127,7 @@ public class Registrar extends AppCompatActivity{
                                 Log.i("MENSAJE3", "ENTRA3");
                                 user = mAuth.getCurrentUser();
                                 String userID = mAuth.getCurrentUser().getUid();
-                                MyUser user= new MyUser(name, lastName, mail, userName, phoneNumber, password);
+                                MyUser user= new MyUser(name, lastName, mail, userName, phoneNumber, password, userID);
                                 userRef= database.getReference(FB_USERS_PATH+userID);
                                 userRef.setValue(user);
 

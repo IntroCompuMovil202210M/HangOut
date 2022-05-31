@@ -113,7 +113,13 @@ public class MainActivity extends AppCompatActivity {
                 super.onAuthenticationSucceeded(result);
                 String email= sharedPreferences.getString("email","");
                 String password= sharedPreferences.getString("password", "");
-                signInFirebase(email, password);
+                if(!email.isEmpty()&&!password.isEmpty()){
+                    signInFirebase(email, password);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Authentication failed",
+                            Toast.LENGTH_SHORT)
+                            .show();
+                }
             }
 
             @Override
