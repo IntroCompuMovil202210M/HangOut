@@ -115,7 +115,6 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Pasa a la pantalla principal.
 
-                createNotification();
                 Intent intent= new Intent(getBaseContext(), GooglePlacesActivity.class);
                 intent.putExtra("tipo", "VEGETARIANO");
                 startActivity(intent);
@@ -191,14 +190,6 @@ public class MenuActivity extends AppCompatActivity {
                         });
                     }
                 });
-    }
-
-    private void createNotification(){
-
-        String title = "Vegetariano Hang Out";
-        String message = "Comida vegetariana en Hang Out";
-
-        FCMSend.pushNotification(MenuActivity.this, "cP7iSHckRt6CU1MXyyy9Z-:APA91bH7QbPSeGRUGwCM2UcbfbZKF-2rO-XdV8ylSxQ1e_9tPC0fcyorfP1gAynloT9EY7g2IDe8F6xzXnBkBBFCquuISxAtYTVd5FOKXJj9sIJxCbfV5YGxdmgk90ZJifT1sVkElNJm", title, message);
     }
 
     private void checkAvailability() {
