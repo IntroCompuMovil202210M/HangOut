@@ -122,7 +122,7 @@ public class GooglePlacesActivity extends AppCompatActivity {
         locationCallback = createLocationCallBack();
 
         //Ask Permission
-        getSinglePermission.launch(ACCESS_FINE_LOCATION);
+       // getSinglePermission.launch(ACCESS_FINE_LOCATION);
         //Check if GPS is ON
         checkLocationSettings();
 
